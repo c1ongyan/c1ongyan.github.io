@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touxiang.jpg">
+  <link rel="icon" href="/img/touxiang.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="c1ongyan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Crypto-Lab71.BlackBox描述：._. 逆向是徒劳的，简单加了vm壳，学习黑盒测试的思想。 题目：  思路： 开始的时候没有看明白需要输入什么东西，随便输入显示长度错误，试探了一下，没试出来，之后发现16进制块有42个，符合flag的长度，输入一个之前别的题交过的flag  发现flag{}对应位置得到的密文与开始给的相同，我开始还单纯的以为是每个字符对应一个16进制，之后才发现同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto-lab7">
+<meta property="og:url" content="http://example.com/post/Crypto-lab7.html">
+<meta property="og:site_name" content="c1ongyan">
+<meta property="og:description" content="Crypto-Lab71.BlackBox描述：._. 逆向是徒劳的，简单加了vm壳，学习黑盒测试的思想。 题目：  思路： 开始的时候没有看明白需要输入什么东西，随便输入显示长度错误，试探了一下，没试出来，之后发现16进制块有42个，符合flag的长度，输入一个之前别的题交过的flag  发现flag{}对应位置得到的密文与开始给的相同，我开始还单纯的以为是每个字符对应一个16进制，之后才发现同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212192149102.png">
+<meta property="article:published_time" content="2022-12-15T12:39:48.000Z">
+<meta property="article:modified_time" content="2023-02-21T12:53:30.575Z">
+<meta property="article:author" content="c1ongyan">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212192149102.png">
+  
+  
+  
+  <title>Crypto-lab7 - c1ongyan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>c1ongyanのblog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Crypto-lab7"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-15 20:39" pubdate>
+          2022年12月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          45k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          379 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Crypto-lab7</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Crypto-Lab7"><a href="#Crypto-Lab7" class="headerlink" title="Crypto-Lab7"></a>Crypto-Lab7</h1><h2 id="1-BlackBox"><a href="#1-BlackBox" class="headerlink" title="1.BlackBox"></a>1.BlackBox</h2><p>描述：._. 逆向是徒劳的，简单加了vm壳，学习黑盒测试的思想。</p>
+<p>题目：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212152045732.png" srcset="/img/loading.gif" lazyload alt="image-20221215204528702"></p>
+<p>思路：</p>
+<p>开始的时候没有看明白需要输入什么东西，随便输入显示长度错误，试探了一下，没试出来，之后发现16进制块有42个，符合flag的长度，输入一个之前别的题交过的flag</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212152051042.png" srcset="/img/loading.gif" lazyload alt="image-20221215205131009"></p>
+<p>发现flag{}对应位置得到的密文与开始给的相同，我开始还单纯的以为是每个字符对应一个16进制，之后才发现同一个字母出现在不同位置得到的加密结果不同，联想到维吉尼亚的周期性密钥，如果这里是密钥，而且如果同一个位置的同一个字母加密结果是一样的，那么肯定不是什么复杂的加密结构，很有可能是异或，用f的ASCII码值异或上对应的16进制25的ASCII值，为67，输入42个a，用67异或上97，得到的16进制结果正好是22，故可以证实自己的想法。这样通过已知的明密文异或得到密钥，再用密钥解密就能得到flag</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212152042045.png" srcset="/img/loading.gif" lazyload alt="image-20221215204224978"></p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">cipher=<span class="hljs-string">&#x27;25 1e 18 17 0f 5a 25 14 1b 49 42 0d 26 5f 1f 41 12 59 6e 46 4b 40 12 42 21 17 49 44 59 0d 22 43 41 11 4d 5c 71 17 4e 47 11 12&#x27;</span><br>cipher=cipher.split(<span class="hljs-string">&#x27; &#x27;</span>)<br><span class="hljs-comment">#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span><br>setC=<span class="hljs-string">&#x27;22 13 18 11 15 0e 22 13 18 11 15 0e 22 13 18 11 15 0e 22 13 18 11 15 0e 22 13 18 11 15 0e 22 13 18 11 15 0e 22 13 18 11 15 0e&#x27;</span><br>setC=setC.split(<span class="hljs-string">&#x27; &#x27;</span>)<br>key=[]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">42</span>):<br>	tmp=<span class="hljs-built_in">int</span>(setC[i],<span class="hljs-number">16</span>)^<span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;a&#x27;</span>)<br>	key.append(tmp)<br><span class="hljs-comment">#print(key)</span><br>res=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">42</span>):<br>	tmp=<span class="hljs-built_in">int</span>(cipher[i],<span class="hljs-number">16</span>)^key[i]<br>	tmp=<span class="hljs-built_in">chr</span>(tmp)<br>	res+=tmp<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+<h2 id="2-LRSA"><a href="#2-LRSA" class="headerlink" title="2.LRSA"></a>2.LRSA</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2<br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> hashlib <span class="hljs-keyword">import</span> sha256<br><span class="hljs-keyword">import</span> string<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> flag <span class="hljs-keyword">import</span> flag<br><br>m=bytes_to_long(flag)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getPQ</span>(<span class="hljs-params">p,q</span>):<br>    P=getPrime(<span class="hljs-number">2048</span>)<br>    Q=getPrime(<span class="hljs-number">2048</span>)<br>    t=(p*P-<span class="hljs-number">58</span>*P+q)%Q<br>    <span class="hljs-keyword">assert</span> (isPrime(Q))<br>    <span class="hljs-keyword">return</span> P,Q,t<br><br>B=getRandomNBitInteger(<span class="hljs-number">11</span>)<br>p=getPrime(B)<br>q=getPrime(B)<br>n=p*q<br>e=<span class="hljs-number">65537</span><br>c=<span class="hljs-built_in">pow</span>(m,e,n)<br>P,Q,t=getPQ(p,q)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B=&quot;</span>,B)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;P*P*Q=&quot;</span>,P*P*Q)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;P*Q*Q=&quot;</span>,P*Q*Q)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;t=&quot;</span>,t)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;c=&quot;</span>,c)<br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>已知P*P*Q和P*Q*Q可以通过两者相乘开三次方求出P*Q,或者求两者的公因子也可以求出P*Q</p>
+<p>现在就是已知P,Q,t，求p,q,这里由于存在线性关系t=(p*P-58*P+q)%Q,是一个可以用格解决的问题</p>
+<p>推导：</p>
+<script type="math/tex; mode=display">
+t=(p*P-58*P+q)\%Q\\
+->t+k*Q=(p-58)*P+q\\
+->(p-58)*P-k*Q=t-q\\
+->(p-58\quad-k)*\left[
+ \begin{matrix}
+   1 & P\\
+   0 & Q\\
+  \end{matrix}
+  \right]=(p-58\quad{t-q})</script><p>格子是：</p>
+<script type="math/tex; mode=display">
+M=\left[
+ \begin{matrix}
+   1 & P\\
+   0 & Q\\
+  \end{matrix}
+  \right]</script><p>向量<code>(p-58,t-q)</code>可以由两组基向量<code>M</code>的某种整系数线性组合<code>(p-58, -k)</code>来表示，因此向量<code>(p-58,t-q)</code>就在这个格上</p>
+<p>再来看看<code>p,q,P,Q,t</code>的大小</p>
+<ul>
+<li><code>p or q</code>:1024~2047bit</li>
+<li><code>P or Q</code>:2048bit</li>
+<li><code>t</code>:44(6bit)</li>
+</ul>
+<script type="math/tex; mode=display">
+||(1,P)||=\sqrt{1^2+P^2}\approx2048bit\\
+||(0,Q)||=\sqrt{Q^2}\approx2048bit\\
+||(p-58,t-q)||=\sqrt{(p-58)^2+(t-q)^2}\approx\sqrt{2}*(p-6bit)\approx1018\sim2041bit</script><p>相对于两个基底向量<code>(1, P), (0, Q)</code>来说，向量<code>(p-58, t-q)</code>的长度要小得多得多,可以猜测向量<code>(p-58, t-q)</code>是这个格的最短向量，可以用LLL算法求出，这样就能求出p,q,之后再用RSA解密即可</p>
+<p>exp:</p>
+<p>现在sage中用LLL算法解出p,q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br>PPQ=<span class="hljs-number">17550772391048142376662352375650397168226219900284185133945819378595084615279414529115194246625188015626268312188291451580718399491413731583962229337205180301248556893326419027312533686033888462669675100382278716791450615542537581657011200868911872550652311318486382920999726120813916439522474691195194557657267042628374572411645371485995174777885120394234154274071083542059010253657420242098856699109476857347677270860654429688935924519805555787949683144015873225388396740487817155358042797286990338440987035608851331840925854381286767024584195081004360635842976624747610461507795755042915965483135990495921912997789567020652729777216671481467049291624343256152446367091568361258918212012737611001009003078023715854575413979603297947011959023398306612437250872299406744778763429172689675430968886613391356192380152315042387148665654062576525633130546454743040442444227245763939134967515614637300940642555367668537324892890004459521919887178391559206373513466653484926149453481758790663522317898916616435463486824881406198956479504970446076256447830689197409184703931842169195650953917594642601134810084247402051464584676932882503143409428970896718980446185114397748313655630266379123438583315809104543663538494519415242569480492899140190587129956835218417371308642212037424611690324353109931657289337536406499314388951678319136343913551598851601805737870217800009086551022197432448461112330252097447894028786035069710260561955740514091976513928307284531381150606428802334767412638213776730300093872457594524254858721551285338651364457529927871215183857169772407595348187949014442596356406144157105062291018215254440382214000573515515859668018846789551567310531570458316720877172632139481792680258388798439064221051325274383331521717987420093245521230610073103811158660291643007279940393509663374960353315388446956868294358252276964954745551655711981</span><br>PQQ=<span class="hljs-number">17632503734712698604217167790453868045296303200715867263641257955056721075502316035280716025016839471684329988600978978424661087892466132185482035374940487837109552684763339574491378951189521258328752145077889261805000262141719400516584216130899437363088936913664419705248701787497332582188063869114908628807937049986360525010012039863210179017248132893824655341728382780250878156526086594253092249935304259986328308203344932540888448163430113818706295806406535364433801544858874357459282988110371175948011077595778123265914357153104206808258347815853145593128831233094769191889153762451880396333921190835200889266000562699392602082643298040136498839726733129090381507278582253125509943696419087708429546384313035073010683709744463087794325058122495375333875728593383803489271258323466068830034394348582326189840226236821974979834541554188673335151333713605570214286605391522582123096490317734786072061052604324131559447145448500381240146742679889154145555389449773359530020107821711994953950072547113428811855524572017820861579995449831880269151834230607863568992929328355995768974532894288752369127771516710199600449849031992434777962666440682129817924824151147427747882725858977273856311911431085373396551436319200582072164015150896425482384248479071434032953021738952688256364397405939276917210952583838731888536160866721278250628482428975748118973182256529453045184370543766401320261730361611365906347736001225775255350554164449014831203472238042057456969218316231699556466298168668958678855382462970622819417830000343573014265235688391542452769592096406400900187933156352226983897249981036555748543606676736274049188713348408983072484516372145496924391146241282884948724825393087105077360952770212959517318021248639012476095670769959011548699960423508352158455979906789927951812368185987838359200354730654103428077770839008773864604836807261909</span><br>t=<span class="hljs-number">44</span><br>PQ=gp.iroot(PPQ*PQQ,<span class="hljs-number">3</span>)[<span class="hljs-number">0</span>]<br>P=PPQ//PQ<br>Q=PQQ//PQ<br><span class="hljs-comment">#print(&#x27;P&#x27;,len(bin(P)[2:]))</span><br><span class="hljs-comment">#print(&#x27;Q&#x27;,len(bin(Q)[2:]))</span><br>M = matrix(ZZ, [[<span class="hljs-number">1</span>, P], [<span class="hljs-number">0</span>, Q]])<br>lll = M.LLL()[<span class="hljs-number">0</span>]<br>p = <span class="hljs-built_in">int</span>(-lll[<span class="hljs-number">0</span>]) + <span class="hljs-number">58</span><br>q = <span class="hljs-built_in">int</span>(lll[<span class="hljs-number">1</span>]) + t<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;p=&#x27;</span>,p)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;q=&#x27;</span>,q)<br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212181528155.png" srcset="/img/loading.gif" lazyload alt="image-20221218152834034"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br>c=<span class="hljs-number">4364802217291010807437827526073499188746160856656033054696031258814848127341094853323797303333741617649819892633013549917144139975939225893749114460910089509552261297408649636515368831194227006310835137628421405558641056278574098849091436284763725120659865442243245486345692476515256604820175726649516152356765363753262839864657243662645981385763738120585801720865252694204286145009527172990713740098977714337038793323846801300955225503801654258983911473974238212956519721447805792992654110642511482243273775873164502478594971816554268730722314333969932527553109979814408613177186842539860073028659812891580301154746</span><br>e=<span class="hljs-number">65537</span><br>p= <span class="hljs-number">80736411146583842306585010871034886981016840349026602734742256246556342668178774083233822097872779308174897649383396380481655663281333047577768952571915605685701400990749928642136680236367785948214890529631428970999122918591632651324318444462622996015719163492064450044087392474349767300242266723293755137263</span><br>q= <span class="hljs-number">71239161441539946834999944364158306978517617517717217001776063773301330324729178632534286023377366747004115034635139042058644768011502688969022553791977558750633767627495955645170437100983708648876951588485253787441732757259210010467734037546118780321368088487269039555130213851691659851510403573663333586451</span><br>phi = (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>)<br>d = inverse(e, phi)<br>n = p * q<br><span class="hljs-built_in">print</span>(long_to_bytes(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">pow</span>(c, d, n))))<br></code></pre></td></tr></table></figure>
+<h2 id="3-RSA"><a href="#3-RSA" class="headerlink" title="3.RSA+"></a>3.RSA+</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> binascii<br><span class="hljs-keyword">from</span> data <span class="hljs-keyword">import</span> e1,e2,p,q1p,q1q,hint,flag<br><br>n =  [<span class="hljs-number">20129615352491765499340112943188317180548761597861300847305827141510465619670536844634558246439230371658836928103063432870245707180355907194284861510906071265352409579441048101084995923962148527097370705452070577098780246282820065573711015664291991372085157016901209114191068574208680397710042842835940428451949500607613634682684113208766694028789275748528254287705759528498986306494267817198340658241873024800336013946294891687591013414935237821291805123285905335762719823771647853378892868896078424572232934360940672962436849523915563328779942134504499568866135266628078485232098208237036724121481835035731201383423</span>, <span class="hljs-number">31221650155627849964466413749414700613823841060149524451234901677160009099014018926581094879840097248543411980533066831976617023676225625067854003317018794041723612556008471579060428898117790587991055681380408263382761841625714415879087478072771968160384909919958010983669368360788505288855946124159513118847747998656422521414980295212646675850690937883764000571667574381419144372824211798018586804674824564606122592483286575800685232128273820087791811663878057827386379787882962763290066072231248814920468264741654086011072638211075445447843691049847262485759393290853117072868406861840793895816215956869523289231421</span>, <span class="hljs-number">29944537515397953361520922774124192605524711306753835303703478890414163510777460559798334313021216389356251874917792007638299225821018849648520673813786772452822809546571129816310207232883239771324122884804993418958309460009406342872173189008449237959577469114158991202433476710581356243815713762802478454390273808377430685157110095496727966308001254107517967559384019734279861840997239176254236069001453544559786063915970071130087811123912044312219535513880663913831358790376650439083660611831156205113873793106880255882114422025746986403355066996567909581710647746463994280444700922867397754748628425967488232530303</span>, <span class="hljs-number">25703437855600135215185778453583925446912731661604054184163883272265503323016295700357253105301146726667897497435532579974951478354570415554221401778536104737296154316056314039449116386494323668483749833147800557403368489542273169489080222009368903993658498263905567516798684211462607069796613434661148186901892016282065916190920443378756167250809872483501712225782004396969996983057423942607174314132598421269169722518224478248836881076484639837343079324636997145199835034833367743079935361276149990997875905313642775214486046381368619638551892292787783137622261433528915269333426768947358552919740901860982679180791</span>]<br>c =  [<span class="hljs-number">19131432661217908470262338421299691998526157790583544156741981238822158563988520225986915234570037383888112724408392918113942721994125505014727545946133307329781747600302829588248042922635714391033431930411180545085316438084317927348705241927570432757892985091396044950085462429575440060652967253845041398399648442340042970814415571904057667028157512971079384601724816308078631844480110201787343583073815186771790477712040051157180318804422120472007636722063989315320863580631330647116993819777750684150950416298085261478841177681677867236865666207391847046483954029213495373613490690687473081930148461830425717614569</span>, <span class="hljs-number">15341898433226638235160072029875733826956799982958107910250055958334922460202554924743144122170018355117452459472017133614642242411479849369061482860570279863692425621526056862808425135267608544855833358314071200687340442512856575278712986641573012456729402660597339609443771145347181268285050728925993518704899005416187250003304581230701444705157412790787027926810710998646191467130550713600765898234392350153965811595060656753711278308005193370936296124790772689433773414703645703910742193898471800081321469055211709339846392500706523670145259024267858368216902176489814789679472227343363035428541915118378163012031</span>, <span class="hljs-number">18715065071648040017967211297231106538139985087685358555650567057715550586464814763683688299037897182845007578571401359061213777645114414642903077003568155508465819628553747173244235936586812445440095450755154357646737087071605811984163416590278352605433362327949048243722556262979909488202442530307505819371594747936223835233586945423522256938701002370646382097846105014981763307729234675737702252155130837154876831885888669150418885088089324534892506199724486783446267336789872782137895552509353583305880144947714110009893134162185382309992604435664777436197587312317224862723813510974493087450281755452428746194446</span>, <span class="hljs-number">2282284561224858293138480447463319262474918847630148770112472703128549032592187797289965592615199709857879008271766433462032328498580340968871260189669707518557157836592424973257334362931639831072584824103123486522582531666152363874396482744561758133655406410364442174983227005501860927820871260711861008830120617056883514525798709601744088135999465598338635794275123149165498933580159945032363880613524921913023341209439657145962332213468573402863796920571812418200814817086234262280338221161622789516829363805084715652121739036183264026120868756523770196284142271849879003202190966150390061195469351716819539183797</span>]<br>f=<span class="hljs-keyword">lambda</span> m,e,n,c:<span class="hljs-built_in">pow</span>(m,e,n)==c<br><span class="hljs-keyword">assert</span>(<span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(f,[p]*<span class="hljs-number">4</span>,[<span class="hljs-number">4</span>]*<span class="hljs-number">4</span>,n,c))==<span class="hljs-number">4</span>)<br><span class="hljs-comment"># p^4 %n==c</span><br>ee1 = <span class="hljs-number">42</span><br>ee2 = <span class="hljs-number">3</span><br>ce1 =  <span class="hljs-number">45722651786340123946960815003059322528810481841378247280642868553607692149509126962872583037142461398806689489141741494974836882341505234255325683219092163052843461632338442529011502378931140356111756932712822516814023166068902569458299933391973504078898958921809723346229893913662577294963528318424676803942288386430172430880307619748186863890050113934573820505570928109017842647598266634344447182347849367714564686341871007505886728393751147033556889217604647355628557502208364412269944908011305064122941446516990168924709684092200183860653173856272384</span><br>ce2 =  <span class="hljs-number">13908468332333567158469136439932325992349696889129103935400760239319454409539725389747059213835238373047899198211128689374049729578146875309231962936554403287882999967840346216695208424582739777034261079550395918048421086843927009452479936045850799096750074359160775182238980989229190157551197830879877097703347301072427149474991803868325769967332356950863518504965486565464059770451458557744949735282131727956056279292800694203866167270268988437389945703117070604488999247750139568614939965885211276821987586882908159585863514561191905040244967655444219603287214405014887994238259270716355378069726760953320025828158</span><br>tmp =  <span class="hljs-number">864078778078609835167779565982540757684070450697854309005171742813414963447462554999012718960925081621571487444725528982424037419052194840720949809891134854871222612682162490991065015935449289960707882463387</span><br>n  =  <span class="hljs-number">15911581555796798614711625288508309704791837516232122410440958830726078821069050404012820896260071751380436992710638364294658173571101596931605797509712839622479368850251206419748090059752427303611760004621378226431226983665746837779056271530181865648115862947527212787824629516204832313026456390047768174765687040950636530480549014401279054346098030395100387004111574278813749630986724706263655166289586230453975953773791945408589484679371854113457758157492241225180907090235116325034822993748409011554673180494306003272836905082473475046277554085737627846557240367696214081276345071055578169299060706794192776825039</span><br><span class="hljs-keyword">assert</span>(<span class="hljs-built_in">pow</span>(e1,ee1,n)==ce1)<br><span class="hljs-keyword">assert</span>(<span class="hljs-built_in">pow</span>(e2+tmp,ee2,n)==ce2)<br><br>e = <span class="hljs-number">46531</span><br>n = <span class="hljs-number">16278524034278364842964386062476113517067911891699789991355982121084973951738324063305190630865511554888330215827724887964565979607808294168282995825864982603759381323048907814961279012375346497781046417204954101076457350988751188332353062731641153547102721113593787978587135707313755661153376485647168543680503160420091693269984008764444291289486805840439906620313162344057956594836197521501755378387944609246120662335790110901623740990451586621846212047950084207251595169141015645449217847180683357626383565631317253913942886396494396189837432429078251573229378917400841832190737518763297323901586866664595327850603</span><br>c = <span class="hljs-number">14992132140996160330967307558503117255626925777426611978518339050671013041490724616892634911030918360867974894371539160853827180596100892180735770688723270765387697604426715670445270819626709364566478781273676115921657967761494619448095207169386364541164659123273236874649888236433399127407801843412677293516986398190165291102109310458304626261648346825196743539220198199366711858135271877662410355585767124059539217274691606825103355310348607611233052725805236763220343249873849646219850954945346791015858261715967952461021650307307454434510851869862964236227932964442289459508441345652423088404453536608812799355469</span><br>hint=<span class="hljs-built_in">int</span>(binascii.hexlify(hint),<span class="hljs-number">16</span>)<br><span class="hljs-keyword">assert</span>(q1p*q1q==n)<br><span class="hljs-keyword">assert</span>(q1p&lt;q1q)<br><span class="hljs-keyword">assert</span>(c==<span class="hljs-built_in">pow</span>(hint,e,n))<br><br>flag=<span class="hljs-built_in">int</span>(binascii.hexlify(flag),<span class="hljs-number">16</span>)<br>q1=q1p<br>q2 =  <span class="hljs-number">114401188227479584680884046151299704656920536168767132916589182357583461053336386996123783294932566567773695426689447410311969456458574731187512974868297092638677515283584994416382872450167046416573472658841627690987228528798356894803559278308702635288537653192098514966089168123710854679638671424978221959513</span><br>c1 =  <span class="hljs-number">262739975753930281690942784321252339035906196846340713237510382364557685379543498765074448825799342194332681181129770046075018122033421983227887719610112028230603166527303021036386350781414447347150383783816869784006598225583375458609586450854602862569022571672049158809874763812834044257419199631217527367046624888837755311215081173386523806086783266198390289097231168172692326653657393522561741947951887577156666663584249108899327053951891486355179939770150550995812478327735917006194574412518819299303783243886962455399783601229227718787081785391010424030509937403600351414176138124705168002288620664809270046124</span><br>c2 =  <span class="hljs-number">7395591129228876649030819616685821899204832684995757724924450812977470787822266387122334722132760470911599176362617225218345404468270014548817267727669872896838106451520392806497466576907063295603746660003188440170919490157250829308173310715318925771643105064882620746171266499859049038016902162599261409050907140823352990750298239508355767238575709803167676810456559665476121149766947851911064706646506705397091626648713684511780456955453552020460909638016134124590438425738826828694773960514221910109473941451471431637903182205738738109429736425025621308300895473186381826756650667842656050416299166317372707709596</span><br><span class="hljs-keyword">assert</span>(c1==<span class="hljs-built_in">pow</span>(flag,e1,p*q1))<br><span class="hljs-keyword">assert</span>(c2==<span class="hljs-built_in">pow</span>(flag,e2,p*q2))<br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>看到有一个hint,先试着解一解，尝试分解n,发现正好能够分解成两个大素数</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212191415776.png" srcset="/img/loading.gif" lazyload alt="image-20221219141514674"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>e = <span class="hljs-number">46531</span><br>n = <span class="hljs-number">16278524034278364842964386062476113517067911891699789991355982121084973951738324063305190630865511554888330215827724887964565979607808294168282995825864982603759381323048907814961279012375346497781046417204954101076457350988751188332353062731641153547102721113593787978587135707313755661153376485647168543680503160420091693269984008764444291289486805840439906620313162344057956594836197521501755378387944609246120662335790110901623740990451586621846212047950084207251595169141015645449217847180683357626383565631317253913942886396494396189837432429078251573229378917400841832190737518763297323901586866664595327850603</span><br>c = <span class="hljs-number">14992132140996160330967307558503117255626925777426611978518339050671013041490724616892634911030918360867974894371539160853827180596100892180735770688723270765387697604426715670445270819626709364566478781273676115921657967761494619448095207169386364541164659123273236874649888236433399127407801843412677293516986398190165291102109310458304626261648346825196743539220198199366711858135271877662410355585767124059539217274691606825103355310348607611233052725805236763220343249873849646219850954945346791015858261715967952461021650307307454434510851869862964236227932964442289459508441345652423088404453536608812799355469</span><br>p=<span class="hljs-number">127587319253436643569312142058559706815497211661083866592534217079310497260365307426095661281103710042392775453866174657404985539066741684196020137840472950102380232067786400322600902938984916355631714439668326671310160916766472897536055371474076089779472372913037040153356437528808922911484049460342088835693</span><br>q=<span class="hljs-number">127587319253436643569312142058559706815497211661083866592534217079310497260365307426095661281103710042392775453866174657404985539066741684196020137840472950102380232067786400322600902938984916355631714439668326671310160916766472897536055371474076089779472372913037040153356437528808922911484049460342088834871</span><br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c,d,n)<br>hint=long_to_bytes(m)<br><span class="hljs-built_in">print</span>(hint)<br></code></pre></td></tr></table></figure>
+<p>正常按照rsa解出的结果如下，有亿点离谱，没有得到有用信息：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">b&#x27;orz...you.found.<span class="hljs-keyword">me</span>.<span class="hljs-keyword">but</span>.sorry.no.hint...keep.<span class="hljs-keyword">on</span>.<span class="hljs-keyword">and</span>.enjoy.<span class="hljs-keyword">it</span>!&#x27;<br></code></pre></td></tr></table></figure>
+<p>但还是知道了q1的值，现在相当于已知q1,q2,和之前有一题类似，可以试试拆分开来，再用共模,但需要已知e1,e2,需要用到前面的条件</p>
+<p>给出了</p>
+<script type="math/tex; mode=display">
+ce1=e_1^{ee1}\%n\\
+ce2=(e_2+tmp)^{ee2}\%n</script><p>这里的ee1=42,ee2=3都很小，可能求幂后没有超过n,这样直接开方就能求出来，可以从已知量的长度来判断</p>
+<p>（e的长度一般16bit可由此估算）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">ce1_len= <span class="hljs-number">1840</span><br>ce2_len= <span class="hljs-number">2047</span><br>e1^42_len_approx= <span class="hljs-number">672</span><br>tmp_len= <span class="hljs-number">688</span><br>(e2+tmp)^3_<span class="hljs-built_in">len</span>= <span class="hljs-number">2064</span><br></code></pre></td></tr></table></figure>
+<p>由于e1^42可能的长度远小于1840，故其很可能就是直接开42次方的结果，而2064大于2047，不是大很多，则可通过加上k*n，找出能正好开3次方的情况求出e2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>ce1 =  <span class="hljs-number">45722651786340123946960815003059322528810481841378247280642868553607692149509126962872583037142461398806689489141741494974836882341505234255325683219092163052843461632338442529011502378931140356111756932712822516814023166068902569458299933391973504078898958921809723346229893913662577294963528318424676803942288386430172430880307619748186863890050113934573820505570928109017842647598266634344447182347849367714564686341871007505886728393751147033556889217604647355628557502208364412269944908011305064122941446516990168924709684092200183860653173856272384</span><br>ce2 =  <span class="hljs-number">13908468332333567158469136439932325992349696889129103935400760239319454409539725389747059213835238373047899198211128689374049729578146875309231962936554403287882999967840346216695208424582739777034261079550395918048421086843927009452479936045850799096750074359160775182238980989229190157551197830879877097703347301072427149474991803868325769967332356950863518504965486565464059770451458557744949735282131727956056279292800694203866167270268988437389945703117070604488999247750139568614939965885211276821987586882908159585863514561191905040244967655444219603287214405014887994238259270716355378069726760953320025828158</span><br>tmp =  <span class="hljs-number">864078778078609835167779565982540757684070450697854309005171742813414963447462554999012718960925081621571487444725528982424037419052194840720949809891134854871222612682162490991065015935449289960707882463387</span><br>n  =  <span class="hljs-number">15911581555796798614711625288508309704791837516232122410440958830726078821069050404012820896260071751380436992710638364294658173571101596931605797509712839622479368850251206419748090059752427303611760004621378226431226983665746837779056271530181865648115862947527212787824629516204832313026456390047768174765687040950636530480549014401279054346098030395100387004111574278813749630986724706263655166289586230453975953773791945408589484679371854113457758157492241225180907090235116325034822993748409011554673180494306003272836905082473475046277554085737627846557240367696214081276345071055578169299060706794192776825039</span><br><span class="hljs-comment">#print(&#x27;ce1_len=&#x27;,len(bin(ce1)[2:]))</span><br><span class="hljs-comment">#print(&#x27;ce2_len=&#x27;,len(bin(ce2)[2:]))</span><br><span class="hljs-comment">#print(&#x27;e1^42_len_approx=&#x27;,16*42)</span><br><span class="hljs-comment">#print(&#x27;tmp_len=&#x27;,len(bin(tmp)[2:]))</span><br><span class="hljs-comment">#print(&#x27;(e2+tmp)^3_len=&#x27;,688*3)</span><br>e1=gp.iroot(ce1,<span class="hljs-number">42</span>)[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;e1=&#x27;</span>,e1)<br>k=<span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>	root=gp.iroot(ce2+k*n,<span class="hljs-number">3</span>)<br>	<span class="hljs-keyword">if</span> root[<span class="hljs-number">1</span>]==<span class="hljs-literal">True</span>:<br>		e2=root[<span class="hljs-number">0</span>]-tmp<br>		<span class="hljs-keyword">break</span><br>	k+=<span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;e2=&#x27;</span>,e2)<br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">e1= 15218928658178</span><br><span class="hljs-string">e2= 381791429275130</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>前面的第一部分，应该是求p,对p^4 %n==c给了四组n,c，联想到广播攻击，直接用中国剩余定理求解即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sympy.ntheory.modular <span class="hljs-keyword">import</span> crt<br>n =  [<span class="hljs-number">20129615352491765499340112943188317180548761597861300847305827141510465619670536844634558246439230371658836928103063432870245707180355907194284861510906071265352409579441048101084995923962148527097370705452070577098780246282820065573711015664291991372085157016901209114191068574208680397710042842835940428451949500607613634682684113208766694028789275748528254287705759528498986306494267817198340658241873024800336013946294891687591013414935237821291805123285905335762719823771647853378892868896078424572232934360940672962436849523915563328779942134504499568866135266628078485232098208237036724121481835035731201383423</span>, <span class="hljs-number">31221650155627849964466413749414700613823841060149524451234901677160009099014018926581094879840097248543411980533066831976617023676225625067854003317018794041723612556008471579060428898117790587991055681380408263382761841625714415879087478072771968160384909919958010983669368360788505288855946124159513118847747998656422521414980295212646675850690937883764000571667574381419144372824211798018586804674824564606122592483286575800685232128273820087791811663878057827386379787882962763290066072231248814920468264741654086011072638211075445447843691049847262485759393290853117072868406861840793895816215956869523289231421</span>, <span class="hljs-number">29944537515397953361520922774124192605524711306753835303703478890414163510777460559798334313021216389356251874917792007638299225821018849648520673813786772452822809546571129816310207232883239771324122884804993418958309460009406342872173189008449237959577469114158991202433476710581356243815713762802478454390273808377430685157110095496727966308001254107517967559384019734279861840997239176254236069001453544559786063915970071130087811123912044312219535513880663913831358790376650439083660611831156205113873793106880255882114422025746986403355066996567909581710647746463994280444700922867397754748628425967488232530303</span>, <span class="hljs-number">25703437855600135215185778453583925446912731661604054184163883272265503323016295700357253105301146726667897497435532579974951478354570415554221401778536104737296154316056314039449116386494323668483749833147800557403368489542273169489080222009368903993658498263905567516798684211462607069796613434661148186901892016282065916190920443378756167250809872483501712225782004396969996983057423942607174314132598421269169722518224478248836881076484639837343079324636997145199835034833367743079935361276149990997875905313642775214486046381368619638551892292787783137622261433528915269333426768947358552919740901860982679180791</span>]<br>c =  [<span class="hljs-number">19131432661217908470262338421299691998526157790583544156741981238822158563988520225986915234570037383888112724408392918113942721994125505014727545946133307329781747600302829588248042922635714391033431930411180545085316438084317927348705241927570432757892985091396044950085462429575440060652967253845041398399648442340042970814415571904057667028157512971079384601724816308078631844480110201787343583073815186771790477712040051157180318804422120472007636722063989315320863580631330647116993819777750684150950416298085261478841177681677867236865666207391847046483954029213495373613490690687473081930148461830425717614569</span>, <span class="hljs-number">15341898433226638235160072029875733826956799982958107910250055958334922460202554924743144122170018355117452459472017133614642242411479849369061482860570279863692425621526056862808425135267608544855833358314071200687340442512856575278712986641573012456729402660597339609443771145347181268285050728925993518704899005416187250003304581230701444705157412790787027926810710998646191467130550713600765898234392350153965811595060656753711278308005193370936296124790772689433773414703645703910742193898471800081321469055211709339846392500706523670145259024267858368216902176489814789679472227343363035428541915118378163012031</span>, <span class="hljs-number">18715065071648040017967211297231106538139985087685358555650567057715550586464814763683688299037897182845007578571401359061213777645114414642903077003568155508465819628553747173244235936586812445440095450755154357646737087071605811984163416590278352605433362327949048243722556262979909488202442530307505819371594747936223835233586945423522256938701002370646382097846105014981763307729234675737702252155130837154876831885888669150418885088089324534892506199724486783446267336789872782137895552509353583305880144947714110009893134162185382309992604435664777436197587312317224862723813510974493087450281755452428746194446</span>, <span class="hljs-number">2282284561224858293138480447463319262474918847630148770112472703128549032592187797289965592615199709857879008271766433462032328498580340968871260189669707518557157836592424973257334362931639831072584824103123486522582531666152363874396482744561758133655406410364442174983227005501860927820871260711861008830120617056883514525798709601744088135999465598338635794275123149165498933580159945032363880613524921913023341209439657145962332213468573402863796920571812418200814817086234262280338221161622789516829363805084715652121739036183264026120868756523770196284142271849879003202190966150390061195469351716819539183797</span>]<br>p_4,mode=crt(n,c)<br>p=gp.iroot(p_4,<span class="hljs-number">4</span>)[<span class="hljs-number">0</span>]<br><span class="hljs-comment">#print(p)</span><br></code></pre></td></tr></table></figure>
+<p>现在万事俱备，只差解出flag</p>
+<script type="math/tex; mode=display">
+c_1=flag^{e1}\%(p*q1)\\
+c_2=flag^{e2}\%(p*q2)</script><p>已知c1,c2,p,q1,q2,e1,e2,按理说对每一组都能直接求flag,但是发现e1和(p-1)(q1-1)不互素，e2和(p-1)(q2-1)不互素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">g1=gp.gcd(e1,phi1)--&gt;<span class="hljs-number">14</span><br>g2=gp.gcd(e2,phi2)--&gt;<span class="hljs-number">14</span><br></code></pre></td></tr></table></figure>
+<p>可以构造m^14,使e1=e1//14和e2=e2//14,这样公钥就和phi互素，可以分别求其私钥</p>
+<script type="math/tex; mode=display">
+c1=(m^{14})^{e1//14}(modp*q1)\\
+c2=(m^{14})^{e2//14}(modp*q2)</script><p>利用rsa原理可求出</p>
+<script type="math/tex; mode=display">
+m^{14}=c1^{d1}=a1(modp*q1)\\
+m^{14}=c1^{d2}=a2(modp*q2)</script><p>可分解为：</p>
+<script type="math/tex; mode=display">
+m^{14}=a1\%p=b1(modp)\\
+m^{14}=a1\%q1=b2(modq1)\\
+m^{14}=a2\%q2=b3(modq2)</script><p>一开始我想的就是这任意两个式子用中国剩余定理求m^14，再开14次方就能求，但实际上不行</p>
+<p>接着细化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">g1=gp.gcd(<span class="hljs-number">14</span>,p-<span class="hljs-number">1</span>)--&gt;<span class="hljs-number">14</span><br>g2=gp.gcd(<span class="hljs-number">14</span>,q1-<span class="hljs-number">1</span>)--&gt;<span class="hljs-number">2</span><br>g3=gp.gcd(<span class="hljs-number">14</span>,q2-<span class="hljs-number">1</span>)--&gt;<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>选择后面两个，按照rsa原理，构造m^2</p>
+<script type="math/tex; mode=display">
+m^2=b2^{d3}(modq1)\\
+m^2=b3^{d4}(modq2)</script><p>再由中国剩余定理求出m^2,开方得到flag</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sympy.ntheory.modular <span class="hljs-keyword">import</span> crt<br>n =  [<span class="hljs-number">20129615352491765499340112943188317180548761597861300847305827141510465619670536844634558246439230371658836928103063432870245707180355907194284861510906071265352409579441048101084995923962148527097370705452070577098780246282820065573711015664291991372085157016901209114191068574208680397710042842835940428451949500607613634682684113208766694028789275748528254287705759528498986306494267817198340658241873024800336013946294891687591013414935237821291805123285905335762719823771647853378892868896078424572232934360940672962436849523915563328779942134504499568866135266628078485232098208237036724121481835035731201383423</span>, <span class="hljs-number">31221650155627849964466413749414700613823841060149524451234901677160009099014018926581094879840097248543411980533066831976617023676225625067854003317018794041723612556008471579060428898117790587991055681380408263382761841625714415879087478072771968160384909919958010983669368360788505288855946124159513118847747998656422521414980295212646675850690937883764000571667574381419144372824211798018586804674824564606122592483286575800685232128273820087791811663878057827386379787882962763290066072231248814920468264741654086011072638211075445447843691049847262485759393290853117072868406861840793895816215956869523289231421</span>, <span class="hljs-number">29944537515397953361520922774124192605524711306753835303703478890414163510777460559798334313021216389356251874917792007638299225821018849648520673813786772452822809546571129816310207232883239771324122884804993418958309460009406342872173189008449237959577469114158991202433476710581356243815713762802478454390273808377430685157110095496727966308001254107517967559384019734279861840997239176254236069001453544559786063915970071130087811123912044312219535513880663913831358790376650439083660611831156205113873793106880255882114422025746986403355066996567909581710647746463994280444700922867397754748628425967488232530303</span>, <span class="hljs-number">25703437855600135215185778453583925446912731661604054184163883272265503323016295700357253105301146726667897497435532579974951478354570415554221401778536104737296154316056314039449116386494323668483749833147800557403368489542273169489080222009368903993658498263905567516798684211462607069796613434661148186901892016282065916190920443378756167250809872483501712225782004396969996983057423942607174314132598421269169722518224478248836881076484639837343079324636997145199835034833367743079935361276149990997875905313642775214486046381368619638551892292787783137622261433528915269333426768947358552919740901860982679180791</span>]<br>c =  [<span class="hljs-number">19131432661217908470262338421299691998526157790583544156741981238822158563988520225986915234570037383888112724408392918113942721994125505014727545946133307329781747600302829588248042922635714391033431930411180545085316438084317927348705241927570432757892985091396044950085462429575440060652967253845041398399648442340042970814415571904057667028157512971079384601724816308078631844480110201787343583073815186771790477712040051157180318804422120472007636722063989315320863580631330647116993819777750684150950416298085261478841177681677867236865666207391847046483954029213495373613490690687473081930148461830425717614569</span>, <span class="hljs-number">15341898433226638235160072029875733826956799982958107910250055958334922460202554924743144122170018355117452459472017133614642242411479849369061482860570279863692425621526056862808425135267608544855833358314071200687340442512856575278712986641573012456729402660597339609443771145347181268285050728925993518704899005416187250003304581230701444705157412790787027926810710998646191467130550713600765898234392350153965811595060656753711278308005193370936296124790772689433773414703645703910742193898471800081321469055211709339846392500706523670145259024267858368216902176489814789679472227343363035428541915118378163012031</span>, <span class="hljs-number">18715065071648040017967211297231106538139985087685358555650567057715550586464814763683688299037897182845007578571401359061213777645114414642903077003568155508465819628553747173244235936586812445440095450755154357646737087071605811984163416590278352605433362327949048243722556262979909488202442530307505819371594747936223835233586945423522256938701002370646382097846105014981763307729234675737702252155130837154876831885888669150418885088089324534892506199724486783446267336789872782137895552509353583305880144947714110009893134162185382309992604435664777436197587312317224862723813510974493087450281755452428746194446</span>, <span class="hljs-number">2282284561224858293138480447463319262474918847630148770112472703128549032592187797289965592615199709857879008271766433462032328498580340968871260189669707518557157836592424973257334362931639831072584824103123486522582531666152363874396482744561758133655406410364442174983227005501860927820871260711861008830120617056883514525798709601744088135999465598338635794275123149165498933580159945032363880613524921913023341209439657145962332213468573402863796920571812418200814817086234262280338221161622789516829363805084715652121739036183264026120868756523770196284142271849879003202190966150390061195469351716819539183797</span>]<br><span class="hljs-comment">#p_4,mode=crt(n,c)</span><br><span class="hljs-comment">#print(&#x27;p_4=&#x27;,p_4)</span><br>p_4=<span class="hljs-number">146068806215073497344459876631371603884129554507314987227041386431864296983800292232765852493230146632246223391161616274352995602128509562953556195654254929572680238155614318159006433172894208760309766144817665852858474274746295434459658946786114485553768622540321693696983334739989582184316792317376817587284066141025953893816735983622448994863347051427279673308801466174898201800602688359956097373676655607179834345973775227535147398518523539179261883968140504230643073698857288314127486345168652339309386405706576632120711116391426300160476076254612138216623537070845645803721685414583459545099925250474009703135469241079408739336592005949980987466671054020054633554508243871664072158338203090563533576053886607251476483441992750608537110739543678599105838456537686029895264928334606913181627024815548789841726411333636163152202116487198575625907392074866811580053962217284776220330628233642351622897902940633662074194963147661868086182955886918339487179905557899816215131118989868243555958033477834658657082003718410617182774845820310639577794302769424451100567749840744304334325501306470124397022077759031911677326433654909824518845224227308515695216456907499080502091628962571645468099748573164070147303131348996440422701533681</span><br>p=gp.iroot(p_4,<span class="hljs-number">4</span>)[<span class="hljs-number">0</span>]<br><span class="hljs-comment">#print(p)</span><br>e1= <span class="hljs-number">15218928658178</span><br>e2= <span class="hljs-number">381791429275130</span><br>q2 =  <span class="hljs-number">114401188227479584680884046151299704656920536168767132916589182357583461053336386996123783294932566567773695426689447410311969456458574731187512974868297092638677515283584994416382872450167046416573472658841627690987228528798356894803559278308702635288537653192098514966089168123710854679638671424978221959513</span><br>c1 =  <span class="hljs-number">262739975753930281690942784321252339035906196846340713237510382364557685379543498765074448825799342194332681181129770046075018122033421983227887719610112028230603166527303021036386350781414447347150383783816869784006598225583375458609586450854602862569022571672049158809874763812834044257419199631217527367046624888837755311215081173386523806086783266198390289097231168172692326653657393522561741947951887577156666663584249108899327053951891486355179939770150550995812478327735917006194574412518819299303783243886962455399783601229227718787081785391010424030509937403600351414176138124705168002288620664809270046124</span><br>c2 =  <span class="hljs-number">7395591129228876649030819616685821899204832684995757724924450812977470787822266387122334722132760470911599176362617225218345404468270014548817267727669872896838106451520392806497466576907063295603746660003188440170919490157250829308173310715318925771643105064882620746171266499859049038016902162599261409050907140823352990750298239508355767238575709803167676810456559665476121149766947851911064706646506705397091626648713684511780456955453552020460909638016134124590438425738826828694773960514221910109473941451471431637903182205738738109429736425025621308300895473186381826756650667842656050416299166317372707709596</span><br>q1=<span class="hljs-number">127587319253436643569312142058559706815497211661083866592534217079310497260365307426095661281103710042392775453866174657404985539066741684196020137840472950102380232067786400322600902938984916355631714439668326671310160916766472897536055371474076089779472372913037040153356437528808922911484049460342088834871</span><br>e1=e1//<span class="hljs-number">14</span><br>e2=e2//<span class="hljs-number">14</span><br>phi1=(p-<span class="hljs-number">1</span>)*(q1-<span class="hljs-number">1</span>)<br>phi2=(p-<span class="hljs-number">1</span>)*(q2-<span class="hljs-number">1</span>)<br><span class="hljs-comment">#g1=gp.gcd(e1,phi1)</span><br><span class="hljs-comment">#g2=gp.gcd(e2,phi2)</span><br><span class="hljs-comment">#print(g1)</span><br><span class="hljs-comment">#print(g2)</span><br>d1=gp.invert(e1,phi1)<br>d2=gp.invert(e2,phi2)<br>m1=<span class="hljs-built_in">pow</span>(c1,d1,q1)<br>m2=<span class="hljs-built_in">pow</span>(c2,d2,q2)<br>m3=<span class="hljs-built_in">pow</span>(c1,d1,p)<br><span class="hljs-comment">#g1=gp.gcd(14,p-1)</span><br><span class="hljs-comment">#g2=gp.gcd(14,q1-1)</span><br><span class="hljs-comment">#g3=gp.gcd(14,q2-1)</span><br><span class="hljs-comment">#print(g1,g2,g3)</span><br>d1=gp.invert(<span class="hljs-number">7</span>,q1-<span class="hljs-number">1</span>)<br>d2=gp.invert(<span class="hljs-number">7</span>,q2-<span class="hljs-number">1</span>)<br>new_m1=<span class="hljs-built_in">pow</span>(m1,d1,q1)<br>new_m2=<span class="hljs-built_in">pow</span>(m2,d2,q2)<br>res1,mode=crt([q1,q2],[new_m1,new_m2])<br>flag=gp.iroot(res1,<span class="hljs-number">2</span>)[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(long_to_bytes(flag))<br></code></pre></td></tr></table></figure>
+<h2 id="4-LBP"><a href="#4-LBP" class="headerlink" title="4.LBP"></a>4.LBP</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> gcd<br><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> dot<br><br>nbits = <span class="hljs-number">32</span><br>msg = getRandomNBitInteger(nbits)<br>flag = <span class="hljs-string">b&#x27;flag&#123;sha256(msg)&#125;&#x27;</span><br>tmp_m = <span class="hljs-built_in">bin</span>(msg)[<span class="hljs-number">2</span>:]<br>f_list = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(tmp_m)):<br>    f_list.append(<span class="hljs-built_in">int</span>(tmp_m[i]))<br><br>r_list =[randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>)]<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(nbits - <span class="hljs-number">1</span>):<br>    r_list.append(randint(<span class="hljs-number">2</span> * r_list[-<span class="hljs-number">1</span>], <span class="hljs-number">3</span> * r_list[-<span class="hljs-number">1</span>]))  <br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    A = randint(<span class="hljs-number">2</span> * r_list[-<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>, <span class="hljs-number">3</span> * r_list[-<span class="hljs-number">1</span>])<br>    B = randint(<span class="hljs-number">2</span> * r_list[-<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>, <span class="hljs-number">3</span> * r_list[-<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">if</span> gcd(A, B) == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">break</span><br><br>M = [A * x % B <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> r_list]  <br><br>S = dot(f_list, M)<br><span class="hljs-built_in">print</span>(S)<br><br><br>seed = getRandomNBitInteger(<span class="hljs-number">30</span>)<br>s = [<span class="hljs-number">0</span>] * nbits<br>s[<span class="hljs-number">0</span>] = seed<br>m = getRandomNBitInteger(<span class="hljs-number">20</span>)<br>c = getPrime(<span class="hljs-number">24</span>)<br>n = <span class="hljs-number">991125622</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, nbits):<br>    s[i] = (s[i-<span class="hljs-number">1</span>]*m+c)%n<br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">0</span>], s[<span class="hljs-number">1</span>], s[<span class="hljs-number">2</span>])<br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(nbits):        <br>    M[t] = M[t] + s[t]<br><span class="hljs-built_in">print</span>(M)<br><br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">492226042629702</span><br><span class="hljs-string">562734112 859151551 741682801</span><br><span class="hljs-string">M = [19621141192340, 39617541681643, 3004946591889, 6231471734951, 3703341368174, 48859912097514, 4386411556216, 11028070476391, 18637548953150, 29985057892414, 20689980879644, 20060557946852, 46908191806199, 8849137870273, 28637782510640, 35930273563752, 20695924342882, 36660291028583, 10923264012354, 29810154308143, 4444597606142, 31802472725414, 23368528779283, 15179021971456, 34642073901253, 44824809996134, 31243873675161, 27159321498211, 2220647072602, 20255746235462, 24667528459211, 46916059974372]</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>做过bp那道题后，看这题很容易看出这是一个背包密码，但明显没有给出A,B或者相关求法，只知道公钥，这就需要用到LLL算法求解，可以参考下面的博客</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51999772/article/details/126795199">https://blog.csdn.net/qq_51999772/article/details/126795199</a></p>
+<p>对这一题：</p>
+<p>第一步：利用s[0],s[1],s[2]解出m,c,再解出整个s[]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">s[<span class="hljs-number">1</span>]=(s[<span class="hljs-number">0</span>]*m+c)%n<br>s[<span class="hljs-number">2</span>]=(s[<span class="hljs-number">1</span>]*m+c)%n<br>--&gt;<br>s[<span class="hljs-number">2</span>]-s[<span class="hljs-number">1</span>]=((s[<span class="hljs-number">1</span>]-s[<span class="hljs-number">0</span>])*m)%n<br>m=((s[<span class="hljs-number">2</span>]-s[<span class="hljs-number">1</span>])*gp.invert(s[<span class="hljs-number">1</span>]-s[<span class="hljs-number">0</span>],n))%n<br>--&gt;<br>c=(s[<span class="hljs-number">1</span>]-s[<span class="hljs-number">0</span>]*m)%n<br>--&gt;<br>s[i] = (s[i-<span class="hljs-number">1</span>]*m+c)%n<br></code></pre></td></tr></table></figure>
+<p>第二步：利用s[]，还原M[]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">M[t] = M[t] - s[t]<br></code></pre></td></tr></table></figure>
+<p>第三步：利用LLL求解背包问题即flag的2进制序列</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212192149102.png" srcset="/img/loading.gif" lazyload alt="image-20221219214930925"></p>
+<p>由此可证明可以用LLL算法求解背包密码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">A = Matrix(ZZ, nbits + <span class="hljs-number">1</span>, nbits + <span class="hljs-number">1</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(nbits):<br>    A[i, i] = <span class="hljs-number">1</span><br>    A[i, nbits] = M[i]<br>A[nbits,nbits] = -<span class="hljs-built_in">int</span>(S)<br>res = A.LLL()<br></code></pre></td></tr></table></figure>
+<p>第四步：由二进制序列得到msg,求sha256(msg)</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br> <br>nbits = <span class="hljs-number">32</span><br>S = <span class="hljs-number">492226042629702</span><br>n = <span class="hljs-number">991125622</span><br>s =[<span class="hljs-number">562734112</span>, <span class="hljs-number">859151551</span>, <span class="hljs-number">741682801</span>]<br>M = [<span class="hljs-number">19621141192340</span>, <span class="hljs-number">39617541681643</span>, <span class="hljs-number">3004946591889</span>, <span class="hljs-number">6231471734951</span>, <span class="hljs-number">3703341368174</span>, <span class="hljs-number">48859912097514</span>, <span class="hljs-number">4386411556216</span>, <span class="hljs-number">11028070476391</span>, <span class="hljs-number">18637548953150</span>, <span class="hljs-number">29985057892414</span>, <span class="hljs-number">20689980879644</span>, <span class="hljs-number">20060557946852</span>, <span class="hljs-number">46908191806199</span>, <span class="hljs-number">8849137870273</span>, <span class="hljs-number">28637782510640</span>, <span class="hljs-number">35930273563752</span>, <span class="hljs-number">20695924342882</span>, <span class="hljs-number">36660291028583</span>, <span class="hljs-number">10923264012354</span>, <span class="hljs-number">29810154308143</span>, <span class="hljs-number">4444597606142</span>, <span class="hljs-number">31802472725414</span>, <span class="hljs-number">23368528779283</span>, <span class="hljs-number">15179021971456</span>, <span class="hljs-number">34642073901253</span>, <span class="hljs-number">44824809996134</span>, <span class="hljs-number">31243873675161</span>, <span class="hljs-number">27159321498211</span>, <span class="hljs-number">2220647072602</span>, <span class="hljs-number">20255746235462</span>, <span class="hljs-number">24667528459211</span>, <span class="hljs-number">46916059974372</span>]<br> <br><span class="hljs-comment">#求m,c</span><br>m = (s[<span class="hljs-number">2</span>]-s[<span class="hljs-number">1</span>])*invert((s[<span class="hljs-number">1</span>]-s[<span class="hljs-number">0</span>]),n) %n<br>c = (s[<span class="hljs-number">1</span>]-s[<span class="hljs-number">0</span>]*m )%n<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>,<span class="hljs-number">32</span>):<br>    s.append(<span class="hljs-built_in">int</span>(s[i-<span class="hljs-number">1</span>]*m + c)%n)<br><span class="hljs-comment">#还原M</span><br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(nbits):<br>    M[t] = M[t] - s[t]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;M =&#x27;</span>,M)<br><span class="hljs-comment">#M = [19620578458228, 39616682530092, 3004204909088, 6231457508054, 3702963666023, 48859283851499, 4385984544187, 11027662187202, 18637179189873, 29985033726663, 20689315151593, 20060155940897, 46908062454518, 8848251127828, 28637097081675, 35930247189963, 20695167327567, 36659598017280, 10923228050453, 29810039803392, 4443991557077, 31801732862419, 23368424737916, 15178683835989, 34641771567914, 44824471397533, 31243260877608, 27158599500744, 2219939459559, 20255089091807, 24667494760808, 46915118179747]</span><br></code></pre></td></tr></table></figure>
+<p>在sage中运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">M = [<span class="hljs-number">19620578458228</span>, <span class="hljs-number">39616682530092</span>, <span class="hljs-number">3004204909088</span>, <span class="hljs-number">6231457508054</span>, <span class="hljs-number">3702963666023</span>, <span class="hljs-number">48859283851499</span>, <span class="hljs-number">4385984544187</span>, <span class="hljs-number">11027662187202</span>, <span class="hljs-number">18637179189873</span>, <span class="hljs-number">29985033726663</span>, <span class="hljs-number">20689315151593</span>, <span class="hljs-number">20060155940897</span>, <span class="hljs-number">46908062454518</span>, <span class="hljs-number">8848251127828</span>, <span class="hljs-number">28637097081675</span>, <span class="hljs-number">35930247189963</span>, <span class="hljs-number">20695167327567</span>, <span class="hljs-number">36659598017280</span>, <span class="hljs-number">10923228050453</span>, <span class="hljs-number">29810039803392</span>, <span class="hljs-number">4443991557077</span>, <span class="hljs-number">31801732862419</span>, <span class="hljs-number">23368424737916</span>, <span class="hljs-number">15178683835989</span>, <span class="hljs-number">34641771567914</span>, <span class="hljs-number">44824471397533</span>, <span class="hljs-number">31243260877608</span>, <span class="hljs-number">27158599500744</span>, <span class="hljs-number">2219939459559</span>, <span class="hljs-number">20255089091807</span>, <span class="hljs-number">24667494760808</span>, <span class="hljs-number">46915118179747</span>]<br>S=<span class="hljs-number">492226042629702</span><br>A = Matrix(ZZ, nbits + <span class="hljs-number">1</span>, nbits + <span class="hljs-number">1</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(nbits):<br>    A[i, i] = <span class="hljs-number">1</span><br>    A[i, nbits] = M[i]<br>A[nbits,nbits] = -<span class="hljs-built_in">int</span>(S)<br> <br>res = A.LLL()<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212192202703.png" srcset="/img/loading.gif" lazyload alt="image-20221219220206487"></p>
+<p>发现最后一行是全0，1的，我们取这一行的结果，注意最后一个要去掉，矩阵是(n+1)*(n+1)的，但实际只有n个bit位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> hashlib <span class="hljs-keyword">import</span> *<br>res=<span class="hljs-string">&#x27;11010111100111101110111101100100&#x27;</span><br><span class="hljs-built_in">print</span>(sha256(<span class="hljs-built_in">str</span>(<span class="hljs-built_in">int</span>(res,<span class="hljs-number">2</span>)).encode()).hexdigest())<br></code></pre></td></tr></table></figure>
+<p>得到的结果包裹上flag{}即可</p>
+<h2 id="5-ECC"><a href="#5-ECC" class="headerlink" title="5.ECC"></a>5.ECC</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> bytes_to_long<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><br>p = <span class="hljs-number">64464091191308356774703439660771627086045800299627641179047457478059588557461</span><br>a = <span class="hljs-number">31926335967105564755113987930261069322507794703287741857397622356704769886356</span><br>b = <span class="hljs-number">34835808070187351680507689900273321615070127680320357724483770400791707112940</span><br>Gx = <span class="hljs-number">2053202552422630348010474635096983783565667661786369125783579647572276572403</span><br>Gy = <span class="hljs-number">51320753844844801021362329076409450910659564359017581255542897537756778371539</span><br><br><span class="hljs-keyword">assert</span> flag[:<span class="hljs-number">5</span>] == <span class="hljs-string">&quot;CnHongKe&#123;&quot;</span><br><span class="hljs-keyword">assert</span> flag[-<span class="hljs-number">1</span>] == <span class="hljs-string">&quot;&#125;&quot;</span><br><br>k = bytes_to_long(flag[<span class="hljs-number">9</span>:-<span class="hljs-number">1</span>])<br><span class="hljs-keyword">assert</span> k &lt; <span class="hljs-number">32000000000000000000000000000</span><br><br>Zp = Zmod(P)<br>EC = EllipticCurve(Zp, [a, b])<br>G = EC(Gx, Gy)<br>K = k * G<br><span class="hljs-built_in">print</span> K<br><br><span class="hljs-comment"># (31981799071949968743482831587417174146463993877255771340814476669214408840460 : 15144025062588325012239455117890516531350002058200271280110877844265896081387 : 1)</span><br></code></pre></td></tr></table></figure>
+<p>思路：本质是破解ECC私钥，这里要用到Pohlig-Hellman攻击方法(<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/159893),将阶分解，将问题转化为多个小问题，再用大步小步法解决小问题，用中国剩余定理合并,求得求x1=x">https://www.anquanke.com/post/id/159893),将阶分解，将问题转化为多个小问题，再用大步小步法解决小问题，用中国剩余定理合并,求得求x1=x</a> mod n(和之前Eigamal一样，由于k的限定大小已经给出，分解出的大素数位数过高不必要可舍弃),之后构造K=（x1+k*n）,k的最大值不超过2085178((max-x1)//n = 2085178),爆破求即可。</p>
+<p>exp:</p>
+<p>先分解阶</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">Q = (<span class="hljs-number">31981799071949968743482831587417174146463993877255771340814476669214408840460</span>,<span class="hljs-number">15144025062588325012239455117890516531350002058200271280110877844265896081387</span>)<br>p = <span class="hljs-number">64464091191308356774703439660771627086045800299627641179047457478059588557461</span><br>a = <span class="hljs-number">31926335967105564755113987930261069322507794703287741857397622356704769886356</span><br>b = <span class="hljs-number">34835808070187351680507689900273321615070127680320357724483770400791707112940</span><br>Gx = <span class="hljs-number">2053202552422630348010474635096983783565667661786369125783579647572276572403</span><br>Gy = <span class="hljs-number">51320753844844801021362329076409450910659564359017581255542897537756778371539</span><br><br>Zp = Zmod(p)<br>EC = EllipticCurve(Zp, [a, b])<br>P = EC(Gx, Gy)<br>Q = EC.point(Q)<br><span class="hljs-built_in">print</span>(factor(EC.order()))<br><span class="hljs-comment">#2^2 * 3 * 1246057 * 2357351 * 435374689 * 4200599533614753251608117237235588759908311280924414151</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212260046878.png" srcset="/img/loading.gif" lazyload alt="image-20221226004637698"></p>
+<p>对每个小问题求解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python">Q = (<span class="hljs-number">31981799071949968743482831587417174146463993877255771340814476669214408840460</span>,<span class="hljs-number">15144025062588325012239455117890516531350002058200271280110877844265896081387</span>)<br>p = <span class="hljs-number">64464091191308356774703439660771627086045800299627641179047457478059588557461</span><br>a = <span class="hljs-number">31926335967105564755113987930261069322507794703287741857397622356704769886356</span><br>b = <span class="hljs-number">34835808070187351680507689900273321615070127680320357724483770400791707112940</span><br>Gx = <span class="hljs-number">2053202552422630348010474635096983783565667661786369125783579647572276572403</span><br>Gy = <span class="hljs-number">51320753844844801021362329076409450910659564359017581255542897537756778371539</span><br><br>Zp = Zmod(p)<br>EC = EllipticCurve(Zp, [a, b])<br>P = EC(Gx, Gy)<br>Q = EC.point(Q)<br>pri = [<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1246057</span>,<span class="hljs-number">2357351</span>,<span class="hljs-number">435374689</span>]<br><br>dlogs = []<br><span class="hljs-keyword">for</span> fac <span class="hljs-keyword">in</span> pri:<br>    t = <span class="hljs-built_in">int</span>(P.order()) // <span class="hljs-built_in">int</span>(fac)<br>    dlog = discrete_log(t*Q,t*P,operation=<span class="hljs-string">&quot;+&quot;</span>)<br>    dlogs += [dlog]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;factor: &quot;</span>+<span class="hljs-built_in">str</span>(fac)+<span class="hljs-string">&quot;, Discrete Log: &quot;</span>+<span class="hljs-built_in">str</span>(dlog)) <span class="hljs-comment">#calculates discrete logarithm for each prime order</span><br>    <span class="hljs-built_in">print</span>(dlogs)<br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">factor: 4, Discrete Log: 1</span><br><span class="hljs-string">[1]</span><br><span class="hljs-string">factor: 3, Discrete Log: 1</span><br><span class="hljs-string">[1, 1]</span><br><span class="hljs-string">factor: 1246057, Discrete Log: 1016839</span><br><span class="hljs-string">[1, 1, 1016839]</span><br><span class="hljs-string">factor: 2357351, Discrete Log: 813641</span><br><span class="hljs-string">[1, 1, 1016839, 813641]</span><br><span class="hljs-string">factor: 435374689, Discrete Log: 35993350</span><br><span class="hljs-string">[1, 1, 1016839, 813641, 35993350]&#x27;&#x27;&#x27;</span>    <br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212260058426.png" srcset="/img/loading.gif" lazyload alt="image-20221226005807177"></p>
+<p>再用中国剩余定理合并，求出x和n</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sympy.ntheory.modular <span class="hljs-keyword">import</span> crt  <br>log = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1016839</span>, <span class="hljs-number">813641</span>, <span class="hljs-number">35993350</span>]<br>pri = [<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1246057</span>,<span class="hljs-number">2357351</span>,<span class="hljs-number">435374689</span>]<br>x,mod=crt(pri,log)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;x=&#x27;</span>,x)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;mod=&#x27;</span>,mod)<br><span class="hljs-comment">#x= 11000838085296873931177</span><br><span class="hljs-comment">#mod= 15346402501700727093876</span><br></code></pre></td></tr></table></figure>
+<p>爆破k</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python">Q = (<span class="hljs-number">31981799071949968743482831587417174146463993877255771340814476669214408840460</span>,<span class="hljs-number">15144025062588325012239455117890516531350002058200271280110877844265896081387</span>)<br>p = <span class="hljs-number">64464091191308356774703439660771627086045800299627641179047457478059588557461</span><br>a = <span class="hljs-number">31926335967105564755113987930261069322507794703287741857397622356704769886356</span><br>b = <span class="hljs-number">34835808070187351680507689900273321615070127680320357724483770400791707112940</span><br>Gx = <span class="hljs-number">2053202552422630348010474635096983783565667661786369125783579647572276572403</span><br>Gy = <span class="hljs-number">51320753844844801021362329076409450910659564359017581255542897537756778371539</span><br><br>Zp = Zmod(p)<br>EC = EllipticCurve(Zp, [a, b])<br>P = EC(Gx, Gy)<br>Q = EC.point(Q)<br><br>x= <span class="hljs-number">11000838085296873931177</span><br>mod= <span class="hljs-number">15346402501700727093876</span><br><br>S = x*P<br>t = <span class="hljs-number">15346402501700727093876</span>*P<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2085178</span>):<br>    S = S+t<br>    <span class="hljs-keyword">if</span>(S==Q):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;k=&#x27;</span>,i)<br>        <span class="hljs-keyword">break</span><br><span class="hljs-comment">#k= 2064665</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212260142447.png" srcset="/img/loading.gif" lazyload alt="image-20221226014255281"></p>
+<p>解私钥K</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>x= <span class="hljs-number">11000838085296873931177</span><br>mod= <span class="hljs-number">15346402501700727093876</span><br>k= <span class="hljs-number">2064665</span>+<span class="hljs-number">1</span><br>K = x+mod*k<br><span class="hljs-built_in">print</span>(long_to_bytes(K))<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/">#ctf</a>
+      
+        <a href="/tags/Crypto/">#Crypto</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Crypto-lab7</div>
+      <div>http://example.com/post/Crypto-lab7.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>c1ongyan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Crypto-lab6.html" title="Crypto-lab6">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Crypto-lab6</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Crypto-Lab5.html" title="Crypto-Lab5">
+                        <span class="hidden-mobile">Crypto-Lab5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,794 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touxiang.jpg">
+  <link rel="icon" href="/img/touxiang.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="c1ongyan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Crypto-Lab41.DES KEY描述：据说可以用不同的KEY来解密相同密文 DES Chipher: c0a9c41c840bb485 提示：DES的有效秘钥长度 真正的秘密被隐藏在了key中，也算是一种类似base64隐写的手段 题目给出的是秘钥的16进制格式，DES秘钥长度8字节 题目： 1234567891011121314151617181920212223242526272829">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto-Lab4">
+<meta property="og:url" content="http://example.com/post/Crypto-Lab4.html">
+<meta property="og:site_name" content="c1ongyan">
+<meta property="og:description" content="Crypto-Lab41.DES KEY描述：据说可以用不同的KEY来解密相同密文 DES Chipher: c0a9c41c840bb485 提示：DES的有效秘钥长度 真正的秘密被隐藏在了key中，也算是一种类似base64隐写的手段 题目给出的是秘钥的16进制格式，DES秘钥长度8字节 题目： 1234567891011121314151617181920212223242526272829">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212021637312.png">
+<meta property="article:published_time" content="2022-12-02T08:24:57.000Z">
+<meta property="article:modified_time" content="2023-02-21T12:51:46.151Z">
+<meta property="article:author" content="c1ongyan">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212021637312.png">
+  
+  
+  
+  <title>Crypto-Lab4 - c1ongyan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>c1ongyanのblog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Crypto-Lab4"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-02 16:24" pubdate>
+          2022年12月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          72k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          597 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Crypto-Lab4</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Crypto-Lab4"><a href="#Crypto-Lab4" class="headerlink" title="Crypto-Lab4"></a>Crypto-Lab4</h1><h2 id="1-DES-KEY"><a href="#1-DES-KEY" class="headerlink" title="1.DES KEY"></a>1.DES KEY</h2><p>描述：据说可以用不同的KEY来解密相同密文 DES Chipher: c0a9c41c840bb485</p>
+<p>提示：DES的有效秘钥长度</p>
+<p>真正的秘密被隐藏在了key中，也算是一种类似base64隐写的手段</p>
+<p>题目给出的是秘钥的16进制格式，DES秘钥长度8字节</p>
+<p>题目：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs dns">ea5ddfc<span class="hljs-number">74345a485</span><br>ea5ddfc<span class="hljs-number">64245a584</span><br>ea5ddfc<span class="hljs-number">64345a484</span><br>ea5ddfc<span class="hljs-number">64244a485</span><br>ea5ddfc<span class="hljs-number">64245a585</span><br>ea5ddfc<span class="hljs-number">74344a585</span><br>ea5ddfc<span class="hljs-number">64245a484</span><br>ea5ddfc<span class="hljs-number">64245a484</span><br>ea5ddfc<span class="hljs-number">64244a485</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5ddfc<span class="hljs-number">64244a485</span><br>ea5ddfc<span class="hljs-number">64244a585</span><br>ea5ddfc<span class="hljs-number">64245a484</span><br>ea5cdfc<span class="hljs-number">74244a585</span><br>ea5cdfc<span class="hljs-number">64345a485</span><br>ea5ddfc<span class="hljs-number">64244a585</span><br>ea5cdfc<span class="hljs-number">74244a484</span><br>ea5cdfc<span class="hljs-number">74344a485</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5cdfc<span class="hljs-number">64345a485</span><br>ea5cdfc<span class="hljs-number">74245a484</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5cdfc<span class="hljs-number">74245a585</span><br>ea5cdfc<span class="hljs-number">74245a585</span><br>ea5cdfc<span class="hljs-number">64345a485</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5ddfc<span class="hljs-number">64245a485</span><br>ea5cdfc<span class="hljs-number">74245a584</span><br>ea5cdfc<span class="hljs-number">74344a485</span><br>ea5cdfc<span class="hljs-number">64345a485</span><br>ea5ddfc<span class="hljs-number">64245a584</span><br>ea5ddfc<span class="hljs-number">64245a484</span><br>ea5cdfc<span class="hljs-number">74245a485</span><br>ea5cdfc<span class="hljs-number">74244a584</span><br>ea5cdfc<span class="hljs-number">74244a585</span><br>ea5cdfc<span class="hljs-number">74245a485</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5cdfc<span class="hljs-number">74244a585</span><br>ea5cdfc<span class="hljs-number">74245a585</span><br>ea5ddfc<span class="hljs-number">64244a584</span><br>ea5ddfc<span class="hljs-number">64245a584</span><br>ea5ddfc<span class="hljs-number">64245a484</span><br>ea5ddfc<span class="hljs-number">74345a485</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>根据提示，可以知道这些密钥都可以用于同一密文的解密，说明这些des密钥的56位有效位是相同的，用奇偶校验的8位隐藏了信息，数一下密钥数，有43个，一个能隐藏8bit数据（一个字节），而flag一般42字节所以能猜测应该是一个密钥隐写了一个字节的flag数据，把这些被隐写的二进制拉出来，转成字节形式即可</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>c = [<span class="hljs-built_in">int</span>(x,<span class="hljs-number">16</span>) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;DES key.txt&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>).readlines()]<br>res=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-comment">#print(len(c))</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(c)):<br>	a=<span class="hljs-string">&#x27;&#x27;</span><br>	bb=<span class="hljs-built_in">bin</span>(c[i])[<span class="hljs-number">2</span>:]<br>	<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">9</span>):<br>	    a+=bb[<span class="hljs-number">8</span>*j-<span class="hljs-number">1</span>]<br>	<span class="hljs-comment">#print(a)</span><br>	res+=a<br>num=<span class="hljs-built_in">int</span>(res,<span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(long_to_bytes(num))<br></code></pre></td></tr></table></figure>
+<h2 id="2-Feistel"><a href="#2-Feistel" class="headerlink" title="2.Feistel"></a>2.Feistel</h2><p>描述：得到的结果请包上flag{}提交</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>sbox=[ <span class="hljs-number">0x63</span>, <span class="hljs-number">0x7C</span>, <span class="hljs-number">0x77</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0xF2</span>, <span class="hljs-number">0x6B</span>, <span class="hljs-number">0x6F</span>, <span class="hljs-number">0xC5</span>, <span class="hljs-number">0x30</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x67</span>, <span class="hljs-number">0x2B</span>, <span class="hljs-number">0xFE</span>, <span class="hljs-number">0xD7</span>, <span class="hljs-number">0xAB</span>, <span class="hljs-number">0x76</span>,<br>    <span class="hljs-number">0xCA</span>, <span class="hljs-number">0x82</span>, <span class="hljs-number">0xC9</span>, <span class="hljs-number">0x7D</span>, <span class="hljs-number">0xFA</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0xF0</span>, <span class="hljs-number">0xAD</span>, <span class="hljs-number">0xD4</span>, <span class="hljs-number">0xA2</span>, <span class="hljs-number">0xAF</span>, <span class="hljs-number">0x9C</span>, <span class="hljs-number">0xA4</span>, <span class="hljs-number">0x72</span>, <span class="hljs-number">0xC0</span>,<br>    <span class="hljs-number">0xB7</span>, <span class="hljs-number">0xFD</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x3F</span>, <span class="hljs-number">0xF7</span>, <span class="hljs-number">0xCC</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0xA5</span>, <span class="hljs-number">0xE5</span>, <span class="hljs-number">0xF1</span>, <span class="hljs-number">0x71</span>, <span class="hljs-number">0xD8</span>, <span class="hljs-number">0x31</span>, <span class="hljs-number">0x15</span>,<br>    <span class="hljs-number">0x04</span>, <span class="hljs-number">0xC7</span>, <span class="hljs-number">0x23</span>, <span class="hljs-number">0xC3</span>, <span class="hljs-number">0x18</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x05</span>, <span class="hljs-number">0x9A</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x80</span>, <span class="hljs-number">0xE2</span>, <span class="hljs-number">0xEB</span>, <span class="hljs-number">0x27</span>, <span class="hljs-number">0xB2</span>, <span class="hljs-number">0x75</span>,<br>    <span class="hljs-number">0x09</span>, <span class="hljs-number">0x83</span>, <span class="hljs-number">0x2C</span>, <span class="hljs-number">0x1A</span>, <span class="hljs-number">0x1B</span>, <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x5A</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0x52</span>, <span class="hljs-number">0x3B</span>, <span class="hljs-number">0xD6</span>, <span class="hljs-number">0xB3</span>, <span class="hljs-number">0x29</span>, <span class="hljs-number">0xE3</span>, <span class="hljs-number">0x2F</span>, <span class="hljs-number">0x84</span>,<br>    <span class="hljs-number">0x53</span>, <span class="hljs-number">0xD1</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0xED</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0xFC</span>, <span class="hljs-number">0xB1</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x6A</span>, <span class="hljs-number">0xCB</span>, <span class="hljs-number">0xBE</span>, <span class="hljs-number">0x39</span>, <span class="hljs-number">0x4A</span>, <span class="hljs-number">0x4C</span>, <span class="hljs-number">0x58</span>, <span class="hljs-number">0xCF</span>,<br>    <span class="hljs-number">0xD0</span>, <span class="hljs-number">0xEF</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xFB</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x4D</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x85</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0xF9</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x50</span>, <span class="hljs-number">0x3C</span>, <span class="hljs-number">0x9F</span>, <span class="hljs-number">0xA8</span>,<br>    <span class="hljs-number">0x51</span>, <span class="hljs-number">0xA3</span>, <span class="hljs-number">0x40</span>, <span class="hljs-number">0x8F</span>, <span class="hljs-number">0x92</span>, <span class="hljs-number">0x9D</span>, <span class="hljs-number">0x38</span>, <span class="hljs-number">0xF5</span>, <span class="hljs-number">0xBC</span>, <span class="hljs-number">0xB6</span>, <span class="hljs-number">0xDA</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x10</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xF3</span>, <span class="hljs-number">0xD2</span>,<br>    <span class="hljs-number">0xCD</span>, <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x13</span>, <span class="hljs-number">0xEC</span>, <span class="hljs-number">0x5F</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0x44</span>, <span class="hljs-number">0x17</span>, <span class="hljs-number">0xC4</span>, <span class="hljs-number">0xA7</span>, <span class="hljs-number">0x7E</span>, <span class="hljs-number">0x3D</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x5D</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0x73</span>,<br>    <span class="hljs-number">0x60</span>, <span class="hljs-number">0x81</span>, <span class="hljs-number">0x4F</span>, <span class="hljs-number">0xDC</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x2A</span>, <span class="hljs-number">0x90</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0x46</span>, <span class="hljs-number">0xEE</span>, <span class="hljs-number">0xB8</span>, <span class="hljs-number">0x14</span>, <span class="hljs-number">0xDE</span>, <span class="hljs-number">0x5E</span>, <span class="hljs-number">0x0B</span>, <span class="hljs-number">0xDB</span>,<br>    <span class="hljs-number">0xE0</span>, <span class="hljs-number">0x32</span>, <span class="hljs-number">0x3A</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x49</span>, <span class="hljs-number">0x06</span>, <span class="hljs-number">0x24</span>, <span class="hljs-number">0x5C</span>, <span class="hljs-number">0xC2</span>, <span class="hljs-number">0xD3</span>, <span class="hljs-number">0xAC</span>, <span class="hljs-number">0x62</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0xE4</span>, <span class="hljs-number">0x79</span>,<br>    <span class="hljs-number">0xE7</span>, <span class="hljs-number">0xC8</span>, <span class="hljs-number">0x37</span>, <span class="hljs-number">0x6D</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0xD5</span>, <span class="hljs-number">0x4E</span>, <span class="hljs-number">0xA9</span>, <span class="hljs-number">0x6C</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0xF4</span>, <span class="hljs-number">0xEA</span>, <span class="hljs-number">0x65</span>, <span class="hljs-number">0x7A</span>, <span class="hljs-number">0xAE</span>, <span class="hljs-number">0x08</span>,<br>    <span class="hljs-number">0xBA</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0x25</span>, <span class="hljs-number">0x2E</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0xA6</span>, <span class="hljs-number">0xB4</span>, <span class="hljs-number">0xC6</span>, <span class="hljs-number">0xE8</span>, <span class="hljs-number">0xDD</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x1F</span>, <span class="hljs-number">0x4B</span>, <span class="hljs-number">0xBD</span>, <span class="hljs-number">0x8B</span>, <span class="hljs-number">0x8A</span>,<br>    <span class="hljs-number">0x70</span>, <span class="hljs-number">0x3E</span>, <span class="hljs-number">0xB5</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0xF6</span>, <span class="hljs-number">0x0E</span>, <span class="hljs-number">0x61</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0xB9</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0xC1</span>, <span class="hljs-number">0x1D</span>, <span class="hljs-number">0x9E</span>,<br>    <span class="hljs-number">0xE1</span>, <span class="hljs-number">0xF8</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x11</span>, <span class="hljs-number">0x69</span>, <span class="hljs-number">0xD9</span>, <span class="hljs-number">0x8E</span>, <span class="hljs-number">0x94</span>, <span class="hljs-number">0x9B</span>, <span class="hljs-number">0x1E</span>, <span class="hljs-number">0x87</span>, <span class="hljs-number">0xE9</span>, <span class="hljs-number">0xCE</span>, <span class="hljs-number">0x55</span>, <span class="hljs-number">0x28</span>, <span class="hljs-number">0xDF</span>,<br>    <span class="hljs-number">0x8C</span>, <span class="hljs-number">0xA1</span>, <span class="hljs-number">0x89</span>, <span class="hljs-number">0x0D</span>, <span class="hljs-number">0xBF</span>, <span class="hljs-number">0xE6</span>, <span class="hljs-number">0x42</span>, <span class="hljs-number">0x68</span>, <span class="hljs-number">0x41</span>, <span class="hljs-number">0x99</span>, <span class="hljs-number">0x2D</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0xB0</span>, <span class="hljs-number">0x54</span>, <span class="hljs-number">0xBB</span>, <span class="hljs-number">0x16</span>]<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt</span>(<span class="hljs-params">plaintext, keystream</span>):<br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(plaintext) == <span class="hljs-number">32</span><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(keystream) == <span class="hljs-number">48</span><br><br>    left = plaintext[:<span class="hljs-number">16</span>]<br>    right = plaintext[<span class="hljs-number">16</span>:]<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        aes = AES.new(keystream[i * <span class="hljs-number">16</span>:i * <span class="hljs-number">16</span> + <span class="hljs-number">16</span>], AES.MODE_ECB)<br>        new_right = long_to_bytes(bytes_to_long(aes.encrypt(right)) ^ bytes_to_long(left))<br>        new_left = right<br>        left = new_left<br>        right = new_right<br>    <span class="hljs-keyword">return</span> left + right<br>key=<span class="hljs-string">b&#x27;Do_you_like_Feistel_I_like_AES_This_is_your_flag&#x27;</span><br>c=encrypt(flag,key)<br>c=[sbox[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> c]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bytes</span>(c).<span class="hljs-built_in">hex</span>())<br><span class="hljs-comment">#788a9b46b757c57fd10f915d1eac078d16c2e4137b17507ebc0df94de1b49f30</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>feistel轮结构如下</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212021637312.png" srcset="/img/loading.gif" lazyload alt="image-20221202163703212"></p>
+<p>一般完整的Feistel最后一轮的最后一步是不会交换的，为了保证加解密结构相同。</p>
+<p>这一题是先对密文进行字节代换，然后直接进行了三轮加密</p>
+<p>可以对密文进行逆字节代换，解密密钥与加密密钥顺序相反，进行feistel轮函数的解密。</p>
+<p>加密：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+L_1\equiv{R_0} \quad\qquad\\
+R_1\equiv{L_0\bigoplus{F(R_0,K_1)}}\quad
+\end{cases}</script><p>解密：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+L_0\equiv{R_1\bigoplus{F(L_1,K_1)}} \quad\qquad\\
+R_0\equiv{L_1}\quad
+\end{cases}</script><p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br>ReSubchart = [<span class="hljs-number">0x52</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x6a</span>, <span class="hljs-number">0xd5</span>, <span class="hljs-number">0x30</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0xa5</span>, <span class="hljs-number">0x38</span>, <span class="hljs-number">0xbf</span>, <span class="hljs-number">0x40</span>, <span class="hljs-number">0xa3</span>, <span class="hljs-number">0x9e</span>, <span class="hljs-number">0x81</span>, <span class="hljs-number">0xf3</span>, <span class="hljs-number">0xd7</span>,<span class="hljs-number">0xfb</span>,<br>            <span class="hljs-number">0x7c</span>, <span class="hljs-number">0xe3</span>, <span class="hljs-number">0x39</span>, <span class="hljs-number">0x82</span>, <span class="hljs-number">0x9b</span>, <span class="hljs-number">0x2f</span>, <span class="hljs-number">0xff</span>, <span class="hljs-number">0x87</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0x8e</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x44</span>, <span class="hljs-number">0xc4</span>, <span class="hljs-number">0xde</span>, <span class="hljs-number">0xe9</span>,<span class="hljs-number">0xcb</span>,<br>            <span class="hljs-number">0x54</span>, <span class="hljs-number">0x7b</span>, <span class="hljs-number">0x94</span>, <span class="hljs-number">0x32</span>, <span class="hljs-number">0xa6</span>, <span class="hljs-number">0xc2</span>, <span class="hljs-number">0x23</span>, <span class="hljs-number">0x3d</span>, <span class="hljs-number">0xee</span>, <span class="hljs-number">0x4c</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x0b</span>, <span class="hljs-number">0x42</span>, <span class="hljs-number">0xfa</span>, <span class="hljs-number">0xc3</span>,<span class="hljs-number">0x4e</span>,<br>            <span class="hljs-number">0x08</span>, <span class="hljs-number">0x2e</span>, <span class="hljs-number">0xa1</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x28</span>, <span class="hljs-number">0xd9</span>, <span class="hljs-number">0x24</span>, <span class="hljs-number">0xb2</span>, <span class="hljs-number">0x76</span>, <span class="hljs-number">0x5b</span>, <span class="hljs-number">0xa2</span>, <span class="hljs-number">0x49</span>, <span class="hljs-number">0x6d</span>, <span class="hljs-number">0x8b</span>, <span class="hljs-number">0xd1</span>,<span class="hljs-number">0x25</span>,<br>            <span class="hljs-number">0x72</span>, <span class="hljs-number">0xf8</span>, <span class="hljs-number">0xf6</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0x68</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0xd4</span>, <span class="hljs-number">0xa4</span>, <span class="hljs-number">0x5c</span>, <span class="hljs-number">0xcc</span>, <span class="hljs-number">0x5d</span>, <span class="hljs-number">0x65</span>, <span class="hljs-number">0xb6</span>,<span class="hljs-number">0x92</span>,<br>            <span class="hljs-number">0x6c</span>, <span class="hljs-number">0x70</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0x50</span>, <span class="hljs-number">0xfd</span>, <span class="hljs-number">0xed</span>, <span class="hljs-number">0xb9</span>, <span class="hljs-number">0xda</span>, <span class="hljs-number">0x5e</span>, <span class="hljs-number">0x15</span>, <span class="hljs-number">0x46</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0xa7</span>, <span class="hljs-number">0x8d</span>, <span class="hljs-number">0x9d</span>,<span class="hljs-number">0x84</span>,<br>            <span class="hljs-number">0x90</span>, <span class="hljs-number">0xd8</span>, <span class="hljs-number">0xab</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x8c</span>, <span class="hljs-number">0xbc</span>, <span class="hljs-number">0xd3</span>, <span class="hljs-number">0x0a</span>, <span class="hljs-number">0xf7</span>, <span class="hljs-number">0xe4</span>, <span class="hljs-number">0x58</span>, <span class="hljs-number">0x05</span>, <span class="hljs-number">0xb8</span>, <span class="hljs-number">0xb3</span>, <span class="hljs-number">0x45</span>,<span class="hljs-number">0x06</span>,<br>            <span class="hljs-number">0xd0</span>, <span class="hljs-number">0x2c</span>, <span class="hljs-number">0x1e</span>, <span class="hljs-number">0x8f</span>, <span class="hljs-number">0xca</span>, <span class="hljs-number">0x3f</span>, <span class="hljs-number">0x0f</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0xc1</span>, <span class="hljs-number">0xaf</span>, <span class="hljs-number">0xbd</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x13</span>, <span class="hljs-number">0x8a</span>,<span class="hljs-number">0x6b</span>,<br>            <span class="hljs-number">0x3a</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x11</span>, <span class="hljs-number">0x41</span>, <span class="hljs-number">0x4f</span>, <span class="hljs-number">0x67</span>, <span class="hljs-number">0xdc</span>, <span class="hljs-number">0xea</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0xf2</span>, <span class="hljs-number">0xcf</span>, <span class="hljs-number">0xce</span>, <span class="hljs-number">0xf0</span>, <span class="hljs-number">0xb4</span>, <span class="hljs-number">0xe6</span>,<span class="hljs-number">0x73</span>,<br>            <span class="hljs-number">0x96</span>, <span class="hljs-number">0xac</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0xe7</span>, <span class="hljs-number">0xad</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0x85</span>, <span class="hljs-number">0xe2</span>, <span class="hljs-number">0xf9</span>, <span class="hljs-number">0x37</span>, <span class="hljs-number">0xe8</span>, <span class="hljs-number">0x1c</span>, <span class="hljs-number">0x75</span>, <span class="hljs-number">0xdf</span>,<span class="hljs-number">0x6e</span>,<br>            <span class="hljs-number">0x47</span>, <span class="hljs-number">0xf1</span>, <span class="hljs-number">0x1a</span>, <span class="hljs-number">0x71</span>, <span class="hljs-number">0x1d</span>, <span class="hljs-number">0x29</span>, <span class="hljs-number">0xc5</span>, <span class="hljs-number">0x89</span>, <span class="hljs-number">0x6f</span>, <span class="hljs-number">0xb7</span>, <span class="hljs-number">0x62</span>, <span class="hljs-number">0x0e</span>, <span class="hljs-number">0xaa</span>, <span class="hljs-number">0x18</span>, <span class="hljs-number">0xbe</span>,<span class="hljs-number">0x1b</span>,<br>            <span class="hljs-number">0xfc</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x3e</span>, <span class="hljs-number">0x4b</span>, <span class="hljs-number">0xc6</span>, <span class="hljs-number">0xd2</span>, <span class="hljs-number">0x79</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x9a</span>, <span class="hljs-number">0xdb</span>, <span class="hljs-number">0xc0</span>, <span class="hljs-number">0xfe</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0xcd</span>, <span class="hljs-number">0x5a</span>,<span class="hljs-number">0xf4</span>,<br>            <span class="hljs-number">0x1f</span>, <span class="hljs-number">0xdd</span>, <span class="hljs-number">0xa8</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0xc7</span>, <span class="hljs-number">0x31</span>, <span class="hljs-number">0xb1</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x10</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x27</span>, <span class="hljs-number">0x80</span>, <span class="hljs-number">0xec</span>,<span class="hljs-number">0x5f</span>,<br>            <span class="hljs-number">0x60</span>, <span class="hljs-number">0x51</span>, <span class="hljs-number">0x7f</span>, <span class="hljs-number">0xa9</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0xb5</span>, <span class="hljs-number">0x4a</span>, <span class="hljs-number">0x0d</span>, <span class="hljs-number">0x2d</span>, <span class="hljs-number">0xe5</span>, <span class="hljs-number">0x7a</span>, <span class="hljs-number">0x9f</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0xc9</span>, <span class="hljs-number">0x9c</span>,<span class="hljs-number">0xef</span>,<br>            <span class="hljs-number">0xa0</span>, <span class="hljs-number">0xe0</span>, <span class="hljs-number">0x3b</span>, <span class="hljs-number">0x4d</span>, <span class="hljs-number">0xae</span>, <span class="hljs-number">0x2a</span>, <span class="hljs-number">0xf5</span>, <span class="hljs-number">0xb0</span>, <span class="hljs-number">0xc8</span>, <span class="hljs-number">0xeb</span>, <span class="hljs-number">0xbb</span>, <span class="hljs-number">0x3c</span>, <span class="hljs-number">0x83</span>, <span class="hljs-number">0x53</span>, <span class="hljs-number">0x99</span>,<span class="hljs-number">0x61</span>,<br>            <span class="hljs-number">0x17</span>, <span class="hljs-number">0x2b</span>, <span class="hljs-number">0x04</span>, <span class="hljs-number">0x7e</span>, <span class="hljs-number">0xba</span>, <span class="hljs-number">0x77</span>, <span class="hljs-number">0xd6</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0xe1</span>, <span class="hljs-number">0x69</span>, <span class="hljs-number">0x14</span>, <span class="hljs-number">0x63</span>, <span class="hljs-number">0x55</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x0c</span>,<span class="hljs-number">0x7d</span>]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">plaintext, keystream</span>):<br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(plaintext) == <span class="hljs-number">32</span><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(keystream) == <span class="hljs-number">48</span><br><br>    left = plaintext[:<span class="hljs-number">16</span>]<br>    right = plaintext[<span class="hljs-number">16</span>:]<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        <span class="hljs-comment">#print(keystream[(2-i) * 16:(2-i) * 16 + 16])</span><br>        aes = AES.new(keystream[(<span class="hljs-number">2</span>-i) * <span class="hljs-number">16</span>:(<span class="hljs-number">2</span>-i) * <span class="hljs-number">16</span> + <span class="hljs-number">16</span>], AES.MODE_ECB)<br>        <span class="hljs-comment">#print(left)</span><br>        <span class="hljs-comment">#print(right)</span><br>        new_right=left<br>        new_left=long_to_bytes(bytes_to_long(aes.encrypt(new_right)) ^ bytes_to_long(right))<br>        left=new_left<br>        right=new_right<br>    <span class="hljs-keyword">return</span> left + right<br><br><span class="hljs-comment">#788a9b46b757c57fd10f915d1eac078d16c2e4137b17507ebc0df94de1b49f30</span><br>c=<span class="hljs-string">&#x27;788a9b46b757c57fd10f915d1eac078d16c2e4137b17507ebc0df94de1b49f30&#x27;</span><br><span class="hljs-comment">#print(len(c))</span><br>c=<span class="hljs-built_in">int</span>(c,<span class="hljs-number">16</span>).to_bytes(<span class="hljs-number">32</span>, byteorder=<span class="hljs-string">&#x27;big&#x27;</span>)<br><span class="hljs-comment">#print(list(c))</span><br>c=[ReSubchart[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> c]<br><span class="hljs-comment">#print(c)</span><br>key=<span class="hljs-string">b&#x27;Do_you_like_Feistel_I_like_AES_This_is_your_flag&#x27;</span><br>c=<span class="hljs-built_in">bytes</span>(c)<br><span class="hljs-comment">#print(c)</span><br>d=decrypt(c,key)<br><span class="hljs-built_in">print</span>(d)<br><span class="hljs-comment">#print(d.hex())</span><br></code></pre></td></tr></table></figure>
+<h2 id="3-byteRSA"><a href="#3-byteRSA" class="headerlink" title="3.byteRSA"></a>3.byteRSA</h2><p>题目描述：flag格式为flag{}内容为uuid4格式</p>
+<p>提示：题目未给出n，可结合已知明文攻击求出n</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span>  flag<br>p = getPrime(<span class="hljs-number">1024</span>)<br>q = getPrime(<span class="hljs-number">1024</span>)<br>n = p * q<br>phi = (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>)<br>e = <span class="hljs-number">65537</span><br><br>cipher = []<br><span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> flag:<br>    cipher.append(<span class="hljs-built_in">pow</span>(ch,e,n))<br><span class="hljs-built_in">print</span>(cipher)<br><span class="hljs-built_in">print</span>(n)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">[11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013, 4765275407078498830196453484615228647488119641051736386985124149771978793497825138811053264203464751611510602323328935055577934271194521578877734816701450882508975992711707365171446549350693616777156594559459359020681650457462997348341819337696857465215645867795933319433993806850657310771271780164857576249640499530706002807800072095279478191010627657160045263503510815828909783017871488780847009274255795618370702341262906675889960484872121593942090158785279482041251686692965598428699984795425424314845202821178882038752009686267978535447957338296568313474048161414021947114767992819220821921113419208368413263422, 8973390961455272052267628415841725148664014460598979414622203552505218520214743532403244304953555243556170777579306356620696458273374315586751949961843795539869690154234642403811934490726142262657134153207125693127589115572361182800281824586334537572060829713380809862704154400013755951085823840399392658480894558256977957471063971590417676730357273323411948303311010803091423319721802243327738203279168144733854954817333787104587761363460759530221526096663878048045665893439723821743634777948744336977023942482077160731957626238615947965693867523748036438735812823764360683309162662213075339182302561433502244315618, 15350733069829204402920295477711380341993062041251941490292749372749852236874047486052195072132113874647900550920373937658068265963230191744711614878751153046262497821806700880691844111230197714824626417009021627730693326236996457280638193712265028105287892407764356957055246585368960863525117367721015371334890353785285138290449449040298696396527786884238041078994224964407918419983364650072064009385080123333851106203047596834434300883391225870572762795102562384842292433334404864939630326550107936082575285024893679013349011338224644982643827594922553767254028893305803129888420355793710431322859736273982489816996, 4249373777588248671367805334161493007259542293334721053812535082529969776053394649471974449756301276663961653819139865824142355133200769538771524743248806027627082548193510500721182481899659358546225484367576894946375803888338888199469819956944303404505805643529314823810356948217197816571956131508907963784862292141456747364036520172036499072834743141526316790310038291316979993946838442642063654429242625413862965256433996723276080780358623683201705451079492393133681688362013434540679024214022109083304008364344767019959162604852916671072909369436496532197699383614425869981081966164258626590576379292275701825189, 9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013, 19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835, 12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365, 9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013, 3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027, 12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365, 19000555934585529305683392170381989320002451476828893690357718573608042557901262756594196097528218937377609939316690404016167547903158163914228535012281839169884103507554723850079193575039971117647459690537834051905504887886595023030085094604051410575710199490600927943831568523585523966550185816979665559642112504959207077847724745354761305124094475791537910083182441197600792102145078372769161366865835856070659742420903182775410372048316153156291377083922967959387384292365604396586364739015931010832012831735797525897307867227802077790973909455077192267492384110127651647949524981637309137897589614882856413134661, 17355773236729857323973342270052932822776443181350794115049274957572288992149418748086412749640634322969667852979516339666069836889497662051707223971996474107301073353349805595306420750337055575352283687879536718629164618796052047039628701931372309406301831041874201982276726848874988401287919319534744275696993626882472379524870013839308536247015281793879284940799318433542493865938111850258587184638110018166008717897412067757141722069237202689456423801977653539902597384820747728892037622013840313499223113832787246844644302233184877085683753398108033875101523308410923910391992192367470124409629413684235827401101, 5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409, 8973390961455272052267628415841725148664014460598979414622203552505218520214743532403244304953555243556170777579306356620696458273374315586751949961843795539869690154234642403811934490726142262657134153207125693127589115572361182800281824586334537572060829713380809862704154400013755951085823840399392658480894558256977957471063971590417676730357273323411948303311010803091423319721802243327738203279168144733854954817333787104587761363460759530221526096663878048045665893439723821743634777948744336977023942482077160731957626238615947965693867523748036438735812823764360683309162662213075339182302561433502244315618, 3859959482980546272964041592677926326788734736813617460803112586887098470080689434694471240865737650206168444216169499393640775949766555842072533704694795133145770551685535438097745653486049958298857152048237100954025937597878134246565351033559913570963855392261375619388940130942631975527263102868836154113702012207407818544301966325323961143046903984302457861056914315343413937927125305404082933471280566632366457819963060445878461589707548495009155606847481503043605966599425677497274162192785494638975632832069752974461460132097911872311537539885671550638001598753535405480154079908206385289489275459229906552057, 19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835, 19541389876845937343104174024011174738121582937765475620122801498154028082973444987539224097699623805950895389563205017470303467902732740685141223948133114441189902477943284761342153435208627535205000112301279059116718341374015808979933207842606066504198356735729482401379793585473914765882931794445052408034667492129524814885390117447168945036497206397204622589955300040717645565917707064969320291258722568342575672468731777880446082197946095551569690181986308352939371815648033417588567436731143727846893380585995821169243246578354856161235175509599914817583342574163019305560736028387187751212923707831738520468619, 5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409, 10788595185853874250291337066031363719532165972152022247230756606168458513957901058267448230552069458296728306849344055365621140817689640272508695426725708991076683904959288139244667809213349187982089861290671799168933798128795390846176612821114516268881609010883097495433437815000067002681532459618320819014787645206016302741493146640426833757786432090306333486096069636012389767907433313022127305406871010623331311088179874132685290362909101935736195019027586102391508113258495217011090318875518809015771394328011308419705662015852545645365444877472509590058704853194148009194682279505412785412321259650082946504615, 11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013, 11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013, 12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365, 5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409, 1966051342253428126867036550911377588176062991978050151556220996966820367011493867712498963079481596568071731019471124371764175475269270008316413930914172651469330538676789619100982128052154168600577686568618368748109639619262262762578488936962488289364690039029892248888117290016845609036187623151577166054538068196197473606013134518323873786325904642286659354300685572005304468480149854980819019976872903106847397303566962121969346000684913201236927538303048221994495669917422710280271668440229600149250984619106386452760578946000175959652594393760857007932236451072213235889616254917671039080374828794956473992137, 3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027, 11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013, 8036115345158284474471397254807283266614614121743628483142557473269859898412290012891221484105977251019649903506196189946673222255281452613039087299351374625004810322992499276849659048953831983808571810413875419893692857244036929376849148890693973718372460762932593837217029662865217992090551413847287555846490173491344657373331793306347668493788788142206894611528091044960842285913251431599677455010357230713934669773980706349466425243400033937252603911175760751911576371407935700571967997143623735532177897923751597788914241916742615015830790145085701278392064206627458483137578085984012973561401653228823844995780, 5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409, 11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013, 9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013, 3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027, 7934100103612597799245966597540495770897459791305838611829168994366810176791478598127716585330973646572837963298347658217379594571851959822994361520143179602103117537841241957973806470431906980460647842956485908090628629220959042190163158423738015941306847049970180609905770726803957931803238333424331924772396704354166351537990669395857986219625312635050536080414161783157936667067773822631179948661311776327691342487942038364859476351251573618170116210483990759571565644168725706584601160447812736785763159328694343724189559744117144218446759634528879553618996488152154132459276180950902943439672009222655263294592, 1966051342253428126867036550911377588176062991978050151556220996966820367011493867712498963079481596568071731019471124371764175475269270008316413930914172651469330538676789619100982128052154168600577686568618368748109639619262262762578488936962488289364690039029892248888117290016845609036187623151577166054538068196197473606013134518323873786325904642286659354300685572005304468480149854980819019976872903106847397303566962121969346000684913201236927538303048221994495669917422710280271668440229600149250984619106386452760578946000175959652594393760857007932236451072213235889616254917671039080374828794956473992137, 12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365, 10938776239912765586783245351675229316504975576866998685503586605561184435751049074246836816500718587784612469841616634843475000062466229478181842615745696699467399548336525284294887073685319159778641442405442489137290300401315830312684605395059339571269423637238744539444880428814659023673423480506866516527471293169451239948711899801093670224684408482463920460246668037760069839988494786949189538209188928839999072601239111365274070174948297336900113846678177315959484645286661230420476535393405982415166174713901838194389026469820973958391461098831028082983440806187768356311218898932776087634026785114354421118702, 9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013, 19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835, 9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013, 19541389876845937343104174024011174738121582937765475620122801498154028082973444987539224097699623805950895389563205017470303467902732740685141223948133114441189902477943284761342153435208627535205000112301279059116718341374015808979933207842606066504198356735729482401379793585473914765882931794445052408034667492129524814885390117447168945036497206397204622589955300040717645565917707064969320291258722568342575672468731777880446082197946095551569690181986308352939371815648033417588567436731143727846893380585995821169243246578354856161235175509599914817583342574163019305560736028387187751212923707831738520468619, 10788595185853874250291337066031363719532165972152022247230756606168458513957901058267448230552069458296728306849344055365621140817689640272508695426725708991076683904959288139244667809213349187982089861290671799168933798128795390846176612821114516268881609010883097495433437815000067002681532459618320819014787645206016302741493146640426833757786432090306333486096069636012389767907433313022127305406871010623331311088179874132685290362909101935736195019027586102391508113258495217011090318875518809015771394328011308419705662015852545645365444877472509590058704853194148009194682279505412785412321259650082946504615, 12214375617150883559940273342436518138527218410934985237149587671322737062140339124492202696176206285958472333934156035036505400233023000788998092976741986863823811873410547405550567073962840347975520903121489290902307739798451416818132122393264618834099153283382832451251821941712321388307888964246791063446267500427470553498088671888609633794029303967713809269450664339834983016271666205923547989107632889053780602466856119056492479553825583500522541431263080790769404731164171222809033900244644945168321080041400080253195796277626702302011600707177094426992394860244220499600621143463468814032521658337756088059178]</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>思路：分析加密可知，是对42个字节分别进行RSA加密，由于flag{}格式已知，相当于是已知六对明密文，而且是用同样的公钥(e,n)，对每一组密文有为了方便只取前五组():</p>
+<script type="math/tex; mode=display">
+c_i=m_i^e(modn)->m_i^e=c_i+k_i*n\\
+-->k_in=m_i^e-c_i\quad(i=1...5)</script><p>可以看出五组的m^e-c有公因子n,可以通过求公因子求出n,但要注意，求出来的可能含有k的因子，如果是偶数的话可能是包含k的因子2，除以2才能得到真正的n，不然解出的flag会有点问题，不过这一题没有这个问题。求出n后，因为是一个字节一个字节的加密，一个字节只有256种可能，属于明文长度过短，可以爆破明文，如果加密的结果与密文相同则为正确明文。</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br>mm=[<span class="hljs-number">11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013</span>, <span class="hljs-number">4765275407078498830196453484615228647488119641051736386985124149771978793497825138811053264203464751611510602323328935055577934271194521578877734816701450882508975992711707365171446549350693616777156594559459359020681650457462997348341819337696857465215645867795933319433993806850657310771271780164857576249640499530706002807800072095279478191010627657160045263503510815828909783017871488780847009274255795618370702341262906675889960484872121593942090158785279482041251686692965598428699984795425424314845202821178882038752009686267978535447957338296568313474048161414021947114767992819220821921113419208368413263422</span>, <span class="hljs-number">8973390961455272052267628415841725148664014460598979414622203552505218520214743532403244304953555243556170777579306356620696458273374315586751949961843795539869690154234642403811934490726142262657134153207125693127589115572361182800281824586334537572060829713380809862704154400013755951085823840399392658480894558256977957471063971590417676730357273323411948303311010803091423319721802243327738203279168144733854954817333787104587761363460759530221526096663878048045665893439723821743634777948744336977023942482077160731957626238615947965693867523748036438735812823764360683309162662213075339182302561433502244315618</span>, <span class="hljs-number">15350733069829204402920295477711380341993062041251941490292749372749852236874047486052195072132113874647900550920373937658068265963230191744711614878751153046262497821806700880691844111230197714824626417009021627730693326236996457280638193712265028105287892407764356957055246585368960863525117367721015371334890353785285138290449449040298696396527786884238041078994224964407918419983364650072064009385080123333851106203047596834434300883391225870572762795102562384842292433334404864939630326550107936082575285024893679013349011338224644982643827594922553767254028893305803129888420355793710431322859736273982489816996</span>, <span class="hljs-number">4249373777588248671367805334161493007259542293334721053812535082529969776053394649471974449756301276663961653819139865824142355133200769538771524743248806027627082548193510500721182481899659358546225484367576894946375803888338888199469819956944303404505805643529314823810356948217197816571956131508907963784862292141456747364036520172036499072834743141526316790310038291316979993946838442642063654429242625413862965256433996723276080780358623683201705451079492393133681688362013434540679024214022109083304008364344767019959162604852916671072909369436496532197699383614425869981081966164258626590576379292275701825189</span>, <span class="hljs-number">9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013</span>, <span class="hljs-number">19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835</span>, <span class="hljs-number">12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365</span>, <span class="hljs-number">9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013</span>, <span class="hljs-number">3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027</span>, <span class="hljs-number">12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365</span>, <span class="hljs-number">19000555934585529305683392170381989320002451476828893690357718573608042557901262756594196097528218937377609939316690404016167547903158163914228535012281839169884103507554723850079193575039971117647459690537834051905504887886595023030085094604051410575710199490600927943831568523585523966550185816979665559642112504959207077847724745354761305124094475791537910083182441197600792102145078372769161366865835856070659742420903182775410372048316153156291377083922967959387384292365604396586364739015931010832012831735797525897307867227802077790973909455077192267492384110127651647949524981637309137897589614882856413134661</span>, <span class="hljs-number">17355773236729857323973342270052932822776443181350794115049274957572288992149418748086412749640634322969667852979516339666069836889497662051707223971996474107301073353349805595306420750337055575352283687879536718629164618796052047039628701931372309406301831041874201982276726848874988401287919319534744275696993626882472379524870013839308536247015281793879284940799318433542493865938111850258587184638110018166008717897412067757141722069237202689456423801977653539902597384820747728892037622013840313499223113832787246844644302233184877085683753398108033875101523308410923910391992192367470124409629413684235827401101</span>, <span class="hljs-number">5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409</span>, <span class="hljs-number">8973390961455272052267628415841725148664014460598979414622203552505218520214743532403244304953555243556170777579306356620696458273374315586751949961843795539869690154234642403811934490726142262657134153207125693127589115572361182800281824586334537572060829713380809862704154400013755951085823840399392658480894558256977957471063971590417676730357273323411948303311010803091423319721802243327738203279168144733854954817333787104587761363460759530221526096663878048045665893439723821743634777948744336977023942482077160731957626238615947965693867523748036438735812823764360683309162662213075339182302561433502244315618</span>, <span class="hljs-number">3859959482980546272964041592677926326788734736813617460803112586887098470080689434694471240865737650206168444216169499393640775949766555842072533704694795133145770551685535438097745653486049958298857152048237100954025937597878134246565351033559913570963855392261375619388940130942631975527263102868836154113702012207407818544301966325323961143046903984302457861056914315343413937927125305404082933471280566632366457819963060445878461589707548495009155606847481503043605966599425677497274162192785494638975632832069752974461460132097911872311537539885671550638001598753535405480154079908206385289489275459229906552057</span>, <span class="hljs-number">19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835</span>, <span class="hljs-number">19541389876845937343104174024011174738121582937765475620122801498154028082973444987539224097699623805950895389563205017470303467902732740685141223948133114441189902477943284761342153435208627535205000112301279059116718341374015808979933207842606066504198356735729482401379793585473914765882931794445052408034667492129524814885390117447168945036497206397204622589955300040717645565917707064969320291258722568342575672468731777880446082197946095551569690181986308352939371815648033417588567436731143727846893380585995821169243246578354856161235175509599914817583342574163019305560736028387187751212923707831738520468619</span>, <span class="hljs-number">5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409</span>, <span class="hljs-number">10788595185853874250291337066031363719532165972152022247230756606168458513957901058267448230552069458296728306849344055365621140817689640272508695426725708991076683904959288139244667809213349187982089861290671799168933798128795390846176612821114516268881609010883097495433437815000067002681532459618320819014787645206016302741493146640426833757786432090306333486096069636012389767907433313022127305406871010623331311088179874132685290362909101935736195019027586102391508113258495217011090318875518809015771394328011308419705662015852545645365444877472509590058704853194148009194682279505412785412321259650082946504615</span>, <span class="hljs-number">11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013</span>, <span class="hljs-number">11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013</span>, <span class="hljs-number">12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365</span>, <span class="hljs-number">5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409</span>, <span class="hljs-number">1966051342253428126867036550911377588176062991978050151556220996966820367011493867712498963079481596568071731019471124371764175475269270008316413930914172651469330538676789619100982128052154168600577686568618368748109639619262262762578488936962488289364690039029892248888117290016845609036187623151577166054538068196197473606013134518323873786325904642286659354300685572005304468480149854980819019976872903106847397303566962121969346000684913201236927538303048221994495669917422710280271668440229600149250984619106386452760578946000175959652594393760857007932236451072213235889616254917671039080374828794956473992137</span>, <span class="hljs-number">3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027</span>, <span class="hljs-number">11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013</span>, <span class="hljs-number">8036115345158284474471397254807283266614614121743628483142557473269859898412290012891221484105977251019649903506196189946673222255281452613039087299351374625004810322992499276849659048953831983808571810413875419893692857244036929376849148890693973718372460762932593837217029662865217992090551413847287555846490173491344657373331793306347668493788788142206894611528091044960842285913251431599677455010357230713934669773980706349466425243400033937252603911175760751911576371407935700571967997143623735532177897923751597788914241916742615015830790145085701278392064206627458483137578085984012973561401653228823844995780</span>, <span class="hljs-number">5988814005927423051742841284846232770926892714804237210370833924883582993238775588414311949184741857401031544649891145694678063681407247979472513897586964785705292799172864840032527785183036435245506570222176909878479329653512536687095357488161992809108841328150782417871500850347317941663151826478971276116164594161843628645047495583925496045963556619654825292389779924078307705934624478150747059514480975484847842001684707512027593890811348416678576442403566393534185757661086090272237647255677876203901502038611852617062788350885720287280212225018848738512561583541592617803961183697178063513523789484758474251409</span>, <span class="hljs-number">11178083017120158485393153171321336735737665742302292934979041161712322853777963504034924245132451120396276345036538229147671518358660765304799250040930303751484684356497299279121270493349877825760899025782028810520758399698602445275900005376724413315814749226821845740911047145640269891147525197816867611230415112765918255699066836608409914573938366866985454497661337624781372075179438478859754556470114058222193424318436460835026378212119022319273767558996312244917841866269309038008770356601862132051758698846653499024264073556965771009943905699818566990849876593146220979938450848207655509499046815325530238201013</span>, <span class="hljs-number">9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013</span>, <span class="hljs-number">3635275278635183549315022314865300211107333953729618262620788640006014274612765983632230202336333218753735628827913708368013373911993754752994660420696665597055513006156595151988934434020835871294494877212205850772549738485856720555285620770589013582496766873590818202601671885261630424587168761017486668153633265039658437266274931790905539730063394326439085221358298442653655228907783473187740098052820249826308157628672669593263612129847867064246914683866041495687954050237769621483628469862966415747065181757022201021890571077307495722753377609616728101524229243469807003327904966503543940968901246881814374519027</span>, <span class="hljs-number">7934100103612597799245966597540495770897459791305838611829168994366810176791478598127716585330973646572837963298347658217379594571851959822994361520143179602103117537841241957973806470431906980460647842956485908090628629220959042190163158423738015941306847049970180609905770726803957931803238333424331924772396704354166351537990669395857986219625312635050536080414161783157936667067773822631179948661311776327691342487942038364859476351251573618170116210483990759571565644168725706584601160447812736785763159328694343724189559744117144218446759634528879553618996488152154132459276180950902943439672009222655263294592</span>, <span class="hljs-number">1966051342253428126867036550911377588176062991978050151556220996966820367011493867712498963079481596568071731019471124371764175475269270008316413930914172651469330538676789619100982128052154168600577686568618368748109639619262262762578488936962488289364690039029892248888117290016845609036187623151577166054538068196197473606013134518323873786325904642286659354300685572005304468480149854980819019976872903106847397303566962121969346000684913201236927538303048221994495669917422710280271668440229600149250984619106386452760578946000175959652594393760857007932236451072213235889616254917671039080374828794956473992137</span>, <span class="hljs-number">12586368414462504168364503548096738036487124212221372385896911430340173088778701869880197508656426820249219033243643110919576113405502733741647603441861799338386166960793379007004326976331636726671678327723096989031175040175842132660361801404019157081982780533209209191684898550243133325744023235148128444797827700530022333796840703041794376197419484105959840037506283754168762791521384834681611428592723718488186668961106543585713067868583236342327870798104722263830332611193971063647485152444958590548147307308839615433262273629103560348967215405941605224987205474780900807897243644765401689814588719974234175057365</span>, <span class="hljs-number">10938776239912765586783245351675229316504975576866998685503586605561184435751049074246836816500718587784612469841616634843475000062466229478181842615745696699467399548336525284294887073685319159778641442405442489137290300401315830312684605395059339571269423637238744539444880428814659023673423480506866516527471293169451239948711899801093670224684408482463920460246668037760069839988494786949189538209188928839999072601239111365274070174948297336900113846678177315959484645286661230420476535393405982415166174713901838194389026469820973958391461098831028082983440806187768356311218898932776087634026785114354421118702</span>, <span class="hljs-number">9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013</span>, <span class="hljs-number">19654595171654315158213936501048512290856391907074545164555633962365612472660258228301419361260282318699128465207796192578531872797199277705764911662741276841556125935317753083359300751109552146647391777837899540472601397813586411488753524464397475907518425178882776703281902159775206954942057948561706307293218080487445951237384356353793535370798514636293597528638968612324893712282419701312648224399984583358712458416093648210250912171230390790331796943208689964252106034986162388312208275122970182239540689210368540167180735615484225214910210233327467684273883519776106558578072694286638466552994831654174381044835</span>, <span class="hljs-number">9401060214549258780867450918103861209604366392595110616253971492712072807093676762513116729069961134692822329993124265319202569681734951489639750362495587511604130014388320210119485015682912857661569438869453461064645592515698096654390458164006539474719117791484865239857609116331892309674260247082059602317172440890843283496817642644771915908679655807549419934265866862482294562623188536733087520024628705700223770025012145610118039094670062134161738416393351131351835543201998903453963146138742920394324866685031697326269495493860930889537159592801704335425701164616224865573914639743121054125534708396412436553013</span>, <span class="hljs-number">19541389876845937343104174024011174738121582937765475620122801498154028082973444987539224097699623805950895389563205017470303467902732740685141223948133114441189902477943284761342153435208627535205000112301279059116718341374015808979933207842606066504198356735729482401379793585473914765882931794445052408034667492129524814885390117447168945036497206397204622589955300040717645565917707064969320291258722568342575672468731777880446082197946095551569690181986308352939371815648033417588567436731143727846893380585995821169243246578354856161235175509599914817583342574163019305560736028387187751212923707831738520468619</span>, <span class="hljs-number">10788595185853874250291337066031363719532165972152022247230756606168458513957901058267448230552069458296728306849344055365621140817689640272508695426725708991076683904959288139244667809213349187982089861290671799168933798128795390846176612821114516268881609010883097495433437815000067002681532459618320819014787645206016302741493146640426833757786432090306333486096069636012389767907433313022127305406871010623331311088179874132685290362909101935736195019027586102391508113258495217011090318875518809015771394328011308419705662015852545645365444877472509590058704853194148009194682279505412785412321259650082946504615</span>, <span class="hljs-number">12214375617150883559940273342436518138527218410934985237149587671322737062140339124492202696176206285958472333934156035036505400233023000788998092976741986863823811873410547405550567073962840347975520903121489290902307739798451416818132122393264618834099153283382832451251821941712321388307888964246791063446267500427470553498088671888609633794029303967713809269450664339834983016271666205923547989107632889053780602466856119056492479553825583500522541431263080790769404731164171222809033900244644945168321080041400080253195796277626702302011600707177094426992394860244220499600621143463468814032521658337756088059178</span>]<br>cc=<span class="hljs-string">&#x27;flag&#123;&#x27;</span><br>cc=<span class="hljs-built_in">list</span>(cc)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>	cc[i]=<span class="hljs-built_in">ord</span>(cc[i])<br><span class="hljs-comment">#print(cc)</span><br>e=<span class="hljs-number">65537</span><br>aa=[]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>	aa.append(<span class="hljs-built_in">pow</span>(cc[i],e)-mm[i])<br>x=gp.gcd(aa[<span class="hljs-number">0</span>],aa[<span class="hljs-number">1</span>])<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>	x=gp.gcd(x,aa[i])<br><span class="hljs-comment">#print(x)</span><br>n=x<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">de</span>(<span class="hljs-params">c, e, n</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">256</span>):<br>    	<span class="hljs-keyword">if</span> c==<span class="hljs-built_in">pow</span>(i,e,n):<br>    		<span class="hljs-comment">#print(i)</span><br>    		<span class="hljs-keyword">return</span> i<br><br>res=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">42</span>):<br>	res+=<span class="hljs-built_in">chr</span>(de(mm[i],e,n))<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+<h2 id="4-MyStream"><a href="#4-MyStream" class="headerlink" title="4.MyStream"></a>4.MyStream</h2><p>题目描述：My Stream Cipher System，Can you crack it？</p>
+<p>提示：可以先做byteRSA，掌握攻击的方法</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> base64 <span class="hljs-keyword">import</span> b64encode<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>seed=getPrime(<span class="hljs-number">32</span>)<br>status=seed<br>n=getPrime(<span class="hljs-number">32</span>)<br>a,b=getPrime(<span class="hljs-number">16</span>),getPrime(<span class="hljs-number">16</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stream_key</span>():<br>    <span class="hljs-keyword">global</span> status<br>    status = (a*status +b) %n<br>    tk=[]<br>    tmp=status<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        tk.append(tmp&amp;<span class="hljs-number">0xff</span>)<br>        tmp&gt;&gt;=<span class="hljs-number">8</span><br>    <span class="hljs-keyword">return</span> tk<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encry</span>(<span class="hljs-params">m:<span class="hljs-built_in">str</span></span>):<br>    msg=[ <span class="hljs-built_in">ord</span>(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> m]<br>    ll=<span class="hljs-built_in">len</span>(msg)//<span class="hljs-number">4</span> + <span class="hljs-number">1</span><br>    rk=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(ll):<br>        rk.extend(stream_key())<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(msg)):<br>        msg[i]^=rk[i]<br>    <span class="hljs-keyword">return</span>  b64encode(<span class="hljs-built_in">bytes</span>(msg))<br>m1=<span class="hljs-string">&#x27;TestAttackCrypto&#x27;</span><br>c1=encry(m1)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Test my crypto system,when I encrypt <span class="hljs-subst">&#123;m1&#125;</span>, I get cipher is <span class="hljs-subst">&#123;c1&#125;</span>&#x27;</span>)<br>msg=flag.decode()<br>enc=encry(msg)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Your flag is:&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(enc))<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Test my crypto system,when I encrypt TestAttackCrypto, I get cipher is b&#x27;2ufC/wJ0kSRD1HsWjMnqfg==&#x27;</span><br><span class="hljs-string">Your flag is:b&#x27;R/TOdy+8Glz/ub5d5eDWHq82FXIkfo8bUYs9YwsxLlcW1Sk2eOVIZBY3&#x27;</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>分析加密脚本，发现加密做的事就是生成密钥流，与明文异或得到密文。密钥流的生成基于status变量，每四个密钥(一字节)基于同一个status，下一个status是由上一个status做线性变换得到的。</p>
+<p>题目对加密了两组明文，给出了第一组明文的明密文对，后一组加密了flag,根据byteRSA的思路，应该是根据已知明密文的一组求出密钥(a,b,n,status),然后求出加密flag的密钥与密文异或即可得到flag</p>
+<p>求解密钥：</p>
+<p>由已知的明密文异或可以得到密钥(一个密钥即rk[i]是8bit,一个status是32bit),可以得到加密的4个status(x0,x1,x2,x3)</p>
+<p>对4个status(x0,x1,x2,x3)有</p>
+<script type="math/tex; mode=display">
+x_1=a*x_0+b(modn)->k_1*n=a*x_0+b-x_1\\
+x_2=a*x_1+b(modn)->k_2*n=a*x_1+b-x_2\\
+x_3=a*x_2+b(modn)->k_3*n=a*x_2+b-x_3</script><p>参考byteRSA的思路先通过公因子n，但这里的a,b是未知的，不过是16bit的素数，还是可以爆破的，可以过滤掉偶数会快很多，所以就是爆破a,b求三个式子的结果，求公因子，如果公因子达到32bit的长度，就是正确的n,不过要注意，公因子本质上是kn的公因子,如果最后求出的公因子是偶数，2可能是k的因子，除掉就行(不然flag肯定会有问题，会有几个字节不对)，这样就能求出a,b,n。</p>
+<p>再通过一次线性变换求加密flag的初始的status:</p>
+<script type="math/tex; mode=display">
+status=a*x_3+b(modn)</script><p>然后直接按加密过程生成密钥流异或，只不过是异或上密文就能解出明文</p>
+<p>exp(求a,b,n,status):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> base64 <span class="hljs-keyword">import</span> b64encode,b64decode<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">s3gcd</span>(<span class="hljs-params">q,w,e</span>):<br>	x0=GCD(q,w)<br>	x0=GCD(x0,e)<br>	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-built_in">bin</span>(x0)[<span class="hljs-number">2</span>:])&gt;<span class="hljs-number">30</span>:<br>		<span class="hljs-keyword">return</span> x0<br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br><br>flag=<span class="hljs-number">0</span><br>xx=[<span class="hljs-number">2343666318</span>, <span class="hljs-number">1172635715</span>, <span class="hljs-number">1681440544</span>, <span class="hljs-number">295614965</span>]<br><span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>**<span class="hljs-number">15</span>,<span class="hljs-number">2</span>**<span class="hljs-number">16</span>):<br>	<span class="hljs-keyword">if</span> a&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span>:<br>		<span class="hljs-keyword">continue</span><br>	<span class="hljs-comment">#print(a)</span><br>	<span class="hljs-keyword">if</span> flag==<span class="hljs-number">1</span>:<br>		<span class="hljs-keyword">break</span><br>	<span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>**<span class="hljs-number">15</span>,<span class="hljs-number">2</span>**<span class="hljs-number">16</span>):<br>		<span class="hljs-keyword">if</span> b&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span>:<br>			<span class="hljs-keyword">continue</span><br>		x1=a*xx[<span class="hljs-number">0</span>]+b-xx[<span class="hljs-number">1</span>]<br>		x2=a*xx[<span class="hljs-number">1</span>]+b-xx[<span class="hljs-number">2</span>]<br>		x3=a*xx[<span class="hljs-number">2</span>]+b-xx[<span class="hljs-number">3</span>]<br>		n=s3gcd(x1,x2,x3)<br>		<span class="hljs-keyword">if</span> n:<br>			<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;n:&#x27;</span>)<br>			<span class="hljs-built_in">print</span>(n)<br>			<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;a:&#x27;</span>)<br>			<span class="hljs-built_in">print</span>(a)<br>			<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;b:&#x27;</span>)<br>			<span class="hljs-built_in">print</span>(b)<br>			flag=<span class="hljs-number">1</span><br>			<span class="hljs-keyword">break</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">n:</span><br><span class="hljs-string">4929631834</span><br><span class="hljs-string">a:</span><br><span class="hljs-string">38219</span><br><span class="hljs-string">b:</span><br><span class="hljs-string">51853</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>exp2(已知密钥密文求明文):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> base64 <span class="hljs-keyword">import</span> b64encode,b64decode<br><br>n=<span class="hljs-number">4929631834</span>//<span class="hljs-number">2</span><br>a=<span class="hljs-number">38219</span><br>b=<span class="hljs-number">51853</span><br>status=<span class="hljs-number">295614965</span><br>status = (a*status +b) %n<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stream_key</span>():<br>    <span class="hljs-keyword">global</span> status<br>    status = (a*status +b) %n<br>    tk=[]<br>    tmp=status<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        tk.append(tmp&amp;<span class="hljs-number">0xff</span>)<br>        tmp&gt;&gt;=<span class="hljs-number">8</span><br>    <span class="hljs-keyword">return</span> tk<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encry</span>(<span class="hljs-params">m</span>):<br>    xxx=<span class="hljs-string">b&#x27;&#x27;</span><br>    rk=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">11</span>):<br>        rk.extend(stream_key())<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(m)):<br>        <span class="hljs-comment">#print(rk[i])</span><br>        <span class="hljs-comment">#print(long_to_bytes(m[i]^rk[i]))</span><br>        xxx+=long_to_bytes(m[i]^rk[i])<br>    <span class="hljs-keyword">return</span>  xxx<br>flag=<span class="hljs-string">b&#x27;R/TOdy+8Glz/ub5d5eDWHq82FXIkfo8bUYs9YwsxLlcW1Sk2eOVIZBY3&#x27;</span><br>flag=b64decode(flag)<br><span class="hljs-comment">#print(flag)</span><br>enc=encry(flag)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Your flag is:&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(enc))<br><span class="hljs-comment">#flag&#123;f2235aa7-de3a-4fc0-8b4a-78b3a308b4d1&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="5-factor2"><a href="#5-factor2" class="headerlink" title="5.factor2"></a>5.factor2</h2><p>描述：Lab3 factor系列挑战2-EzDiophantine</p>
+<p>提示：<a target="_blank" rel="noopener" href="https://docs.sympy.org/latest/modules/solvers/diophantine.html">https://docs.sympy.org/latest/modules/solvers/diophantine.html</a></p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>e = <span class="hljs-number">65537</span><br>m = bytes_to_long(flag)<br>p = getPrime(<span class="hljs-number">512</span>)<br>q = getPrime(<span class="hljs-number">512</span>)<br>n = p * q<br>r1 = getPrime(<span class="hljs-number">10</span>)<br>r2 = getPrime(<span class="hljs-number">10</span>)<br>z = (p - r1)**<span class="hljs-number">2</span> + (q - r2)**<span class="hljs-number">2</span><br>c = <span class="hljs-built_in">pow</span>(m, e, n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;r1=<span class="hljs-subst">&#123;r1&#125;</span> ,r2=<span class="hljs-subst">&#123;r2&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;z=&#x27;</span>,z)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;c=&#x27;</span>,c)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">r1=907,r2=653</span><br><span class="hljs-string">z= 213535389621597102184740244886202630435242684582531730773326932996624093041311126514459397101493558109610673403751492075895173220149772618611351905910839508645723509764194761173755989544240338745839972079507046782567404433626252661502761571346272020509124004565064573666665095944013152787435237370724839606212</span><br><span class="hljs-string">c= 59283289247000622498081504665846176344103707182714945648759852796490452360099929188408593715947515102316114856246678378551577101821908858771691800986772323127778323247438754537758975922374566070542341922578149663721340172974688824899145360942684086925172051915031174797963552541224033668126045797673741020690</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>题目是基本的RSA,不同的是给出了一组p,q的二次方程，但是与lab3factor相比没有给出n,故不能用z3解方程解决了，提示了可以用sympy模块解二次方程，解出p,q即可。不过解出来的肯定是多组整数解，取都是正数的解即可，如果还有多组可以都试一下，也可以看解出的p,q的长度，都要达到512bit</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sympy.abc <span class="hljs-keyword">import</span> p,q,t<br><span class="hljs-keyword">from</span> sympy.solvers.diophantine.diophantine <span class="hljs-keyword">import</span> diop_quadratic<br>res=diop_quadratic((p - <span class="hljs-number">907</span>)**<span class="hljs-number">2</span> + (q - <span class="hljs-number">653</span>)**<span class="hljs-number">2</span>-<span class="hljs-number">213535389621597102184740244886202630435242684582531730773326932996624093041311126514459397101493558109610673403751492075895173220149772618611351905910839508645723509764194761173755989544240338745839972079507046782567404433626252661502761571346272020509124004565064573666665095944013152787435237370724839606212</span>, t)<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br>e=<span class="hljs-number">65537</span><br>p=<span class="hljs-number">12618012428840152404965712818920508389051417956089999861660389576276200364274509388379195558285062245803298733724262372917191914895662312507511383583607001</span><br>q=<span class="hljs-number">7370288458889010134092986627449388797518214651196560110252154284932962216018374359481780701627052780212917169408749668183096503232658485577449582198890029</span><br><span class="hljs-comment">#p=14250141398376043939196649899075136582039810180250322562643182012165527363877515706556901968486717224132382701938795958247325918479953884065277951045626607</span><br><span class="hljs-comment">#q=3235561736064751580707946024390997375280954349990409267762413447346667150357425020098257795782860168445904449931931252013423694152453170964440944628439717</span><br><span class="hljs-comment">#print(len(bin(q)))</span><br>c=<span class="hljs-number">59283289247000622498081504665846176344103707182714945648759852796490452360099929188408593715947515102316114856246678378551577101821908858771691800986772323127778323247438754537758975922374566070542341922578149663721340172974688824899145360942684086925172051915031174797963552541224033668126045797673741020690</span><br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>n=p*q<br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c,d,n)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+<h2 id="6-mediumRSA"><a href="#6-mediumRSA" class="headerlink" title="6.mediumRSA"></a>6.mediumRSA</h2><p>描述：越位的痛T.T</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>m=bytes_to_long(flag)<br>e1=getPrime(<span class="hljs-number">16</span>)<br>e2=getPrime(<span class="hljs-number">16</span>)<br>q1=getPrime(<span class="hljs-number">256</span>)<br>q2=getPrime(<span class="hljs-number">256</span>)<br>p=<span class="hljs-number">145761754843820286365615274695640462761297014274071268462997502840493581759068851634614</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;e1=<span class="hljs-subst">&#123;e1&#125;</span>,e2=<span class="hljs-subst">&#123;e2&#125;</span>&#x27;</span>)<br>n1=p*q1<br>n2=p*q2<br>c1=<span class="hljs-built_in">pow</span>(m,e1,n1)<br>c2=<span class="hljs-built_in">pow</span>(m,e2,n2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;c1=&#x27;</span>,c1)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;c2=&#x27;</span>,c2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;n1=&#x27;</span>,n1)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;n2=&#x27;</span>,n2)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">e1=58169,e2=42239</span><br><span class="hljs-string">c1= 3692766036283943540313098286304266510361347054708449055542682692062073711536589405245241980174280061301491545039062178654512803574650276066141843678772940052974701</span><br><span class="hljs-string">c2= 4373393412365268398260265778309120474718099194920969619404064575346090988834876519040940374935708519313863690656260819783978176441771230081801993603349968832253841</span><br><span class="hljs-string">n1= 9759279324467394597831711179718508596171969739950295636856128025950371638938763801180107390878866914987308475151240906371719577893672311903919490118982067214334274</span><br><span class="hljs-string">n2= 9362045778153069747981245933168456546468217717807806351786212097034735112184049936432161182243085684425770148036861181126308293616916494342533801458613562708886078</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>这道题的特点就是，两个n有公因子p,但p不是一个素数，而且因子正好包含e1,e2。当时想了好多种思路，写出来结果不对劲，比如尝试共模攻击,但解出来的m不对，最后想到公因子p可能导致信息缺失了，既然如此，把它拆分成模p,模q,再利用中国剩余定理合起来，把共模攻击得到的结果也当成一个式子，两两一组求中国剩余定理，没想到成功了。</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> getPrime,long_to_bytes<br><span class="hljs-keyword">from</span> sympy.ntheory.modular <span class="hljs-keyword">import</span> crt<br>e1=<span class="hljs-number">58169</span><br>e2=<span class="hljs-number">42239</span><br>c1= <span class="hljs-number">3692766036283943540313098286304266510361347054708449055542682692062073711536589405245241980174280061301491545039062178654512803574650276066141843678772940052974701</span><br>c2= <span class="hljs-number">4373393412365268398260265778309120474718099194920969619404064575346090988834876519040940374935708519313863690656260819783978176441771230081801993603349968832253841</span><br>n = <span class="hljs-number">145761754843820286365615274695640462761297014274071268462997502840493581759068851634614</span><br>p_1=<span class="hljs-number">59325084105703052924591608131999057040970985451532745996619380611443126855843</span><br>p_2=<span class="hljs-number">58169</span><br>p_3=<span class="hljs-number">42239</span><br>phi=(p_2-<span class="hljs-number">1</span>)*(p_1-<span class="hljs-number">1</span>)*(p_3-<span class="hljs-number">1</span>)<br>x,s1, s2 = gmpy2.gcdext(e1, e2)<br><span class="hljs-comment">#print(x)</span><br>m1 = <span class="hljs-built_in">pow</span>(c1, s1, n) * <span class="hljs-built_in">pow</span>(c2, s2, n) % n<br><span class="hljs-comment">#m1=gmpy2.iroot(m1,x)[0]</span><br><span class="hljs-comment">#print(long_to_bytes(m1))</span><br>n1= <span class="hljs-number">9759279324467394597831711179718508596171969739950295636856128025950371638938763801180107390878866914987308475151240906371719577893672311903919490118982067214334274</span><br>n2= <span class="hljs-number">9362045778153069747981245933168456546468217717807806351786212097034735112184049936432161182243085684425770148036861181126308293616916494342533801458613562708886078</span><br>q1=n1//n<br>q2=n2//n<br>cc1=c1%q1<br>cc2=c2%q2<br>d1=gmpy2.invert(e1,q1-<span class="hljs-number">1</span>)<br>d2=gmpy2.invert(e2,q2-<span class="hljs-number">1</span>)<br>m2=<span class="hljs-built_in">pow</span>(cc1,d1,q1)<br>m3=<span class="hljs-built_in">pow</span>(cc2,d2,q2)<br>res1,mod1=crt([n,q1],[m1,m2])<br>res2,mod2=crt([q1,q2],[m2,m3])<br>res3,mod3=crt([n,q2],[m1,m3])<br><span class="hljs-built_in">print</span>(long_to_bytes(res1))<br><span class="hljs-built_in">print</span>(long_to_bytes(res2))<br><span class="hljs-built_in">print</span>(long_to_bytes(res3))<br><span class="hljs-comment">#flag&#123;c9bb7035-36ca-4dc8-923c-34ad6229051c_Lionel_Messi_Come_On&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="7-RCFour"><a href="#7-RCFour" class="headerlink" title="7.RCFour"></a>7.RCFour</h2><p>描述：RC Ⅳ</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>f= <span class="hljs-keyword">lambda</span> x : (x&gt;&gt;<span class="hljs-number">3</span>|x&lt;&lt;<span class="hljs-number">5</span>)&amp;<span class="hljs-number">0xff</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt</span>(<span class="hljs-params">m,key</span>):<br>    s=[]<br>    t=[]<br>    out=[] <span class="hljs-comment">#putput</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>        s.append(<span class="hljs-number">255</span>-i)<span class="hljs-comment">#s[]=[255,254,...,0]</span><br>        t.append(<span class="hljs-built_in">ord</span>(key[i%<span class="hljs-built_in">len</span>(key)]))<br><br>    j=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>        j=(j+s[i]+t[i])%<span class="hljs-number">256</span><br>        s[i],s[j]=s[j],s[i]<br><br>    i,j=<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(m)):<br>        i=(i+<span class="hljs-number">1</span>)%<span class="hljs-number">256</span><br>        j=(j+s[i])%<span class="hljs-number">256</span><br><br>        s[i],s[j]=s[i],s[j]<br><br>        index=(s[i]+s[j])%<span class="hljs-number">256</span><br>        out.append(f(s[index]^m[p]))<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">bytes</span>(out).<span class="hljs-built_in">hex</span>()<br>key=<span class="hljs-string">&quot;StreamCipherRCFour&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>)<br>enc=encrypt(flag,key)<br><span class="hljs-built_in">print</span>(enc)<br><span class="hljs-comment">#3baf815ae9aa87513ceb82474a80ac13bca64f723d594622fcdaf7fef08987da278c676eb8cb17b655c0</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>已知密钥的流密码其实很简单，解密密钥的生成和加密一样，这里的不同是加了一步f(s[index]^m[p])，将每个字节的加密结果(8bit)将低位的3个bit移到前面高位5个bit移到后面。所以解密的话，就是将密文的每个字节的低位五个bit移到前面高位三个bit移到后面，再异或上密钥就能得到明文</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>f= <span class="hljs-keyword">lambda</span> x : (x&lt;&lt;<span class="hljs-number">3</span>|x&gt;&gt;<span class="hljs-number">5</span>)&amp;<span class="hljs-number">0xff</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">m,key</span>):<br>    s=[]<br>    t=[]<br>    out=[] <span class="hljs-comment">#putput</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>        s.append(<span class="hljs-number">255</span>-i)<span class="hljs-comment">#s[]=[255,254,...,0]</span><br>        t.append(<span class="hljs-built_in">ord</span>(key[i%<span class="hljs-built_in">len</span>(key)]))<br>    j=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>        j=(j+s[i]+t[i])%<span class="hljs-number">256</span><br>        s[i],s[j]=s[j],s[i]<br><br>    i,j=<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(m)):<br>        i=(i+<span class="hljs-number">1</span>)%<span class="hljs-number">256</span><br>        j=(j+s[i])%<span class="hljs-number">256</span><br><br>        s[i],s[j]=s[i],s[j]<br><br>        index=(s[i]+s[j])%<span class="hljs-number">256</span><br>        out.append(s[index]^f(m[p]))<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">bytes</span>(out)<br>key=<span class="hljs-string">&quot;StreamCipherRCFour&quot;</span><br>enc=<span class="hljs-number">0x3baf815ae9aa87513ceb82474a80ac13bca64f723d594622fcdaf7fef08987da278c676eb8cb17b655c0</span><br>enc=<span class="hljs-built_in">int</span>(enc).to_bytes(<span class="hljs-number">42</span>,byteorder=<span class="hljs-string">&#x27;big&#x27;</span>)<br>res=decrypt(enc,key)<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+<h2 id="8-Leak-P"><a href="#8-Leak-P" class="headerlink" title="8.Leak P"></a>8.Leak P</h2><p>描述：知己知彼，百战不殆，Leak系列对于素因子的泄露</p>
+<p>提示：在Lab3-Msg Leak的基础上了解coppersmith攻破此题</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> secert <span class="hljs-keyword">import</span> flag<br>m=bytes_to_long(flag)<br>e=<span class="hljs-number">65537</span><br>p=getPrime(<span class="hljs-number">256</span>)<br>leak_p=p&gt;&gt;<span class="hljs-number">120</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;leak_p=&#x27;</span>,leak_p)<br>q=getPrime(<span class="hljs-number">256</span>)<br>n=p*q<br>c=<span class="hljs-built_in">pow</span>(m,e,n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;n=&#x27;</span>,n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;c=&#x27;</span>,c)<br><span class="hljs-comment"># leak_p= 57303545022436031674172379509633863887077</span><br><span class="hljs-comment"># n= 6290400850108673527783456723558868077251853788073859360516042680251422818079380463161520548743184302018140978345372703177688378631564416901363981788817257</span><br><span class="hljs-comment"># c= 3018879496435827891565409624549580574355607699876796814908055868300197064252462047054251836059387617618529706009316747223510404878163964048672091931778452</span><br></code></pre></td></tr></table></figure>
+<p>思路：</p>
+<p>p的高位泄露，思路跟lab3-Msg Leak一样，都是利用sagemath求解，只不过这里已知p的位数太少,需要爆破一定的位数，看能否解出结果。</p>
+<p>计算爆破需要的位数要用到coppersmith定理,可以参考(<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51999772/article/details/123620932)写的很清晰">https://blog.csdn.net/qq_51999772/article/details/123620932)写的很清晰</a></p>
+<p>exp1(计算解出256位的p未知位数不能超过的位数):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">n= <span class="hljs-number">6290400850108673527783456723558868077251853788073859360516042680251422818079380463161520548743184302018140978345372703177688378631564416901363981788817257</span><br><br><span class="hljs-keyword">import</span> gmpy2<br><span class="hljs-built_in">print</span>(gmpy2.iroot(n**(<span class="hljs-number">49</span>**<span class="hljs-number">2</span>),<span class="hljs-number">100</span>**<span class="hljs-number">2</span>)[<span class="hljs-number">0</span>].bit_length())<br><span class="hljs-built_in">print</span>(gmpy2.iroot(n**(<span class="hljs-number">48</span>**<span class="hljs-number">2</span>),<span class="hljs-number">100</span>**<span class="hljs-number">2</span>)[<span class="hljs-number">0</span>].bit_length())<br><span class="hljs-built_in">print</span>(gmpy2.iroot(n**(<span class="hljs-number">47</span>**<span class="hljs-number">2</span>),<span class="hljs-number">100</span>**<span class="hljs-number">2</span>)[<span class="hljs-number">0</span>].bit_length())<br><span class="hljs-built_in">print</span>(gmpy2.iroot(n**(<span class="hljs-number">46</span>**<span class="hljs-number">2</span>),<span class="hljs-number">100</span>**<span class="hljs-number">2</span>)[<span class="hljs-number">0</span>].bit_length())<br></code></pre></td></tr></table></figure>
+<p>exp2(利用sage求p):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-number">6290400850108673527783456723558868077251853788073859360516042680251422818079380463161520548743184302018140978345372703177688378631564416901363981788817257</span><br>pbits=<span class="hljs-number">256</span><br><span class="hljs-comment">#kbits = 120</span><br>PR.&lt;x&gt; = PolynomialRing(Zmod(n))<span class="hljs-comment">#生成一个以x为符号的一元多项式环</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>**<span class="hljs-number">11</span>):<br>	p0 = <span class="hljs-number">57303545022436031674172379509633863887077</span><span class="hljs-comment"># 已知的p的高位</span><br>	p0=p0&lt;&lt;<span class="hljs-number">11</span><br>	p0=p0+i<br>	kbits=pbits - p0.nbits()<br>	p0=p0&lt;&lt;kbits<br>	<span class="hljs-comment">#print(p0)</span><br>	f = x + p0<br>	root = f.small_roots(X=<span class="hljs-number">2</span>^kbits, beta=<span class="hljs-number">0.3</span>) <span class="hljs-comment"># beta=0.3表明存在factor 大于n ^0.3</span><br>	<span class="hljs-keyword">if</span> root:<br>		p=root[<span class="hljs-number">0</span>] + p0<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;p=&#x27;</span>,p)<br><span class="hljs-comment">#p= 76169476301543338459784631236092619077954299832985654878386750436147105898219</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202212030050156.png" srcset="/img/loading.gif" lazyload alt="image-20221203005059100"></p>
+<p>exp3(已知p解密):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><br>e=<span class="hljs-number">65537</span><br>n= <span class="hljs-number">6290400850108673527783456723558868077251853788073859360516042680251422818079380463161520548743184302018140978345372703177688378631564416901363981788817257</span><br>c= <span class="hljs-number">3018879496435827891565409624549580574355607699876796814908055868300197064252462047054251836059387617618529706009316747223510404878163964048672091931778452</span><br>p= <span class="hljs-number">76169476301543338459784631236092619077954299832985654878386750436147105898219</span><br><span class="hljs-comment">#p=76169476301543338459784631236092619077954299477316510221604814354882725150720</span><br><span class="hljs-comment">#x1=355669144656781936081264380747499</span><br><span class="hljs-comment">#p=p+x1</span><br>q=n//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c,d,n)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/">#ctf</a>
+      
+        <a href="/tags/Crypto/">#Crypto</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Crypto-Lab4</div>
+      <div>http://example.com/post/Crypto-Lab4.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>c1ongyan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Crypto-Lab5.html" title="Crypto-Lab5">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Crypto-Lab5</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Crypto-Lab3.html" title="Crypto-Lab3">
+                        <span class="hidden-mobile">Crypto-Lab3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
