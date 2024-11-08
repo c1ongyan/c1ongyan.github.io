@@ -16,26 +16,21 @@
   <meta name="author" content="c1ongyan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.基础概念深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别机器学习：正确提出的学习问题：“如果计算机程序对于任务T的性能度量P通过经验E得到了提高，则认为此程序对经验E进行了学习”。为了阐述清楚，我们举一个例子：在下棋程序中，经验E指的就是程序的上万次的自我联系的经验，任务T就是下棋，性能度量P指的就是在比赛过程中取胜的概率，有了性能指标后，我们就能告诉系统是否学习该经验。 机器学习">
+    <meta name="description" content="初始化本地仓库（如果你还没有一个本地仓库） git init 添加文件到本地仓库的暂存区 git add . 提交更改到本地仓库 git commit -m “Initial commit” 添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL） git remote add origin your-repository-url 推送本地仓库到GitH">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强化学习">
-<meta property="og:url" content="http://example.com/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0.html">
+<meta property="og:title" content="c1ongyan">
+<meta property="og:url" content="http://example.com/post/git_note.html">
 <meta property="og:site_name" content="c1ongyan">
-<meta property="og:description" content="1.基础概念深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别机器学习：正确提出的学习问题：“如果计算机程序对于任务T的性能度量P通过经验E得到了提高，则认为此程序对经验E进行了学习”。为了阐述清楚，我们举一个例子：在下棋程序中，经验E指的就是程序的上万次的自我联系的经验，任务T就是下棋，性能度量P指的就是在比赛过程中取胜的概率，有了性能指标后，我们就能告诉系统是否学习该经验。 机器学习">
+<meta property="og:description" content="初始化本地仓库（如果你还没有一个本地仓库） git init 添加文件到本地仓库的暂存区 git add . 提交更改到本地仓库 git commit -m “Initial commit” 添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL） git remote add origin your-repository-url 推送本地仓库到GitH">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202303261609912.jpg">
-<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202303261609884.jpg">
-<meta property="article:published_time" content="2023-03-25T16:41:40.000Z">
-<meta property="article:modified_time" content="2023-03-28T05:22:57.783Z">
+<meta property="article:published_time" content="2024-09-07T05:47:27.181Z">
+<meta property="article:modified_time" content="2024-11-08T16:47:08.478Z">
 <meta property="article:author" content="c1ongyan">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="强化学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202303261609912.jpg">
   
   
   
-  <title>强化学习 - c1ongyan</title>
+  <title>c1ongyan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="强化学习"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -215,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-26 00:41" pubdate>
-          2023年3月26日 凌晨
+        <time datetime="2024-09-07 13:47" pubdate>
+          2024年9月7日 下午
         </time>
       </span>
     
@@ -227,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          208 字
         
       </span>
     
@@ -238,7 +233,7 @@
         
         
         
-          24 分钟
+          2 分钟
         
       </span>
     
@@ -276,48 +271,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">强化学习</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-基础概念"><a href="#1-基础概念" class="headerlink" title="1.基础概念"></a>1.基础概念</h1><h2 id="深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别"><a href="#深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别" class="headerlink" title="深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别"></a>深度学习、机器学习、强化学习、迁移学习和人工智能的关系和区别</h2><h3 id="机器学习："><a href="#机器学习：" class="headerlink" title="机器学习："></a>机器学习：</h3><p>正确提出的学习问题：“<strong>如果计算机程序对于任务T的性能度量P通过经验E得到了提高，则认为此程序对经验E进行了学习</strong>”。为了阐述清楚，我们举一个例子：在下棋程序中，经验E指的就是程序的上万次的自我联系的经验，任务T就是下棋，性能度量P指的就是在比赛过程中取胜的概率，有了性能指标后，我们就能告诉系统是否学习该经验。</p>
-<p><strong>机器学习的算法分类：</strong></p>
-<p>上述定义为机器学习设定了清晰的目标，但是，它们没有告诉我们如何实现该目标，我们应该让定义更明确一些。这就需要第二类定义，这类定义描述了机器学习算法，以下是一些流行的定义。在每种情况下，都会为算法提供一组示例供其学习。</p>
-<p>(1) 监督式学习：为算法提供训练数据，数据中包含每个示例的“正确答案”；例如，一个检测信用卡欺诈的监督学习算法接受一组记录的交易作为输入，对于每笔交易，训练数据都将包含一个表明它是否存在欺诈的标记。</p>
-<p>(2) 无监督学习：该算法在训练数据中寻找结构，比如寻找哪些示例彼此类似，并将它们分组到各个集群中。</p>
-<h3 id="深度学习："><a href="#深度学习：" class="headerlink" title="深度学习："></a>深度学习：</h3><p>深度学习是机器学习中一种基于对数据进行表征学习的算法。观测值（例如一幅图像）可以使用多种方式来表示，如每个像素强度值的向量，或者更抽象地表示一系列边、特定形状的区域等。而使用某些特定的表示方法更容易从实例中学习任务（例如人脸识别、面部表情识别）。深度学习的好处是用非监督式或半监督式的特征学习和分层特征提取高效算法来替代手工获取特征。</p>
-<p><strong>深度神经网络：</strong></p>
-<p>深度学习的模型有很多，目前开发者最常用的深度学习模型与架构包括卷积神经网络 (CNN)、深度置信网络 (DBN)、受限玻尔兹曼机 (RBM)、递归神经网络 (RNN &amp; LSTM &amp; GRU)、递归张量神经网络 (RNTN)、自动编码器 (AutoEncoder)、生成对抗网络 (GAN)等等</p>
-<h3 id="强化学习："><a href="#强化学习：" class="headerlink" title="强化学习："></a>强化学习：</h3><p>强化学习 (Reinforcement learning, RL) 是机器学习中的一个领域，强调如何基于环境而行动，以取得最大化的预期利益；其灵感来源于心理学中的行为主义理论，即有机体如何在环境给予的奖励或惩罚的刺激下，逐步形成对刺激的预期，产生能获得最大利益的习惯性行为。</p>
-<h3 id="迁移学习："><a href="#迁移学习：" class="headerlink" title="迁移学习："></a>迁移学习：</h3><p>迁移学习 (Transfer Learning) 顾名思义就是就是<strong>把已学训练好的模型参数迁移到新的模型来帮助新模型训练</strong>。考虑到大部分数据或任务是存在相关性的，所以通过迁移学习我们可以将已经学到的模型参数（也可理解为模型学到的知识）通过某种方式来分享给新模型从而加快并优化模型的学习效率不用像大多数网络那样从零学习 (Starting From Scratch)。</p>
-<p>迁移学习的定义：迁移学习是机器学习技术的一种，其中在一个任务上训练的模型被重新利用在另一个相关的任务上，定义一：“迁移学习和领域自适应指的是将一个任务环境中学到的东西用来提升在另一个任务环境中模型的泛化能力” ——2016年“Deep Learning”，526页；迁移学习也是一种优化方法，可以在对另一个任务建模时提高进展速度或者是模型性能</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p><strong>区别：</strong></p>
-<p>(1) 深度学习的训练样本是有标签的，强化学习的训练是没有标签的，它是通过环境给出的奖惩来学习。</p>
-<p>(2) 深度学习的学习过程是静态的，强化学习的学习过程是动态的；这里静态与动态的区别在于是否会与环境进行交互，深度学习是给什么样本就学什么，而强化学习是要和环境进行交互，再通过环境给出的奖惩来学习。</p>
-<p>(3) 深度学习解决的更多是感知问题，强化学习解决的主要是决策问题；有监督学习更像是”五官”，而强化学习更像“大脑”。</p>
-<p><strong>关联：</strong></p>
-<p>(1) 机器学习：一切通过优化方法挖掘数据中规律的学科，多用于数据挖掘、数据分析和预测等领域。</p>
-<p>(2) 深度学习：一切运用了神经网络作为参数结构进行优化的机器学习算法，广泛地应用于是计算机视觉和自然语言处理领域。</p>
-<p>(3) 强化学习：不仅能利用现有数据，还可以通过对环境的探索获得新数据，并利用新数据循环往复地更新迭代现有模型的机器学习算法；学习是为了更好地对环境进行探索，而探索是为了获取数据进行更好的学习；目前实际应用场景还比较窄，主要包括AI游戏 (Atari)，推荐系统（阿里巴巴），机器人控制（如吴恩达的无人机）。</p>
-<p>(4) 深度强化学习：一切运用了神经网络作为参数结构进行优化的强化学习算法 (Google AlphaGo, Master)。</p>
-<h2 id="强化学习术语"><a href="#强化学习术语" class="headerlink" title="强化学习术语"></a>强化学习术语</h2><p><strong>智能体(agent)</strong>：机器人的智能主体部分</p>
-<p><strong>环境(environment)</strong>：机器人所处的环境</p>
-<p><strong>动作(action)</strong>：Agent的行为和动作</p>
-<p><strong>观测(observation)</strong>：Agent能够观测(感知)到的环境信息。我们无法开启“上帝视角”，指南在非常有限的情况下观测周围的情况。</p>
-<p><strong>奖励(reward)</strong>：奖励指按照一定的policy执行，能够收获的价值。按照时间段长短，价值也可以分成从头到尾的价值、执行一步的价值、当前状态到最后的价值。也城回报值，或者得分。</p>
-<h2 id="强化学习脉络"><a href="#强化学习脉络" class="headerlink" title="强化学习脉络"></a>强化学习脉络</h2><p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202303261609912.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202303261609884.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><strong>基于模型(Model-based)与无模型(Model-free)</strong> </p>
-<p>model based是需要一个环境model的，用这个环境model去sample data和做未来step的估算(知己知彼，百战百胜)</p>
-<p>Model-free 中, 机器人只能按部就班, 一步一步等待真实世界的反馈, 再根据反馈采取下一步行动. 而 model-based, 他能通过想象来预判断接下来将要发生的所有情况.然后选择这些想象情况中最好的那种. (两耳不闻窗外事，一心只读圣贤书)</p>
-<p>Model-free 的方法有很多, 像 Q learning,Sarsa,Policy Gradients都是从环境中得到反馈然后从中学习. 而 model-based RL 只是多了一道程序, 为真实世界建模, 也可以说他们都是 model-free 的强化学习, 只是 model-based 多出了一个虚拟环境</p>
-<p><strong>基于概率 (Policy-Based RL)和 基于价值(Value-Based RL)</strong></p>
-<p>基于概率是强化学习中最直接的一种, 他能通过感官分析所处的环境, 直接输出下一步要采取的各种动作的概率, 然后根据概率采取行动, 所以每种动作都有可能被选中, 只是可能性不同. 而基于价值的方法输出则是所有动作的价值, 我们会根据最高价值来选着动作, 相比基于概率的方法, 基于价值的决策部分更为铁定, 毫不留情, 就选价值最高的, 而基于概率的, 即使某个动作的概率最高, 但是还是不一定会选到他.</p>
-<p>对连续的动作而已，基于价值不能算，基于概率，可以根据概率选择特定动作。</p>
-<p><strong>On-Policy 和 Off-Policy</strong></p>
-<p>On-Policy：在训练中用来计算和估值并训练的策略和它所采用的所有的Transition的策略是同一套策略。（SARSA算法）</p>
-<p>Off-Policy：在训练中用来计算估值并训练的策略和它所采用的所有Transition的策略都不相同。（Q-learning算法）</p>
+                <p>初始化本地仓库（如果你还没有一个本地仓库）</p>
+<p>git init</p>
+<p>添加文件到本地仓库的暂存区</p>
+<p>git add .</p>
+<p>提交更改到本地仓库</p>
+<p>git commit -m “Initial commit”</p>
+<p>添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL）</p>
+<p>git remote add origin your-repository-url</p>
+<p>推送本地仓库到GitHub远程仓库</p>
+<p>git push -u origin master</p>
 
                 
               </div>
@@ -327,15 +295,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/AI/">#AI</a>
-      
-        <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">#强化学习</a>
-      
-    </div>
-  
 </div>
 
 
@@ -344,8 +303,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>强化学习</div>
-      <div>http://example.com/post/强化学习.html</div>
+      <div></div>
+      <div>http://example.com/post/git_note.html</div>
     </div>
     <div class="license-meta">
       
@@ -357,7 +316,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月26日</div>
+          <div>2024年9月7日</div>
         </div>
       
       
@@ -389,9 +348,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.html" title="贪心算法">
+                      <a href="/post/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0.html" title="区块链学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">贪心算法</span>
+                        <span class="hidden-mobile">区块链学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -399,8 +358,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/acwing%E7%AE%97%E6%B3%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97%E6%89%93%E5%8D%A1.html" title="acwing算法进阶指南打卡">
-                        <span class="hidden-mobile">acwing算法进阶指南打卡</span>
+                      <a href="/post/T-SNE.html" title="T-SNE">
+                        <span class="hidden-mobile">T-SNE</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
