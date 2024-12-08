@@ -16,15 +16,15 @@
   <meta name="author" content="c1ongyan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Crypto Problem1.span program 参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;690105915 单调跨度程序（Monotone Span Programs，MSPs）*是一种用于描述布尔函数的一种理论模型*，其在计算复杂性理论中起着重要作用，特别是在布尔函数的表示和计算方面。 在计算复杂性理论中，研究布尔函数的表示是一个重要的问题。布尔函数是一种从布尔">
+    <meta name="description" content="Crypto Problem1.span program参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;690105915 单调跨度程序（Monotone Span Programs，MSPs）*是一种用于描述布尔函数的一种理论模型*，其在计算复杂性理论中起着重要作用，特别是在布尔函数的表示和计算方面。 在计算复杂性理论中，研究布尔函数的表示是一个重要的问题。布尔函数是一种从布尔域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Crypto Problem">
 <meta property="og:url" content="http://example.com/post/Crypto-Problem.html">
 <meta property="og:site_name" content="c1ongyan">
-<meta property="og:description" content="Crypto Problem1.span program 参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;690105915 单调跨度程序（Monotone Span Programs，MSPs）*是一种用于描述布尔函数的一种理论模型*，其在计算复杂性理论中起着重要作用，特别是在布尔函数的表示和计算方面。 在计算复杂性理论中，研究布尔函数的表示是一个重要的问题。布尔函数是一种从布尔">
+<meta property="og:description" content="Crypto Problem1.span program参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;690105915 单调跨度程序（Monotone Span Programs，MSPs）*是一种用于描述布尔函数的一种理论模型*，其在计算复杂性理论中起着重要作用，特别是在布尔函数的表示和计算方面。 在计算复杂性理论中，研究布尔函数的表示是一个重要的问题。布尔函数是一种从布尔域">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-10T06:36:09.000Z">
-<meta property="article:modified_time" content="2024-11-10T06:39:19.891Z">
+<meta property="article:modified_time" content="2024-12-08T07:12:38.801Z">
 <meta property="article:author" content="c1ongyan">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          743 字
+          2.1k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          7 分钟
+          18 分钟
         
       </span>
     
@@ -276,16 +276,32 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Crypto-Problem"><a href="#Crypto-Problem" class="headerlink" title="Crypto Problem"></a>Crypto Problem</h1><p>1.span program</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/690105915">https://zhuanlan.zhihu.com/p/690105915</a></p>
+                <h1 id="Crypto-Problem"><a href="#Crypto-Problem" class="headerlink" title="Crypto Problem"></a>Crypto Problem</h1><h2 id="1-span-program"><a href="#1-span-program" class="headerlink" title="1.span program"></a>1.span program</h2><p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/690105915">https://zhuanlan.zhihu.com/p/690105915</a></p>
 <p><strong>单调跨度程序（Monotone Span Programs，MSPs）*</strong>是一种用于描述布尔函数的一种理论模型*，其在计算复杂性理论中起着重要作用，特别是在布尔函数的表示和计算方面。</p>
 <p>在计算复杂性理论中，研究布尔函数的表示是一个重要的问题。布尔函数是一种从布尔域（通常表示为{0, 1}）到布尔域的映射。表示布尔函数的方法有很多种，其中之一就是 MSPs。</p>
 <p><strong>那么什么是MSP呢？</strong>下面以一种通俗的说法描述MSP：</p>
 <p>首先想象一下有一个黑盒子，里面有一个布尔函数，它会接受一串0和1组成的输入，并输出一个0或1。现在，你想要用一种方式来描述这个函数，但你希望描述尽可能简洁，并且要方便计算。</p>
 <p>这就是单调跨度程序派上用场的地方。<strong>单调跨度程序是一种数学工具，它能够以一种简洁的方式描述布尔函数。</strong>具体来说，它使用了两个关键的东西：<strong>矩阵和向量。</strong></p>
-<p>首先，我们有一个<strong>矩阵</strong>，<strong>里面填满了0和1</strong>。然后，我们有一个<strong>和矩阵一样长的向量</strong>，<strong>也是由0和1组成</strong>。我们将输入向量（也就是我们要测试的输入）与这个矩阵相乘，然后再将结果与这个向量相乘。最后，我们将所有相乘得到的结果相加，然后对2取模（也就是说，<em>如果结果是偶数，我们输出0；如果结果是奇数，我们输出1</em>）。</p>
+<p>首先，我们有一个<strong>矩阵</strong>，<strong>里面填满了0和1</strong>。然后，我们有一个<strong>和矩阵一样长的向量</strong>，<strong>也是由0和1组成</strong>。我们将输入向量（也就是我们要测试的输入）与这个矩阵相乘，然后再将结果与这个向量相乘。最后，我们将所有相乘得到的结果相加，然后对2取模（也就是说，如果结果是偶数，我们输出0；如果结果是奇数，我们输出1）。</p>
 <p>这就是单调跨度程序的基本操作过程。通过这个程序，我们可以简洁地描述布尔函数，并且我们可以很容易地计算出给定输入时的输出。</p>
 <p><strong>为什么这很有用呢？</strong>因为单调跨度程序具有一些特殊的性质，比如说，如果输入中的某一位从0变成1，那么输出的值不会减小。这种特性在一些计算问题中非常有用，因为它们能够帮助我们更好地理解问题的本质，并且能够指导我们设计更有效的算法。</p>
+<h2 id="2-一般线性群，特性线性群"><a href="#2-一般线性群，特性线性群" class="headerlink" title="2.一般线性群，特性线性群"></a>2.一般线性群，特性线性群</h2><h3 id="一般线性群（General-Linear-Group）"><a href="#一般线性群（General-Linear-Group）" class="headerlink" title="一般线性群（General Linear Group）"></a>一般线性群（General Linear Group）</h3><p><strong>定义</strong> 设 $F$ 是一个域（比如实数域$\mathbb{R}$、复数域$\mathbb{C}$等），$n$ 是一个正整数。$n$ 阶一般线性群 $GL_n(F)$ 是由域 $F$ 上的所有 $n\times n$ 可逆矩阵组成的群，群的运算为矩阵乘法。</p>
+<p><strong>举例</strong> 在实数域$\mathbb{R}$ 上，对于 $n = 2$，矩阵 $A=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}$ 和 $B=\begin{pmatrix}2&amp;0\\0&amp;1\end{pmatrix}$ 都属于 $GL_2(\mathbb{R})$，因为它们都是可逆矩阵。$A$ 的逆矩阵是它本身，$B$ 的逆矩阵是$\begin{pmatrix}\frac{1}{2}&amp;0\\0&amp;1\end{pmatrix}$。 </p>
+<p><strong>性质</strong>    </p>
+<ul>
+<li><strong>单位元</strong>：单位元是 $n\times n$ 的单位矩阵 $I_n$，对于任意 $A\in GL_n(F)$，有 $A\times I_n = I_n\times A = A$。   </li>
+<li><strong>封闭性</strong>：若 $A,B\in GL_n(F)$，则 $AB\in GL_n(F)$，因为两个可逆矩阵的乘积仍然是可逆矩阵，其逆矩阵为$(AB)^{-1} = B^{-1}A^{-1}$。    </li>
+<li><strong>结合律</strong>：矩阵乘法本身满足结合律，即对于 $A,B,C\in GL_n(F)$，$(AB)C = A(BC)$。 4. <strong>维度（当 $F=\mathbb{R}$ 或$\mathbb{C}$ 时）</strong> 作为实（复）李群，$GL_n(\mathbb{R})$（或 $GL_n(\mathbb{C})$）的维数是 $n^2$。这是因为一个 $n\times n$ 矩阵有 $n^2$ 个元素，而可逆性条件在局部上（在流形的意义下）不会改变维数。</li>
+</ul>
+<h3 id="特殊线性群（Special-Linear-Group）"><a href="#特殊线性群（Special-Linear-Group）" class="headerlink" title="特殊线性群（Special Linear Group）"></a>特殊线性群（Special Linear Group）</h3><p><strong>定义</strong> 特殊线性群 $SL_n(F)$ 是 $GL_n(F)$ 的子群，它由 $GL_n(F)$ 中所有行列式为 $1$ 的矩阵组成，即 $SL_n(F)=\left\{A\in GL_n(F)\mid\det(A) = 1\right\}$。 </p>
+<p><strong>举例</strong> 在 $GL_2(\mathbb{R})$ 中，矩阵 $C=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}$ 属于 $SL_2(\mathbb{R})$，因为 $\det(C)=1\times1 - 0\times1 = 1$。 </p>
+<p><strong>性质</strong>    </p>
+<ul>
+<li><strong>单位元</strong>：单位元 $I_n$ 的行列式为 $1$，所以 $I_n\in SL_n(F)$。   </li>
+<li><strong>封闭性</strong>：若 $A,B\in SL_n(F)$，则 $\det(AB)=\det(A)\det(B)=1\times1 = 1$，所以 $AB\in SL_n(F)$。    </li>
+<li><strong>逆矩阵性质</strong>：对于 $A\in SL_n(F)$，其逆矩阵 $A^{-1}$ 也属于 $SL_n(F)$，因为 $\det(A^{-1})=\frac{1}{\det(A)} = 1$。</li>
+</ul>
+<p><strong>与一般线性群的关系</strong> 特殊线性群 $SL_n(F)$ 是一般线性群 $GL_n(F)$ 的正规子群。可以通过群同态 $\det:GL_n(F)\to F^{\times}$（其中 $F^{\times}$ 是域 $F$ 的非零元素乘法群）来证明。$SL_n(F)$ 是 $\det$ 的核，根据群同态基本定理，核是正规子群。并且，商群 $GL_n(F)/SL_n(F)$ 同构于 $F^{\times}$。 </p>
 
                 
               </div>
@@ -347,6 +363,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/post/ERC20%E6%A0%87%E5%87%86%E8%A7%A3%E6%9E%90.html" title="ERC20标准解析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ERC20标准解析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

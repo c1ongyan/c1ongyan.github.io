@@ -40,8 +40,12 @@
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411231337980.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411231337230.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411241529950.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251556489.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251554985.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251555760.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251610965.png">
 <meta property="article:published_time" content="2024-11-05T08:58:20.000Z">
-<meta property="article:modified_time" content="2024-11-24T07:45:36.243Z">
+<meta property="article:modified_time" content="2024-11-26T17:26:07.509Z">
 <meta property="article:author" content="c1ongyan">
 <meta property="article:tag" content="区块链">
 <meta property="article:tag" content="Solidity">
@@ -242,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.3k 字
+          10k 字
         
       </span>
     
@@ -253,7 +257,7 @@
         
         
         
-          53 分钟
+          85 分钟
         
       </span>
     
@@ -349,9 +353,9 @@
 <p>查看truffle版本查看结果</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">truffle <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411090017471.png" srcset="/img/loading.gif" lazyload alt="image-20241109001708341"></p>
-<h3 id="3-truffle使用"><a href="#3-truffle使用" class="headerlink" title="3.truffle使用"></a>3.truffle使用</h3><h4 id="1-truffle-Init"><a href="#1-truffle-Init" class="headerlink" title="1.truffle Init"></a>1.truffle Init</h4><p>创建没有模板的项目</p>
+<h3 id="3-truffle使用"><a href="#3-truffle使用" class="headerlink" title="3.truffle使用"></a>3.truffle使用</h3><h4 id="3-1truffle-Init"><a href="#3-1truffle-Init" class="headerlink" title="3.1truffle Init"></a>3.1truffle Init</h4><p>创建没有模板的项目</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411092202852.png" srcset="/img/loading.gif" lazyload alt="image-20241109220253759"></p>
-<h4 id="2-truffle-unbox-name"><a href="#2-truffle-unbox-name" class="headerlink" title="2.truffle unbox name"></a>2.truffle unbox name</h4><p>创建模板项目</p>
+<h4 id="3-2truffle-unbox-name"><a href="#3-2truffle-unbox-name" class="headerlink" title="3.2truffle unbox name"></a>3.2truffle unbox name</h4><p>创建模板项目</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411092203091.png" srcset="/img/loading.gif" lazyload alt="image-20241109220317038"></p>
 <h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>1.[RequestError]   github连接不稳定导致的</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">E:\BlockChain\workspace\truffle_unbox_metacoin_test&gt;truffle unbox metacoin<br><br>Starting unbox...<br>=================<br><br>√ Preparing to download box<br>× Downloading<br>Unbox failed!<br>RequestError: connect ETIMEDOUT 140.82.113.3:443<br></code></pre></td></tr></table></figure>
@@ -360,9 +364,9 @@
 <p>添加或者修改</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">20.205.243.166</span> github.com<br><span class="hljs-number">185.199.108.133</span> raw.githubusercontent.com<br></code></pre></td></tr></table></figure>
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhiyuan411/article/details/140708407">https://blog.csdn.net/zhiyuan411/article/details/140708407</a></p>
-<h4 id="3-truffle-complie"><a href="#3-truffle-complie" class="headerlink" title="3.truffle complie"></a>3.truffle complie</h4><p>编译项目，只有编译成功才能迁移部署</p>
+<h4 id="3-3truffle-complie"><a href="#3-3truffle-complie" class="headerlink" title="3.3truffle complie"></a>3.3truffle complie</h4><p>编译项目，只有编译成功才能迁移部署</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411151625242.png" srcset="/img/loading.gif" lazyload alt="image-20241115162512128"></p>
-<h4 id="4-truffle-migrate"><a href="#4-truffle-migrate" class="headerlink" title="4.truffle migrate"></a>4.truffle migrate</h4><p>编译成功后可以用该指令进行迁移</p>
+<h4 id="3-4truffle-migrate"><a href="#3-4truffle-migrate" class="headerlink" title="3.4truffle migrate"></a>3.4truffle migrate</h4><p>编译成功后可以用该指令进行迁移</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411151709301.png" srcset="/img/loading.gif" lazyload alt="image-20241115170922110"></p>
 <p><strong>[问题]报错：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">E:\BlockChain\workspace\truffle_unbox_test&gt;truffle migrate<br>This version of µWS is not compatible with your Node.js build:<br><br>Error: Cannot find module &#x27;../binaries/uws_win32_x64_127.node&#x27;<br>Require stack:<br>- C:\Users\chongyan\AppData\Roaming\npm\node_modules\truffle\node_modules\_@trufflesuite_uws-js-unofficial@20.30.0-unofficial.0@@trufflesuite\uws-js-unofficial\src\uws.js<br>- C:\Users\chongyan\AppData\Roaming\npm\node_modules\truffle\node_modules\_ganache@7.9.1@ganache\dist\node\core.js<br>- C:\Users\chongyan\AppData\Roaming\npm\node_modules\truffle\build\migrate.bundled.js<br>- C:\Users\chongyan\AppData\Roaming\npm\node_modules\truffle\node_modules\_original-require@1.0.1@original-require\index.js<br>- C:\Users\chongyan\AppData\Roaming\npm\node_modules\truffle\build\cli.bundled.js<br>Falling back to a NodeJS implementation; performance may be degraded.<br><br></code></pre></td></tr></table></figure>
@@ -374,15 +378,77 @@
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411221510428.png" srcset="/img/loading.gif" lazyload alt="image-20241122151051328"></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411231337980.png" srcset="/img/loading.gif" lazyload alt="image-20241123133727884"></p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411231337230.png" srcset="/img/loading.gif" lazyload alt="image-20241123133700088"></p>
-<h2 id="MetaMask"><a href="#MetaMask" class="headerlink" title="MetaMask"></a>MetaMask</h2><p>MetaMask 是一个网页浏览器扩展版和移动版应用程序，用于管理<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=以太坊&amp;spm=1001.2101.3001.7020">以太坊</a>私钥。这样，MetaMask 可以充当以太币和其他代币的钱包，也可以与去中心化应用程序 <em>(dapps)</em> 交互。</p>
+<h2 id="MetaMask钱包"><a href="#MetaMask钱包" class="headerlink" title="MetaMask钱包"></a>MetaMask钱包</h2><p>MetaMask 是一个网页浏览器扩展版和移动版应用程序，用于管理<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=以太坊&amp;spm=1001.2101.3001.7020">以太坊</a>私钥。这样，MetaMask 可以充当以太币和其他代币的钱包，也可以与去中心化应用程序 <em>(dapps)</em> 交互。</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73094011/article/details/135854126">https://blog.csdn.net/m0_73094011/article/details/135854126</a></p>
 <p>可以参考这个博客安装”小狐狸“，创建以太坊账户</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411241529950.png" srcset="/img/loading.gif" lazyload alt="image-20241124152923891"></p>
 <p>区块链浏览器：<a target="_blank" rel="noopener" href="https://etherscan.io">https://etherscan.io</a></p>
-<h2 id="Stucture-of-a-Contract"><a href="#Stucture-of-a-Contract" class="headerlink" title="Stucture of a Contract"></a>Stucture of a Contract</h2><p>Events  事件  配合在函数中释放事件</p>
+<p><a target="_blank" rel="noopener" href="https://portfolio.metamask.io/">https://portfolio.metamask.io/</a></p>
+<h2 id="Smart-Contract智能合约"><a href="#Smart-Contract智能合约" class="headerlink" title="Smart Contract智能合约"></a>Smart Contract智能合约</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh/latest/">https://docs.soliditylang.org/zh/latest/</a></p>
+<h3 id="智能合约数据类型"><a href="#智能合约数据类型" class="headerlink" title="智能合约数据类型"></a>智能合约数据类型</h3><p>Solidity是一种用于编写智能合约的编程语言，它支持多种数据类型，以下是详细介绍：</p>
+<h4 id="值类型（Value-Types）"><a href="#值类型（Value-Types）" class="headerlink" title="值类型（Value Types）"></a>值类型（Value Types）</h4><ul>
+<li><p><strong>布尔类型（<code>bool</code>）</strong>：    - 取值只有 <code>true</code>（真）和 <code>false</code>（假）两种情况，常用于条件判断，例如在 <code>if</code> 语句中判断某个条件是否满足。示例：<code>bool isDone = true;</code>，可以在函数中根据业务逻辑来设置其值，并基于它进行后续的流程控制。</p>
+</li>
+<li><p><strong>整数类型（<code>int</code>/<code>uint</code>）</strong>：    - <code>int</code> 表示有符号整数，即可以表示正数、负数和零。比如 <code>int8</code>，<code>int16</code>，<code>int24</code> 等，其中数字表示所占的位数，位数越大，表示的数值范围越广，例如 <code>int8</code> 的取值范围是 <code>[-128, 127]</code>。    - <code>uint</code> 则是无符号整数，只能表示零和正数，像 <code>uint8</code> 的取值范围是 <code>[0, 255]</code>。示例：<code>uint256 myVariable = 100;</code>，常用于表示数量、计数器、索引等场景，比如记录某个列表中的元素个数。 </p>
+</li>
+<li><p><strong>固定大小字节数组（<code>bytes1</code>，<code>bytes2</code>，…，<code>bytes32</code>）</strong>：    - 用于存储固定长度的字节数据。例如 <code>bytes32</code> 可以存储长度为 32 字节的数据，常用于存储哈希值等，像在以太坊中，合约地址、交易哈希等很多数据结构的存储都会用到 <code>bytes32</code>。示例：<code>bytes32 hashValue = 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef;</code> </p>
+</li>
+<li><p><strong>可变大小字节数组（<code>bytes</code> 和 <code>string</code>）</strong>：    - <code>bytes</code> 用于存储字节数据序列，它的长度是可变的，可以动态地添加或删除字节元素。比如可以用来存储用户上传的文件字节流（当然实际应用中可能还涉及复杂的存储方案配合）。    - <code>string</code> 类型用于存储字符串，本质上也是以字节形式存储，不过它主要用于文本相关的数据处理，例如存储用户的姓名、描述信息等。示例：<code>string myString = &quot;Hello, World!&quot;; bytes myBytes = new bytes(5);</code> </p>
+</li>
+<li><p><strong>枚举类型（<code>enum</code>）</strong>：    - 用于定义一组具名的常量值，方便在代码中清晰地表示特定的状态或选项。例如定义一个表示订单状态的枚举： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs solidity">enum OrderStatus &#123;<br>    Pending,<br>    Shipped,<br>    Delivered,<br>    Cancelled<br>&#125;<br>OrderStatus myOrderStatus = OrderStatus.Pending;<br></code></pre></td></tr></table></figure>
+<p>这样就可以通过 <code>myOrderStatus</code> 变量来方便地表示和操作订单处于何种状态了。 </p>
+</li>
+<li><p><strong>地址类型（<code>address</code>）</strong>：    - 用于表示以太坊的账户地址，既可以是外部账户（由用户私钥控制的普通钱包地址），也可以是合约账户地址。它有一些相关的成员函数，比如可以使用 <code>address.transfer()</code> 来向指定地址发送以太币（有一定的 gas 限制等要求）。示例：<code>address myAddress = 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef;</code> </p>
+</li>
+</ul>
+<h4 id="引用类型（Reference-Types）"><a href="#引用类型（Reference-Types）" class="headerlink" title="引用类型（Reference Types）"></a>引用类型（Reference Types）</h4><h5 id="数组（array）"><a href="#数组（array）" class="headerlink" title="数组（array）"></a>数组（array）</h5><ul>
+<li><strong>固定长度数组</strong>：在声明时就确定了元素个数，例如 <code>uint[5] fixedArray;</code> 就定义了一个能存储 5 个 <code>uint</code> 类型元素的固定长度数组，元素可以通过索引（从 0 开始）进行访问，像 <code>fixedArray[0] = 10;</code> 就是给数组的第一个元素赋值。    </li>
+<li><strong>可变长度数组</strong>：长度可以动态变化，声明方式如 <code>uint[] dynamicArray;</code>，可以使用 <code>dynamicArray.push()</code> 方法来向数组末尾添加元素，例如 <code>dynamicArray.push(20);</code> 就往数组里添加了一个值为 20 的元素。 </li>
+</ul>
+<h5 id="结构体（struct）"><a href="#结构体（struct）" class="headerlink" title="结构体（struct）"></a>结构体（struct）</h5><p>可以将不同类型的数据组合在一起形成一个新的复合类型，方便表示更复杂的数据结构。例如定义一个表示用户信息的结构体： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs solidity">struct User &#123;<br>    address userAddress;<br>    string userName;<br>    uint userAge;<br>&#125;<br>User myUser;<br>myUser.userAddress = 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef;<br>myUser.userName = &quot;Alice&quot;;<br>myUser.userAge = 25;<br></code></pre></td></tr></table></figure>
+<p> 这样通过一个 <code>User</code> 结构体变量就能整体管理和操作与用户相关的多个不同类型的数据了。 </p>
+<h5 id="映射类型（Mapping-Types）"><a href="#映射类型（Mapping-Types）" class="headerlink" title="映射类型（Mapping Types）"></a>映射类型（Mapping Types）</h5><ul>
+<li><p><strong>映射（<code>mapping</code>）</strong>：    - 类似于其他编程语言中的字典或哈希表，它建立了一种键值对的对应关系，其中键的类型必须是可以计算哈希值的数据类型（比如 <code>address</code>、<code>uint</code> 等常见类型），值可以是任意类型。例如创建一个将地址映射到用户余额的映射： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs solidity">mapping(address =&gt; uint) balances;<br>balances[0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef] = 100;<br></code></pre></td></tr></table></figure>
+<p> 意味着地址 <code>0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef</code> 对应的余额被设置为了 100。 </p>
+</li>
+</ul>
+<h4 id="内置对象-内建对象"><a href="#内置对象-内建对象" class="headerlink" title="内置对象/内建对象"></a>内置对象/内建对象</h4><p>内建对象可以分为两个，分别为block和msg；</p>
+<p>block：区块信息<br>block.coinbase (address): 当前块的矿工的地址<br>block.difficulty (uint):当前块的难度系数<br>block.gaslimit (uint):当前块gas的上限<br>block.number (uint):当前块编号<br>block.blockhash (function(uint) returns (bytes32)):函数，返回指定块的哈希值，已经被内建函数blockhash所代替<br>block.timestamp (uint):当前块的时间戳<br>msg：调用时数据<br>msg.data (bytes):完整的calldata<br>msg.gas (uint):剩余的gas量<br>msg.sender (address):消息的发送方(调用者)（最为重要）<br>msg.sig (bytes4):calldata的前四个字节(即函数标识符)<br>msg.value (uint):所发送的消息中wei的数量，联盟链中无需使用此数据</p>
+<blockquote>
+<p>以太坊的四个单位：</p>
+<p>wei &lt; gwei &lt; finney &lt; ether</p>
+<p>换算关系：</p>
+<p>ether = 1000 finney</p>
+<p>finney = 1000,000 gwei</p>
+<p>gwei = 1000,000,000 wei</p>
+</blockquote>
+<p>tx:交易信息</p>
+<p>tx.gasprice(uint):交易的gas价格</p>
+<p>tx.origin(address):交易发送方（最原始调用者）。发起交易的外部账户地址（也就是最初触发这个交易链的那个外部地址）</p>
+<h5 id="example-查看内建对象"><a href="#example-查看内建对象" class="headerlink" title="example:查看内建对象"></a><strong>example</strong>:查看内建对象</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: GPL-3.0<br>pragma solidity &gt;=0.7.0 &lt;0.9.0;<br><br>contract localobj&#123;<br>    address public admin;<br><br>    bytes32 public hash;<br><br>    uint256 public randnum;<br><br>    address public tranorigin;<br><br>    constructor() &#123;<br>        admin = msg.sender;<br>        hash = blockhash(0);<br>        tranorigin = tx.origin;<br>        randnum = uint256(keccak256(abi.encode(block.timestamp,msg.sender,hash))) % 100;<br>    &#125;<br><br>        function getTxOrigin() public view returns (address) &#123;<br>        return tx.origin;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>利用remix部署该合约</p>
+<p>发起部署的账户地址为</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-number">0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2</span><br></code></pre></td></tr></table></figure>
+<p>部署后详细信息如下，可以看到合约的地址为</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-number">0xa131AD247055FD2e2aA8b156A11bdEc81b9eAD95</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251556489.png" srcset="/img/loading.gif" lazyload alt="image-20241125155625439"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251554985.png" srcset="/img/loading.gif" lazyload alt="image-20241125155414935"></p>
+<p>查看admin与tranorigin变量的地址如下，与发起合约的账户地址相同。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-number">0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2</span><br></code></pre></td></tr></table></figure>
+<p>合约部署后会自动为public变状态变量提供查询方法，对应于Remix中的按钮</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251555760.png" srcset="/img/loading.gif" lazyload alt="image-20241125155507717"></p>
+<p>如果点击admin按钮，调用localobj.admin,其细节如下：</p>
+<p>from:为调用方法的账户的地址</p>
+<p>to:to指向合约的地址</p>
+<p>最好输出是admin的地址</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411251610965.png" srcset="/img/loading.gif" lazyload alt="image-20241125160711054"></p>
+<h3 id="智能合约函数"><a href="#智能合约函数" class="headerlink" title="智能合约函数"></a>智能合约函数</h3><h4 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h4><p>  事件  配合在函数中释放事件</p>
 <p>在更通用的以太坊和 EVM 中称为logs，<strong>Solidity中的事件（event）是EVM上日志的抽象</strong>。日志是指事件保存在区块链上的数据。事件强调操作行为，日志强调存储内容。</p>
-<p>Errors</p>
-<h2 id="Remix-IDE使用"><a href="#Remix-IDE使用" class="headerlink" title="Remix IDE使用"></a>Remix IDE使用</h2>
+<h4 id="Errors"><a href="#Errors" class="headerlink" title="Errors"></a>Errors</h4><h2 id="Remix-IDE使用"><a href="#Remix-IDE使用" class="headerlink" title="Remix IDE使用"></a>Remix IDE使用</h2><p>§Capability of token minting and burning (limited to the token owner); token transfer between two participants </p>
+
                 
               </div>
             
@@ -463,8 +529,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/Docker-%E5%AD%A6%E4%B9%A0.html" title="Docker 学习">
-                        <span class="hidden-mobile">Docker 学习</span>
+                      <a href="/post/git_note.html" title="Git使用">
+                        <span class="hidden-mobile">Git使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,22 +16,23 @@
   <meta name="author" content="c1ongyan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git使用1.基操初始化本地仓库（如果你还没有一个本地仓库） 1git init 添加文件到本地仓库的暂存区 1git add . 提交更改到本地仓库 1git commit -m &quot;Initial commit&quot; 添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL） 1git remote add origin your-rep">
+    <meta name="description" content="ERC20标准解析example以一个具体的例子来看 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748&#x2F;&#x2F; SPDX-License-Identifier: MITpragma solidity ^0.8.0;import &quot;@openzeppelin&#x2F;contr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git使用">
-<meta property="og:url" content="http://example.com/post/git_note.html">
+<meta property="og:title" content="ERC20标准解析">
+<meta property="og:url" content="http://example.com/post/ERC20%E6%A0%87%E5%87%86%E8%A7%A3%E6%9E%90.html">
 <meta property="og:site_name" content="c1ongyan">
-<meta property="og:description" content="Git使用1.基操初始化本地仓库（如果你还没有一个本地仓库） 1git init 添加文件到本地仓库的暂存区 1git add . 提交更改到本地仓库 1git commit -m &quot;Initial commit&quot; 添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL） 1git remote add origin your-rep">
+<meta property="og:description" content="ERC20标准解析example以一个具体的例子来看 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748&#x2F;&#x2F; SPDX-License-Identifier: MITpragma solidity ^0.8.0;import &quot;@openzeppelin&#x2F;contr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-26T06:42:56.000Z">
-<meta property="article:modified_time" content="2024-12-06T09:06:44.199Z">
+<meta property="article:published_time" content="2024-11-26T06:42:56.000Z">
+<meta property="article:modified_time" content="2024-12-06T06:28:25.364Z">
 <meta property="article:author" content="c1ongyan">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git使用 - c1ongyan</title>
+  <title>ERC20标准解析 - c1ongyan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git使用"></span>
+            <span id="subtitle" data-typed-text="ERC20标准解析"></span>
           
         </div>
 
@@ -211,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-26 14:42" pubdate>
-          2024年10月26日 下午
+        <time datetime="2024-11-26 14:42" pubdate>
+          2024年11月26日 下午
         </time>
       </span>
     
@@ -223,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          500 字
+          3.1k 字
         
       </span>
     
@@ -234,7 +235,7 @@
         
         
         
-          5 分钟
+          27 分钟
         
       </span>
     
@@ -272,26 +273,278 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git使用</h1>
+            <h1 style="display: none">ERC20标准解析</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="1-基操"><a href="#1-基操" class="headerlink" title="1.基操"></a>1.基操</h2><p>初始化本地仓库（如果你还没有一个本地仓库）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git init<br></code></pre></td></tr></table></figure>
-<p>添加文件到本地仓库的暂存区</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git add .<br></code></pre></td></tr></table></figure>
-<p>提交更改到本地仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git commit -m &quot;Initial commit&quot;<br></code></pre></td></tr></table></figure>
-<p>添加GitHub仓库作为远程仓库（将’your-repository-url’替换为你的仓库URL）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote add origin your-repository-url<br></code></pre></td></tr></table></figure>
-<p>推送本地仓库到GitHub远程仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push -u origin master(不一定是master分支，看需要传输的分支)<br></code></pre></td></tr></table></figure>
-<h2 id="2-基于特定提交创建新的分支"><a href="#2-基于特定提交创建新的分支" class="headerlink" title="2.基于特定提交创建新的分支"></a>2.基于特定提交创建新的分支</h2><p>2.1 通过 <code>git log</code> 命令查看提交历史记录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git log<br></code></pre></td></tr></table></figure>
-<p>这个命令会展示出仓库以往的每一次提交信息，每条记录包含提交的哈希值（是一个类似 <code>abcdef1234567890</code> 的 40 位字符串，这是该提交的唯一标识）、作者、提交时间以及提交的说明信息等。浏览这些记录，找到你想要基于其创建分支的特定提交的哈希值，并复制下来备用。</p>
-<p>2.2 使用 <code>git checkout</code> 命令基于特定的提交哈希值创建新分支:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b new_branch_name hash_value<br></code></pre></td></tr></table></figure>
+                <h1 id="ERC20标准解析"><a href="#ERC20标准解析" class="headerlink" title="ERC20标准解析"></a>ERC20标准解析</h1><h2 id="example"><a href="#example" class="headerlink" title="example"></a>example</h2><p>以一个具体的例子来看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br><br>import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;<br>import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;<br><br>contract FishToken is ERC20, Ownable &#123;<br>    uint256 public constant WEI_PER_TOKEN = 100;<br><br>    constructor() ERC20(&quot;FishToken&quot;, &quot;FISH&quot;) Ownable(msg.sender) &#123;<br>        // 铸造初始供应量的代币，并将其分配给合约所有者<br>        _mint(msg.sender, 1000 * 10 ** decimals());<br><br>     &#125;<br><br><br>    // 铸造功能，仅限合约所有者<br>    function mint(address to, uint256 amount) external onlyOwner &#123;<br>        _mint(to, amount);<br>    &#125;<br><br>    // 销毁功能，仅限合约所有者<br>    function burn(uint256 amount) external onlyOwner &#123;<br>        _burn(msg.sender, amount);<br>    &#125;<br><br>    // 购买功能，参与者可以用以太坊购买FishToken<br>    function buyTokens() external payable &#123;<br>        require(msg.value &gt; 0, &quot;Must send some ether to buy tokens&quot;);<br>        uint256 tokenAmount = msg.value / WEI_PER_TOKEN;<br>        require(tokenAmount &gt; 0, &quot;Not enough ether to buy even one token&quot;);<br>        require(balanceOf(owner()) &gt;= tokenAmount, &quot;Not enough tokens available&quot;);<br><br>        // 将代币从所有者转移到购买者<br>        _transfer(owner(), msg.sender, tokenAmount);<br>    &#125;<br><br>    // 提取合约中的以太币，仅限合约所有者<br>    function withdrawEther() external onlyOwner &#123;<br>        payable(owner()).transfer(address(this).balance);<br>    &#125;<br><br>    // 覆写以支持小数点精度<br>    function decimals() public pure override returns (uint8) &#123;<br>        return 2; // 100 wei = 1 FishToken<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>在你部署的合约中，这些按钮分别代表了 <strong>ERC20 标准方法</strong> 和你自定义的功能。以下是各按钮功能的详细解释：</p>
+<hr>
+<h3 id="1-approve"><a href="#1-approve" class="headerlink" title="1. approve"></a><strong>1. <code>approve</code></strong></h3><ul>
+<li><p><strong>功能</strong>：允许某个地址（如另一个合约或用户）代表你支出一定数量的代币。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>spender</code>：被授权的地址。</li>
+<li><code>amount</code>：允许支出的代币数量。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>通常用于授权另一个合约（如去中心化交易所）操作你的代币余额。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">approve(spender, 100);<br></code></pre></td></tr></table></figure>
+<p>授权地址 </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">spender</span><br></code></pre></td></tr></table></figure>
+<p> 可以花费你的 100 个代币。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2-burn"><a href="#2-burn" class="headerlink" title="2. burn"></a><strong>2. <code>burn</code></strong></h3><ul>
+<li><p><strong>功能</strong>：销毁代币，减少总供应量。</p>
+</li>
+<li><p><strong>限制</strong>：仅合约所有者（<code>owner</code>）可以调用。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>amount</code>：要销毁的代币数量。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>用于减少代币的供应量。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">burn(50);<br></code></pre></td></tr></table></figure>
+<p>销毁 50 个代币，总供应量减少 50。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-buyTokens"><a href="#3-buyTokens" class="headerlink" title="3. buyTokens"></a><strong>3. <code>buyTokens</code></strong></h3><ul>
+<li><p><strong>功能</strong>：用户发送以太币（<code>ETH</code>）来购买代币。</p>
+</li>
+<li><p><strong>参数</strong>：无。</p>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>用户用 <code>ETH</code> 按照比例（100 wei = 1 FISH）购买代币。</li>
+<li>合约会从 <code>owner</code> 的账户将代币转移给调用者（<code>msg.sender</code>）。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<ul>
+<li>在 Remix 的输入框中指定 ETH 的值，例如 <code>0.01 ETH</code>，然后调用 <code>buyTokens</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-mint"><a href="#4-mint" class="headerlink" title="4. mint"></a><strong>4. <code>mint</code></strong></h3><ul>
+<li><p><strong>功能</strong>：铸造（创建）新的代币并增加总供应量。</p>
+</li>
+<li><p><strong>限制</strong>：仅合约所有者（<code>owner</code>）可以调用。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>amount</code>：要铸造的代币数量。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>合约所有者可以根据需要增加代币的总供应量。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">mint(1000);<br></code></pre></td></tr></table></figure>
+<p>创建 1000 个新的代币，并将它们分配给 </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">owner</span><br></code></pre></td></tr></table></figure>
+<p>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="5-transfer"><a href="#5-transfer" class="headerlink" title="5. transfer"></a><strong>5. <code>transfer</code></strong></h3><ul>
+<li><p><strong>功能</strong>：将代币从调用者账户转移到另一个账户。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>recipient</code>：接收代币的地址。</li>
+<li><code>amount</code>：转移的代币数量。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>用户之间的直接代币转账。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">transfer(bobAddress, 50);<br></code></pre></td></tr></table></figure>
+<p>将 50 个代币转移给 Bob。</p>
+</li>
+</ul>
+<hr>
+<h3 id="6-transferFrom"><a href="#6-transferFrom" class="headerlink" title="6. transferFrom"></a><strong>6. <code>transferFrom</code></strong></h3><ul>
+<li><p><strong>功能</strong>：从授权账户中转移代币到另一个账户。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>sender</code>：被授权账户。</li>
+<li><code>recipient</code>：接收代币的账户。</li>
+<li><code>amount</code>：转移的代币数量。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>用于授权账户支出的场景，如支付系统或智能合约代币转移。</li>
+</ul>
+</li>
+<li><p><strong>注意</strong>：需要事先通过 <code>approve</code> 方法授权。</p>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">transferFrom(aliceAddress, bobAddress, 50);<br></code></pre></td></tr></table></figure>
+<p>从 Alice 的账户中转移 50 个代币到 Bob 的账户。</p>
+</li>
+</ul>
+<hr>
+<h3 id="7-transferOwnership"><a href="#7-transferOwnership" class="headerlink" title="7. transferOwnership"></a><strong>7. <code>transferOwnership</code></strong></h3><ul>
+<li><p><strong>功能</strong>：将合约所有权转移给新地址。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>newOwner</code>：新所有者的地址。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>更换合约的控制权（例如：卖掉项目）。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">transferOwnership(newOwnerAddress);<br></code></pre></td></tr></table></figure>
+<p>将合约所有权转移给 </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">newOwnerAddress</span><br></code></pre></td></tr></table></figure>
+<p>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="8-withdrawEther"><a href="#8-withdrawEther" class="headerlink" title="8. withdrawEther"></a><strong>8. <code>withdrawEther</code></strong></h3><ul>
+<li><p><strong>功能</strong>：合约所有者提取合约中累积的以太币（<code>ETH</code>）。</p>
+</li>
+<li><p><strong>限制</strong>：仅限所有者调用。</p>
+</li>
+<li><p><strong>参数</strong>：无。</p>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>当用户购买代币时，支付的 ETH 会累积在合约中，合约所有者可以提取这些 ETH。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">withdrawEther();<br></code></pre></td></tr></table></figure>
+<p>合约所有者提取所有 ETH。</p>
+</li>
+</ul>
+<hr>
+<h3 id="9-allowance"><a href="#9-allowance" class="headerlink" title="9. allowance"></a><strong>9. <code>allowance</code></strong></h3><ul>
+<li><p><strong>功能</strong>：查询某个地址可以支出的授权余额。</p>
+</li>
+<li><p>参数</p>
+<p>：</p>
+<ul>
+<li><code>owner</code>：代币持有者的地址。</li>
+<li><code>spender</code>：被授权的地址。</li>
+</ul>
+</li>
+<li><p>用途</p>
+<p>：</p>
+<ul>
+<li>检查被授权账户还能花费多少代币。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs solidity">allowance(aliceAddress, bobAddress);<br></code></pre></td></tr></table></figure>
+<p>查看 Alice 授权给 Bob 的代币额度。</p>
+</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>按钮</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>approve</code></td>
+<td>授权某地址可以花费你的代币。</td>
+</tr>
+<tr>
+<td><code>burn</code></td>
+<td>合约所有者销毁代币，减少总供应量。</td>
+</tr>
+<tr>
+<td><code>buyTokens</code></td>
+<td>用户用 ETH 购买代币。</td>
+</tr>
+<tr>
+<td><code>mint</code></td>
+<td>合约所有者铸造新代币，增加总供应量。</td>
+</tr>
+<tr>
+<td><code>transfer</code></td>
+<td>用户直接转移代币给另一个地址。</td>
+</tr>
+<tr>
+<td><code>transferFrom</code></td>
+<td>从被授权账户中转移代币到另一个账户。</td>
+</tr>
+<tr>
+<td><code>transferOwnership</code></td>
+<td>更换合约所有者。</td>
+</tr>
+<tr>
+<td><code>withdrawEther</code></td>
+<td>提取合约中累积的 ETH。</td>
+</tr>
+<tr>
+<td><code>allowance</code></td>
+<td>查询某账户对另一个账户的授权余额。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这些功能涵盖了代币管理的核心操作。通过这些按钮，你可以实现代币的交易、授权、销毁、铸造等操作，同时管理合约中的资产（如 ETH）。</p>
+<h1 id="Fish-Supply-Chain-system"><a href="#Fish-Supply-Chain-system" class="headerlink" title="Fish Supply Chain system"></a>Fish Supply Chain system</h1><p>该项目参考这个农产品供应链项目：<a target="_blank" rel="noopener" href="https://github.com/ac12644/Supply-Chain-Smart-Contract">https://github.com/ac12644/Supply-Chain-Smart-Contract</a></p>
+<p>改动：</p>
+<p>-&gt;引入ERC20标准，构建fish token 进行支付<br>-&gt;引入押金机制：<br>在渔民和分销商发布售卖的时候检验其是否缴纳押金，在购买者确认收到的时候自动退回押金</p>
 
                 
               </div>
@@ -304,7 +557,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/git/">#git</a>
+        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>
+      
+        <a href="/tags/solidity/">#solidity</a>
       
     </div>
   
@@ -316,8 +571,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git使用</div>
-      <div>http://example.com/post/git_note.html</div>
+      <div>ERC20标准解析</div>
+      <div>http://example.com/post/ERC20标准解析.html</div>
     </div>
     <div class="license-meta">
       
@@ -329,7 +584,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月26日</div>
+          <div>2024年11月26日</div>
         </div>
       
       
@@ -361,9 +616,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/Solidity-Study.html" title="Solidity Study">
+                      <a href="/post/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1.html" title="算法设计">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Solidity Study</span>
+                        <span class="hidden-mobile">算法设计</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -371,8 +626,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/Docker-%E5%AD%A6%E4%B9%A0.html" title="Docker 学习">
-                        <span class="hidden-mobile">Docker 学习</span>
+                      <a href="/post/Crypto-Problem.html" title="Crypto Problem">
+                        <span class="hidden-mobile">Crypto Problem</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
