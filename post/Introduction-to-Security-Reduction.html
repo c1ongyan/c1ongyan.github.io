@@ -16,25 +16,25 @@
   <meta name="author" content="c1ongyan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="区块链学习1.比特币BTC1.1密码学原理 哈希&#x2F;签名 哈希的性质 抗碰撞性：抗碰撞性(Collision-Resistant)：找出任意两个不同的x,x’ $\in$ X，使得h(x)&#x3D;h(x’)是困难的（计算不可行）；也称强抗碰撞性（Strong Collision-Resistant ）。相对的，也有弱抗碰撞性（Weak Collision-Resistant ）这个概念。弱抗碰撞性：当给定">
+    <meta name="description" content="Introduction to Security Reduction             记录《Introduction to Security Reduction》这本书的阅读笔记            Chapter 1 Guide to This Book在公钥密码学中，有两种常用的安全性证明方法，即基于游戏的证明和基于模拟的证明。 基于游戏的证明又可进一步分为两类，即安全归约（Secu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="区块链学习">
-<meta property="og:url" content="http://example.com/post/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0.html">
+<meta property="og:title" content="Introduction to Security Reduction">
+<meta property="og:url" content="http://example.com/post/Introduction-to-Security-Reduction.html">
 <meta property="og:site_name" content="c1ongyan">
-<meta property="og:description" content="区块链学习1.比特币BTC1.1密码学原理 哈希&#x2F;签名 哈希的性质 抗碰撞性：抗碰撞性(Collision-Resistant)：找出任意两个不同的x,x’ $\in$ X，使得h(x)&#x3D;h(x’)是困难的（计算不可行）；也称强抗碰撞性（Strong Collision-Resistant ）。相对的，也有弱抗碰撞性（Weak Collision-Resistant ）这个概念。弱抗碰撞性：当给定">
+<meta property="og:description" content="Introduction to Security Reduction             记录《Introduction to Security Reduction》这本书的阅读笔记            Chapter 1 Guide to This Book在公钥密码学中，有两种常用的安全性证明方法，即基于游戏的证明和基于模拟的证明。 基于游戏的证明又可进一步分为两类，即安全归约（Secu">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411241634598.png">
-<meta property="article:published_time" content="2024-09-18T12:09:55.000Z">
-<meta property="article:modified_time" content="2024-12-13T08:12:20.047Z">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412141506807.png">
+<meta property="article:published_time" content="2024-12-14T06:27:02.000Z">
+<meta property="article:modified_time" content="2024-12-16T09:10:29.172Z">
 <meta property="article:author" content="c1ongyan">
 <meta property="article:tag" content="Crypto">
-<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="Reduction">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411241634598.png">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412141506807.png">
   
   
   
-  <title>区块链学习 - c1ongyan</title>
+  <title>Introduction to Security Reduction - c1ongyan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="区块链学习"></span>
+            <span id="subtitle" data-typed-text="Introduction to Security Reduction"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-18 20:09" pubdate>
-          2024年9月18日 晚上
+        <time datetime="2024-12-14 14:27" pubdate>
+          2024年12月14日 下午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          667 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          16 分钟
+          6 分钟
         
       </span>
     
@@ -275,90 +275,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">区块链学习</h1>
+            <h1 style="display: none">Introduction to Security Reduction</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="区块链学习"><a href="#区块链学习" class="headerlink" title="区块链学习"></a>区块链学习</h1><h2 id="1-比特币BTC"><a href="#1-比特币BTC" class="headerlink" title="1.比特币BTC"></a>1.比特币BTC</h2><p>1.1密码学原理</p>
-<p>哈希/签名</p>
-<p>哈希的性质</p>
-<p>抗碰撞性：<br>抗碰撞性(Collision-Resistant)：找出任意两个不同的x,x’ $\in$ X，使得h(x)=h(x’)是困难的（计算不可行）；也称强抗碰撞性（Strong Collision-Resistant ）。相对的，也有弱抗碰撞性（Weak Collision-Resistant ）这个概念。<br>弱抗碰撞性：当给定某条消息的散列值时，单向散列函数必须确保要找到和该条消息具有相同散列值的另外一条消息是非常困难的。<br>强抗碰撞性：是指要找到散列值相同的两条不同的消息是非常困难的。<br>而针对碰撞性的攻击，最主要的要数生日攻击了</p>
-<p>（实现x的不可篡改）</p>
-<p>隐蔽性Hiding：哈希函数计算过程是单向的、不可逆的。</p>
-<p>在这条性质下，哈希值不会泄露原始信息。</p>
-<p>谜题友好性puzzle friendly：</p>
-<h2 id="2-以太坊ETH："><a href="#2-以太坊ETH：" class="headerlink" title="2.以太坊ETH："></a>2.以太坊ETH：</h2><h3 id="2-1ETH概述"><a href="#2-1ETH概述" class="headerlink" title="2.1ETH概述"></a>2.1ETH概述</h3><p>1.比特币的出块时间为10分钟左右，相对较长；以太坊减少了挖矿时间，降低至10几秒，为了适应新的出块时间，以太坊设置了新的基于GOST协议的共识机制。</p>
-<p>2.比特币的mining puzzle 比拼的是算力，导致挖矿设备越来越专业化，专业设备的挖矿能力肯定比普通的好，这不太符合去中心化的理念。而以太坊更注重对内存的需求。</p>
-<p>3.proof of work -&gt; proof of stake</p>
-<p>由工作量证明向权益证明转变</p>
-<p>4.以太坊提供了对智能合约的支持</p>
-<p>5.BitCoin: 去中心化货币</p>
-<p>Etherem: 去中心化合约</p>
-<h3 id="2-2ETH账户"><a href="#2-2ETH账户" class="headerlink" title="2.2ETH账户"></a>2.2ETH账户</h3><p>在比特币中，采用的是<strong>基于转账交易的模型</strong>，如果需要知道用户的余额需要通过在UTXO查询转账信息，计算得到余额，而且输入必需全部花掉。</p>
-<p>以太坊是基于账户的模型(account-based ledger)</p>
-<p>这种机制对双花攻击有天然的防御作用。但是可能会出现重放攻击，可以采用加入计数器nonce的方法来防范。</p>
-<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411241634598.png" srcset="/img/loading.gif" lazyload alt="image-20241124163426554"></p>
-<p>外部账户(exterrally owned account):</p>
-<p>balance  nonce</p>
-<p>合约账户(smart contract account):</p>
-<p>合约账户不能主动发送交易</p>
-<p>nonce code storage</p>
-<p>区块链中的安全</p>
-<p>ALS-Kay Management Security</p>
-<p>加密木马攻击(Crypto trojan attack)：</p>
-<p>攻击者控制恶意软件</p>
-<p>攻击者截获密码货币的交易</p>
-<p>ALS-Client Security </p>
-<p>客户端安全在以太坊中就是钱包的安全</p>
-<p>钱包分为热钱包，冷钱包</p>
-<p>热钱包：需要网络连接才能访问</p>
-<p>冷钱包：不需要网络连接就能访问。主要用一些U盘等物理设备。</p>
-<p>密钥被偷</p>
-<p>伪造攻击</p>
-<p>钓鱼攻击</p>
-<p>恶意挖矿</p>
-<p>网站注入攻击：</p>
-<p>合约层安全</p>
-<p>Transaction-Ordering Dependence Vulnerability</p>
-<p>区块链中，交易发布到写入账本是有一定时间差，（比如比特币中大概出挖一个块的时间是10分钟），所以交易的实际顺序和写入顺序可能不一样，会导致漏洞</p>
-<p>Timestamp Dependence Vulnerability</p>
-<p>错误处理异常漏洞 Mishanled Exceptions Vulnerability</p>
-<p>Race Condition Vulnerability</p>
-<p>条件竞争漏洞</p>
-<p>典型：</p>
-<p>重入攻击漏洞</p>
-<p>一个函数同时调用多次回退函数</p>
-<p>跨函数条件竞争漏洞</p>
-<p>在同时调用不同的函数，可能会访问相同的状态变量，有的函数可能会对其进行修改，有点类似操作系统中的对资源管理的需求</p>
-<p>Integer Operation Vulnerability</p>
-<p>典型：整数溢出，精度损失，类型转换错误</p>
-<p>Gas Limit Vulnerability (Dos Attack)</p>
-<p>Call Injection Vulnerability</p>
-<p>共识层安全</p>
-<p>安全目标：</p>
-<p>Liveness 活性的</p>
-<p>Consistency</p>
-<p>Tran</p>
-<p>Dos attack</p>
-<p>Bribery Attack</p>
-<p>贿赂攻击</p>
-<p>Coin Age Accumulation Attack</p>
-<p>针对Pos共识算法。</p>
-<p>Long Range Attack 长程攻击</p>
-<p>重新创造一个新的链</p>
-<p>三种类型：权益流失攻击</p>
-<p>Selfish-Mining 自私挖矿</p>
-<p>攻击者挖到区块但不公布，继续在该挖出区块上挖掘，</p>
-<p>double-Spending Attack 双花攻击</p>
-<p>网络层安全</p>
-<p>P2P网络存在的攻击以及广播机制，验证机制</p>
-<p>Sybil Attack 女巫攻击</p>
-<p>使用一个单个节点操作许多假身份</p>
-<p>Eavesdropping attack</p>
-<p>Privacy protection protocol for NLS</p>
-<p>CoinJoin</p>
-
+                <h1 id="Introduction-to-Security-Reduction"><a href="#Introduction-to-Security-Reduction" class="headerlink" title="Introduction to Security Reduction"></a>Introduction to Security Reduction</h1><div class="note note-success">
+            <p>记录《<em>Introduction to Security Reduction</em>》这本书的阅读笔记</p>
+          </div>
+<h2 id="Chapter-1-Guide-to-This-Book"><a href="#Chapter-1-Guide-to-This-Book" class="headerlink" title="Chapter 1 Guide to This Book"></a>Chapter 1 Guide to This Book</h2><p>在公钥密码学中，有两种常用的安全性证明方法，即<strong>基于游戏的证明</strong>和<strong>基于模拟的证明</strong>。 基于游戏的证明又可进一步分为两类，即安全归约（Security Reduction）和游戏跳转（game hopping）。 </p>
+<p>安全归约主要是通过将所研究的密码体制的安全性归约到某个已知的困难问题上进行证明。意思是假设存在敌手能攻破该密码体制，那就意味着这个敌手能够解决那个公认的计算困难问题，以此来说明密码体制在合理假设下是安全的。 </p>
+<p>而对于“游戏跳转”，它同样是基于游戏的证明里的一种方式，不过具体含义可能会因不同的应用场景和具体密码学分析有所差异，总体来说是在设定的不同游戏情境之间进行转换、关联等操作，通过对不同游戏环节的分析与推导来证明密码体制具备相应的安全性，不过这相比安全归约在概念理解和实际运用上可能相对更复杂、更具专业性一些，且在不同的研究中可能有着不同的细化定义与操作方式。 基于模拟的证明则又是另外一套不同的逻辑与方法来对密码学中的安全性进行论证了。 </p>
+<p>这本书主要介绍安全归约。没有一种通用的方法来对所有的方案进行安全性规约。这本书介绍了三种特定密码系统的安全规约：数字签名、公钥加密和基于身份的加密。书中给出的所有例子和方案都是在有或没有双线性映射的循环群上构造的。</p>
+<p>书中的符号表示：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412141506807.png" srcset="/img/loading.gif" lazyload alt="image-20241214150636722"></p>
+<h2 id="Chapter-2-Notions-Definitions-and-Models"><a href="#Chapter-2-Notions-Definitions-and-Models" class="headerlink" title="Chapter 2  Notions, Definitions, and Models"></a>Chapter 2  Notions, Definitions, and Models</h2>
                 
               </div>
             
@@ -372,7 +303,7 @@
       
         <a href="/tags/Crypto/">#Crypto</a>
       
-        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>
+        <a href="/tags/Reduction/">#Reduction</a>
       
     </div>
   
@@ -384,8 +315,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>区块链学习</div>
-      <div>http://example.com/post/区块链学习.html</div>
+      <div>Introduction to Security Reduction</div>
+      <div>http://example.com/post/Introduction-to-Security-Reduction.html</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +328,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月18日</div>
+          <div>2024年12月14日</div>
         </div>
       
       
@@ -429,9 +360,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/rust-2.html" title="rust(2)">
+                      <a href="/post/ABE-Basis.html" title="ABE Basis">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">rust(2)</span>
+                        <span class="hidden-mobile">ABE Basis</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -439,8 +370,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/T-SNE.html" title="T-SNE">
-                        <span class="hidden-mobile">T-SNE</span>
+                      <a href="/post/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1.html" title="算法设计">
+                        <span class="hidden-mobile">算法设计</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

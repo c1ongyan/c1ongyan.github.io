@@ -25,6 +25,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412071622845.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412071635308.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412091602893.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20250107215018835.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411171555146.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411171627240.png">
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411171637672.png">
@@ -38,8 +40,17 @@
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041703574.png">
 <meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241204100519146.png">
 <meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241204100812484.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211112901336.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211113136538.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114442529.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211115442805.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114216607.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114314267.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114332790.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211115259126.png">
+<meta property="og:image" content="c:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241225112441178.png">
 <meta property="article:published_time" content="2024-11-29T08:58:56.000Z">
-<meta property="article:modified_time" content="2024-12-08T12:13:22.783Z">
+<meta property="article:modified_time" content="2025-01-07T13:50:20.425Z">
 <meta property="article:author" content="c1ongyan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          12k 字
         
       </span>
     
@@ -250,7 +261,7 @@
         
         
         
-          30 分钟
+          98 分钟
         
       </span>
     
@@ -307,6 +318,7 @@
 <p>(3)循环至多执行 $n^2$轮就会停止。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412071635308.png" srcset="/img/loading.gif" lazyload alt="image-20241207163508262"></p>
 </blockquote>
+<p>### 稳定匹配问题 1. <strong>目标</strong>：给定医院和医学院学生之间的偏好关系，设计一个自我强化的录取流程。 2. <strong>不稳定对</strong>：如果申请人(x)比起其被分配的医院更偏好医院(y)，且医院(y)比起其录取的某学生更偏好(x)，那么申请人(x)和医院(y)是不稳定的。 3. <strong>稳定分配</strong>：不存在不稳定对的分配。这是一种自然且理想的条件，因为个人的自身利益会阻止任何申请人/医院进行私下交易。 ### 稳定匹配问题（男女匹配） 1. <strong>目标</strong>：给定(n)个男性和(n)个女性，找到一个“合适”的匹配。参与者对异性成员进行评级，每个男性按照从最喜欢到最不喜欢的顺序列出女性，每个女性也按照从最喜欢到最不喜欢的顺序列出男性。例如以下偏好列表： |  | 最喜欢↓ |  | 最不喜欢↓ | | —- | —- | —- | —- | |  | 1st | 2nd | 3rd | | Xavier | Amy | Bertha | Clare | | Yancey | Bertha | Amy | Clare | | Zeus | Amy | Bertha | Clare | |  | 最喜欢→ |  | 最不喜欢→ | | —- | —- | —- | —- | |  | 1st | 2nd | 3rd | | Amy | Yancey | Xavier | Zeus | | Bertha | Xavier | Yancey | Zeus | | Clare | Xavier | Yancey | Zeus | 分别为男性和女性的偏好概况。 2. <strong>完美匹配</strong>：每个人都一一匹配。即每个男性恰好与一个女性匹配，每个女性也恰好与一个男性匹配。 3. <strong>稳定性</strong>：在匹配(M)中，如果男性(m)和女性(w)比起他们当前的伴侣更偏好彼此，那么未匹配的对(m - w)是不稳定的，因为这样的不稳定对(m - w)可以通过私奔来改善自身情况。 4. <strong>稳定匹配</strong>：不存在不稳定对的完美匹配。稳定匹配问题就是给定(n)个男性和(n)个女性的偏好列表，找到一个稳定匹配（如果存在的话）。 ### 稳定匹配问题示例 - 对于分配(X - C)，(Y - B)，(Z - A)是否稳定的问题，答案是否定的，因为 Bertha 和 Xavier 会倾向于结合在一起。 - 而对于分配(X - A)，(Y - B)，(Z - C)，答案是肯定的，它是一个稳定匹配。 ### 稳定室友问题 - 问题是稳定匹配是否总是存在，答案并非先验地明显。在这个问题中，有(2n)个人，每个人对其他人从(1)到(2n - 1)进行排名，要分配室友对使得不存在不稳定对。例如给定的偏好： |  | 1st | 2nd | 3rd | | —- | —- | —- | —- | | Adam | B | C | D | | Bob | C | A | D | | Chris | A | B | D | | Doofus | A | B | C | 可以发现(A - B)，(C - D)会导致(B - C)不稳定；(A - C)，(B - D)会导致(A - B)不稳定；(A - D)，(B - C)会导致(A - C)不稳定。由此可知，稳定室友问题中稳定匹配并不总是存在。 ### 求婚 - 拒绝算法（Gale - Shapley 算法，1962） 1. <strong>算法步骤</strong>：首先将每个人初始化为自由状态。然后在还有男性是自由的且没有向所有女性求婚过的情况下，选择这样一个男性(m)，(w)为(m)的列表中他尚未求婚过的第一个女性。如果(w)是自由的，就将(m)和(w)订婚；如果(w)已经有未婚夫(m’)但她更喜欢(m)，则将(m)和(w)订婚，并使(m’)变为自由；否则(w)拒绝(m)。 2. <strong>正确性证明 - 终止性</strong>：观察可知男性按照偏好降序向女性求婚，并且一旦女性匹配成功，她就不会再变为未匹配状态，只会“向上交易”。可以证明该算法在最多(n^{2})次循环迭代后终止，因为每次循环一个男人向一个新女人求婚，而总共只有(n^{2})种可能的求婚情况。 3. <strong>正确性证明 - 完美性</strong>：通过反证法可以证明所有男性和女性都会被匹配。假设存在某个女性在算法终止时未被匹配，根据前面的观察，这意味着她从未被求婚过，但如果存在未匹配的男性，他最终会向所有女性求婚，所以这种假设不成立。 4. <strong>正确性证明 - 稳定性</strong>：同样用反证法证明不存在不稳定对。假设(A - Z)是一个不稳定对，分两种情况讨论：如果(Z)从未向(A)求婚过，那么(Z)更喜欢他在 Gale - Shapley 匹配(S^{<em>})中的伴侣而不是(A)，所以(A - Z)是稳定的；如果(Z)向(A)求婚过，那么(A)拒绝了(Z)，这意味着(A)更喜欢她在(S^{</em>})中的伴侣而不是(Z)，所以(A - Z)也是稳定的。在这两种情况下都得出(A - Z)是稳定的，与假设矛盾，所以不存在不稳定对。 ### 总结 1. <strong>稳定匹配问题</strong>：给定(n)个男性和(n)个女性及其偏好，找到一个稳定匹配（如果存在的话）。 2. <strong>Gale - Shapley 算法</strong>：能够在(O(n^{2}))时间内找到一个稳定匹配。 3. <strong>男性最优性</strong>：在男性求婚的版本中，每个男性都会得到他的最佳有效伴侣。这里定义如果存在某个稳定匹配使得男性(m)和女性(w)配对，那么(w)是(m)的有效伴侣。同时也引出问题，男性最优是否以牺牲女性利益为代价。 4. <strong>女性悲观性</strong>：实际上，Gale - Shapley 算法找到的是女性最悲观的稳定匹配，即每个女性得到的是她的最差有效伴侣。证明过程与男性最优性类似，假设存在某个女性在匹配中得到的不是最差有效伴侣，那么会推出存在不稳定对，与稳定匹配矛盾。 ### 扩展：住院医师与医院匹配 1. <strong>变体情况</strong>    - 一些参与者会将其他参与者列为不可接受。例如居民(A)可能不愿意在克利夫兰工作。    - 男女数量不相等。    - 有限制的一夫多妻制，比如医院(X)可能想雇佣(3)名居民。 2. <strong>不稳定匹配定义</strong>：如果存在医院(h)和居民(r)满足以下条件，则匹配(S)是不稳定的：(h)和(r)彼此可接受；并且要么(r)未匹配，要么(r)比起其被分配的医院更偏好(h)；并且要么(h)没有招满所有名额，要么(h)比起其至少一名已分配的居民更偏好(r)。 3. <strong>应用 - 住院医师匹配计划（NRMP）</strong>：最初在二战后使用，早于计算机的使用。例如在 3 月的匹配中，有 23000 多名居民参与。存在农村医院困境，即某些农村医院不受欢迎，被许多居民列为不可接受，在 NRMP 匹配中这些农村医院的报名人数不足。而农村医院定理表明，在每个稳定匹配中，农村医院得到的居民是完全相同的。 ### 经验教训 - 课程中学到的重要思想包括分离问题的潜在结构和创建有用且高效的算法，并且这些问题可能具有潜在的深刻社会影响（法律免责声明）。 ### 五个代表性问题 1. <strong>区间调度</strong>：输入是具有开始时间和结束时间的一组作业，目标是找到相互兼容（作业不重叠）的最大基数子集。 2. <strong>加权区间调度</strong>：输入是具有开始时间、结束时间和权重的一组作业，目标是找到相互兼容的最大权重子集。 3. <strong>二分匹配</strong>：输入是二分图，目标是找到最大基数匹配。 4. <strong>独立集</strong>：输入是图，目标是找到最大基数独立集（即节点的子集，其中任意两个节点都不通过边相连）。 5. <strong>竞争设施选址</strong>：输入是每个节点都有权重的图，游戏中两个竞争玩家交替选择节点，如果一个节点的邻居已被选择，则不能选择该节点，目标是选择最大权重的节点子集。并且提到区间调度有(n\log n)的贪心算法，加权区间调度有(n\log n)的动态规划算法，二分匹配有基于(n^{k})的最大流算法，独立集是 NP - 完全问题，竞争设施选址是 PSPACE - 完全问题。 ### 额外幻灯片内容 1. 再次阐述稳定匹配问题的目标和参与者偏好列表的设定方式，与前面内容类似。 2. 关于解的理解，声称男性最优稳定匹配是弱帕累托最优的，即不存在其他完美匹配（稳定或不稳定）使得每个男性的情况都严格更好。证明过程是假设(A)是在 GS 算法执行过程中最后一个收到求婚的女性，由于算法在最后一个女性收到第一个求婚时终止，所以没有男性会被(A)拒绝，并且与(A)匹配的男性在其他匹配中不会比在男性最优稳定匹配中更好。 3. 关于欺骗行为的讨论，问题是是否存在动机去歪曲自己的偏好概况。假设知道男性的求婚 - 拒绝算法将被运行且知道所有其他参与者的偏好概况，结论是对于男性来说不存在这种动机，但对于一些女性来说是存在的，并且没有机制能够保证稳定匹配且防止欺骗。例如给定的偏好示例中展示了女性可能通过改变偏好来影响匹配结果。 4. 最后总结课程中学到的重要思想，包括问题结构分析和算法创建，以及其社会影响，还幽默地提到历史上男性求婚的传统以及一些关于男女在匹配中的建议，如男性应尽早且频繁求婚、更诚实，女性可以主动约男性等，并且认为理论可以丰富社会生活且有趣，还调侃计算机科学专业的学生能找到最好的伴侣。 </p>
 <h3 id="1-2-5个典型问题"><a href="#1-2-5个典型问题" class="headerlink" title="1.2 5个典型问题"></a>1.2 5个典型问题</h3><h2 id="Chapter-2-Bssica-of-Algorithm-Analysis-算法设计基础"><a href="#Chapter-2-Bssica-of-Algorithm-Analysis-算法设计基础" class="headerlink" title="Chapter 2 Bssica of Algorithm Analysis 算法设计基础"></a>Chapter 2 Bssica of Algorithm Analysis 算法设计基础</h2><h3 id="O-Omega-Theta"><a href="#O-Omega-Theta" class="headerlink" title="$O,\Omega,\Theta$"></a>$O,\Omega,\Theta$</h3><p>设$T(n)$是一个函数，对应规模为n的输入，某个算法的最坏运行时间。</p>
 <p><strong>渐进上界</strong></p>
 <p>如果存在常数$c&gt;0,n_0\geq0$,使得对于所有的$n\geq{n_0}$,都有$T(n)\leq{c\cdot{f(n)}}$, 则称T的渐进上界为f,记为$T(n)=O(f(n))$</p>
@@ -314,10 +326,65 @@
 <p>如果存在常数$\epsilon&gt;0,n_0\geq0$,使得对于所有的$n\geq{n_0}$,都有$T(n)\geq{\epsilon\cdot{f(n)}}$, 则称T的渐进上界为f,记为$T(n)=\Omega(f(n))$</p>
 <p><strong>渐进紧界</strong></p>
 <p>$T(n)=O(f(n))=\Omega(f(n))$ f(n)既是渐进上界又是渐进下界，则称f为渐进紧界，记为$T(n)=\Theta(f(n))$, 此时T(n)与f(n)增长速度一致，只差一个常数因子。</p>
-<h2 id="Chapter-3-Graphs-图"><a href="#Chapter-3-Graphs-图" class="headerlink" title="Chapter 3 Graphs 图"></a>Chapter 3 Graphs 图</h2><h2 id="Chapter-4-Greedy-Algorithms-贪心算法"><a href="#Chapter-4-Greedy-Algorithms-贪心算法" class="headerlink" title="Chapter 4 Greedy Algorithms 贪心算法"></a>Chapter 4 Greedy Algorithms 贪心算法</h2><h2 id="Chapter-5-Divide-and-Conquer-分治法"><a href="#Chapter-5-Divide-and-Conquer-分治法" class="headerlink" title="Chapter 5 Divide and Conquer 分治法"></a>Chapter 5 Divide and Conquer 分治法</h2><h2 id="Chapter-6-Dynamic-Programming-动态规划"><a href="#Chapter-6-Dynamic-Programming-动态规划" class="headerlink" title="Chapter 6 Dynamic Programming 动态规划"></a>Chapter 6 Dynamic Programming 动态规划</h2><p>Top-down Design</p>
+<h3 id="渐进增长率性质"><a href="#渐进增长率性质" class="headerlink" title="渐进增长率性质"></a>渐进增长率性质</h3><h2 id="Chapter-3-Graphs-图"><a href="#Chapter-3-Graphs-图" class="headerlink" title="Chapter 3 Graphs 图"></a>Chapter 3 Graphs 图</h2><p>3.1 图的基本定义和应用</p>
+<p>我们在说图的时候一般说的无向图，其定义如下：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412091602893.png" srcset="/img/loading.gif" lazyload alt="image-20241209160229725"></p>
+<p>有项图只需要把边集合中的边元素写成有序对即可</p>
+<p>3.2 图的表示</p>
+<p>邻接矩阵，链表</p>
+<p>连通度</p>
+<p>3.3 图的遍历</p>
+<p>BFS 广度优先搜索  一层一层的搜索  边不跨界</p>
+<p>性质：不考虑权重，是最短路径的一种算法</p>
+<p>时间复杂度 线性时间O(m+n)</p>
+<p>DFS 构建树的时候路径较长</p>
+<p>二分图 二着色</p>
+<p>奇数圈-&gt;不可二着色</p>
+<p>有向无环图：</p>
+<p>拓扑排序</p>
+<p>不能够有逆序</p>
+<p>有向无环图一定可以展开成拓扑排序——-一个有向无环图总存在一个入度为0的点  </p>
+<p>（问题：要是有多个入度为0的点怎么办</p>
+<p>3.4图的连通性</p>
+<p>无权图的最短路径算法</p>
+<p>有权图中的最短路</p>
+<h2 id="Chapter-4-Greedy-Algorithms-贪心算法"><a href="#Chapter-4-Greedy-Algorithms-贪心算法" class="headerlink" title="Chapter 4 Greedy Algorithms 贪心算法"></a>Chapter 4 Greedy Algorithms 贪心算法</h2><p>用反证法说明贪心算法是最优解：假设有一个部分没有按照贪心算法实行，但按贪心算法实行会比不按照的效果好</p>
+<p>区间调度 区间分配</p>
+<p>Dijkstra算法 也是一种贪心策略</p>
+<p>最小生成树算法也是</p>
+<p>根据树的性质来思考</p>
+<p>任意两条性质满足-&gt;树：联通无环边数n-1</p>
+<p>割属性</p>
+<p>圈属性</p>
+<p>从最小边开始添加保证无环添加到n-1条边</p>
+<h2 id="Chapter-5-Divide-and-Conquer-分治法"><a href="#Chapter-5-Divide-and-Conquer-分治法" class="headerlink" title="Chapter 5 Divide and Conquer 分治法"></a>Chapter 5 Divide and Conquer 分治法</h2><p>典型：合并排序</p>
+<p>分治法：</p>
+<p>1.问题划分成多个子问题（相同规模）</p>
+<p>2.递归解决子问题</p>
+<p>3.合并解决问题</p>
+<p>时间复杂度估算</p>
+<p>-》主方法</p>
+<p>主方法的三种模型</p>
+<p>划分依据：根节点 与 叶子节点计算复杂度的差异</p>
+<p>逆序对计算问题：搭上合并排序的车</p>
+<p>平面点对问题：</p>
+<p>整数乘法问题：</p>
+<h2 id="Chapter-6-Dynamic-Programming-动态规划"><a href="#Chapter-6-Dynamic-Programming-动态规划" class="headerlink" title="Chapter 6 Dynamic Programming 动态规划"></a>Chapter 6 Dynamic Programming 动态规划</h2><p>与分治法的区别：子问题重合</p>
+<p>Top-down Design  假设之前的最优解都有，从后往前推</p>
+<p>解的寻找,从后往前推最后一个加入元素</p>
+<p>填表：由底而上</p>
+<p>背包问题：</p>
+<p>背包问题中一个记号的参数已经不够</p>
+<p>OPT(i,w) : i 物品个数，w:权重限制</p>
+<p>大小分析：</p>
+<p>时间：nW</p>
+<p>离散背包</p>
+<p>连续背包</p>
 <p>Bottom-up Implementation</p>
 <p>字符串对齐算法</p>
+<p>错误匹配，gap代价-》损失函数</p>
 <p>用分治法减少空间</p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20250107215018835.png" srcset="/img/loading.gif" lazyload alt="image-20250107215018835"></p>
 <h2 id="Chapter-7-Network-Flow-网络流"><a href="#Chapter-7-Network-Flow-网络流" class="headerlink" title="Chapter 7  Network Flow 网络流"></a>Chapter 7  Network Flow 网络流</h2><p>1.流网络问题的定义</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202411171555146.png" srcset="/img/loading.gif" lazyload alt="最大流问题"></p>
 <p><strong>增广路径（Augmenting Path）</strong></p>
@@ -351,16 +418,18 @@
 <p>1.寻找最大流</p>
 <p>2.寻找最小cut</p>
 <p>最大流和最小割的关系</p>
+<p>最大流就是最小割</p>
 <p>剩余图</p>
 <p> Ford-Fulkerson 算法</p>
 <p>找足够宽的路，高于某个阈值就行，使用$\Deta$  伸缩因子</p>
 <p>保整性</p>
+<p>复杂度：m^2log(C)</p>
 <p>完美匹配</p>
 <p>所有子集的对象集合大小大于子集自身这个二分图就有完美匹配</p>
 <h2 id="Chapter-8-NP-and-Computational-Intractability-NP与计算的难解性"><a href="#Chapter-8-NP-and-Computational-Intractability-NP与计算的难解性" class="headerlink" title="Chapter 8 NP and Computational Intractability NP与计算的难解性"></a>Chapter 8 NP and Computational Intractability NP与计算的难解性</h2><h3 id="8-1多项式时间归约"><a href="#8-1多项式时间归约" class="headerlink" title="8.1多项式时间归约"></a>8.1多项式时间归约</h3><blockquote>
 <p>定理：若X能归约成Y,则X≤pY</p>
 </blockquote>
-<p>因为X问题能归约成Y问题解决说明，Y的解决方式能解决X,甚至可能解决比X难的问题，而且X问题至少能用Y的方法将解决，也可能存在更轻便的方法，所以X≤pY</p>
+<p>因为X问题能归约成Y问题解决说明，Y的解决方式能解决X,甚至可能解决比X难的问题，而且X问题至少能用Y的方法将解决，也可能存在更轻便的方法，所以X≤pY （左边的为简单问题，右边为难问题）</p>
 <blockquote>
 <p>定理：</p>
 <p>-&gt; X≤pY，若Y能在多项式时间解决，则X能在多项式时间解决。</p>
@@ -427,21 +496,82 @@
 <p>-&gt;<strong>三角形之间互联的边</strong>：需要注意的是，不同三角形中可能跟有对应的同一个项的情况，为了不能出现矛盾，将项与其对应的否互联起来，保证他们不能同时被取到，形成限制满足了要求。</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041632705.png" srcset="/img/loading.gif" lazyload alt="image-20241204163211633"></p>
 <p>归约完成：存在一种可满足的情况→存在大小至少为k的独立集    </p>
+<div class="note note-success">
+            <p>证不可满足比证找到一个可满足的情况要难，需要验证所有的情况</p>
+          </div>
+<h5 id="最终观察：归约的传递性"><a href="#最终观察：归约的传递性" class="headerlink" title="最终观察：归约的传递性"></a>最终观察：归约的传递性</h5><blockquote>
+<p>归约具有传递性：如果Z≤pY,且Y≤pX，则Z≤pX</p>
+</blockquote>
+<p>已有：3-SAT≤p独立集≤p顶点覆盖≤p集合覆盖</p>
+<p>=&gt; 3-SAT≤p集合覆盖</p>
 <h3 id="8-3-有效证书与NP的定义"><a href="#8-3-有效证书与NP的定义" class="headerlink" title="8.3 有效证书与NP的定义"></a>8.3 有效证书与NP的定义</h3><h4 id="问题和算法"><a href="#问题和算法" class="headerlink" title="问题和算法"></a>问题和算法</h4><p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041659590.png" srcset="/img/loading.gif" lazyload alt="image-20241204165933539"></p>
-<p>p的定义：</p>
+<p>以素数判别为例子：X就是所有素数的集合，s就是数对应的01字符串，对应在X中的s,算法能够判定s属于素数集合，即A(s)=yes.</p>
+<p>以最短路径问题为例：X就是</p>
+<p>P问题的定义：所有能够有多项式时间算法的问题</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041702796.png" srcset="/img/loading.gif" lazyload alt="image-20241204170232743"></p>
-<p>将难问题放在左边以证明NP完备</p>
+<p>NP：非确定多项式时间图灵计算可识别的</p>
+<p>certifier 验证器(C) (多项式时间算法)，它接受两个输入： s 输入的要验证的解， t 证据</p>
+<p>C(s,t) </p>
+<p>NP：所有判定问题只要存在有这样一个多项式时间的验证器，就叫做NP问题</p>
+<p>只有yes需要提供证据，no不需要提供证据？</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041703779.png" srcset="/img/loading.gif" lazyload alt="image-20241204170315735"></p>
 <p>例子：</p>
 <p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202412041703574.png" srcset="/img/loading.gif" lazyload alt="image-20241204170350524"></p>
 <p>P 与 NP</p>
-<p>NP：</p>
-<p>非确定的多项式时间</p>
+<p>NP：全称Nondeterministic Polynomial - time ，NP是非确定多项式时间的缩写。。NP 问题是指那些可以在非确定性图灵机上，在多项式时间内<strong>验证解</strong>的正确性的问题</p>
 <p>对于问题存在一个多项式时间的证据</p>
-<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p>作业：</p>
-<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241204100519146.png" srcset="/img/loading.gif" lazyload alt="image-20241204100519146"></p>
+<p>哈密顿环路 也是NP问题</p>
+<p>P:存在多项式时间算法解决判断问题</p>
+<p>EXP:存在指数时间解决判定算法的问题</p>
+<p>NP:对判定问题，存在多项式时间算法的验证器</p>
+<blockquote>
+<p>定理：</p>
+<p>P NP</p>
+<p>NP EXP</p>
+</blockquote>
+<p>EXP可以刻画所有的NP问题</p>
+<p>把所有可能的排列都通过C(s,t)算法验证一遍，即找到指数时间的判定算法</p>
+<h3 id="8-4-NP完备问题"><a href="#8-4-NP完备问题" class="headerlink" title="8.4 NP完备问题"></a>8.4 NP完备问题</h3><p>Cook归约 </p>
+<p>Karp变化</p>
+<p>问题:这两种归约是一样的吗？ </p>
+<p>NP完备性</p>
+<p>将难问题放在左边以证明NP完备</p>
+<p>1.先说明该问题是NP问题：多项式时间检查算法</p>
+<p>2.证明：找一个已知难问题归约到这个问题</p>
+<h2 id="作业："><a href="#作业：" class="headerlink" title="作业："></a>作业：</h2><h3 id="第一次作业："><a href="#第一次作业：" class="headerlink" title="第一次作业："></a>第一次作业：</h3><p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241204100519146.png" srcset="/img/loading.gif" lazyload alt="image-20241204100519146"></p>
 <p>解答：</p>
 <p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241204100812484.png" srcset="/img/loading.gif" lazyload alt="image-20241204100812484"></p>
+<h3 id="第二次作业"><a href="#第二次作业" class="headerlink" title="第二次作业"></a>第二次作业</h3><p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211112901336.png" srcset="/img/loading.gif" lazyload alt="image-20241211112901336"></p>
+<p>对a 它不具有自反性</p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211113136538.png" srcset="/img/loading.gif" lazyload alt="image-20241211113136538"></p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114442529.png" srcset="/img/loading.gif" lazyload alt="image-20241211114442529"></p>
+<p>循环不变量：用循环不变量去证明排序的正确性</p>
+<p>描述：k-&gt;k+1-&gt;n</p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211115442805.png" srcset="/img/loading.gif" lazyload alt="image-20241211115442805"></p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114216607.png" srcset="/img/loading.gif" lazyload alt="image-20241211114216607"></p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114314267.png" srcset="/img/loading.gif" lazyload alt="image-20241211114314267"></p>
+<p>1.改造BFS来实现寻找环路</p>
+<p>2.并查集实现判断有无环路</p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211114332790.png" srcset="/img/loading.gif" lazyload alt="image-20241211114332790"></p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241211115259126.png" srcset="/img/loading.gif" lazyload alt="image-20241211115259126"></p>
+<h3 id="第三次作业"><a href="#第三次作业" class="headerlink" title="第三次作业"></a>第三次作业</h3><h4 id="chapter-4-page190-5"><a href="#chapter-4-page190-5" class="headerlink" title="chapter 4  page190 5"></a>chapter 4  page190 5</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Let’s consider <span class="hljs-keyword">a</span> <span class="hljs-keyword">long</span>, quiet country road <span class="hljs-keyword">with</span> houses scattered very<br>sparsely along <span class="hljs-keyword">it</span>. (We can picture <span class="hljs-keyword">the</span> road <span class="hljs-keyword">as</span> <span class="hljs-keyword">a</span> <span class="hljs-keyword">long</span> <span class="hljs-built_in">line</span> <span class="hljs-keyword">segment</span>, <span class="hljs-keyword">with</span><br><span class="hljs-keyword">an</span> eastern endpoint <span class="hljs-keyword">and</span> <span class="hljs-keyword">a</span> western endpoint.) Further, let’s suppose that<br>despite <span class="hljs-keyword">the</span> bucolic setting, <span class="hljs-keyword">the</span> residents <span class="hljs-keyword">of</span> all these houses are avid cell<br>phone users. You want <span class="hljs-built_in">to</span> place cell phone base stations <span class="hljs-keyword">at</span> certain points<br>along <span class="hljs-keyword">the</span> road, so that every house is <span class="hljs-keyword">within</span> <span class="hljs-literal">four</span> miles <span class="hljs-keyword">of</span> <span class="hljs-literal">one</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> base<br>stations.<br>Give <span class="hljs-keyword">an</span> efficient algorithm that achieves this goal, <span class="hljs-keyword">using</span> <span class="hljs-keyword">as</span> few base<br>stations <span class="hljs-keyword">as</span> possible.<br></code></pre></td></tr></table></figure>
+<h4 id="chapter-4-page190-6"><a href="#chapter-4-page190-6" class="headerlink" title="chapter 4 page190 6"></a>chapter 4 page190 6</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Your friend is working <span class="hljs-keyword">as</span> <span class="hljs-keyword">a</span> camp counselor, <span class="hljs-keyword">and</span> he is <span class="hljs-keyword">in</span> charge <span class="hljs-keyword">of</span><br>organizing activities <span class="hljs-keyword">for</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">set</span> <span class="hljs-keyword">of</span> junior-high-school-age campers. One <span class="hljs-keyword">of</span><br>his plans is <span class="hljs-keyword">the</span> following mini-triathalon exercise: <span class="hljs-keyword">each</span> contestant must<br>swim <span class="hljs-number">20</span> laps <span class="hljs-keyword">of</span> <span class="hljs-keyword">a</span> pool, <span class="hljs-keyword">then</span> bike <span class="hljs-number">10</span> miles, <span class="hljs-keyword">then</span> run <span class="hljs-number">3</span> miles. The plan is<br><span class="hljs-built_in">to</span> <span class="hljs-built_in">send</span> <span class="hljs-keyword">the</span> contestants out <span class="hljs-keyword">in</span> <span class="hljs-keyword">a</span> staggered fashion, via <span class="hljs-keyword">the</span> following rule:<br><span class="hljs-keyword">the</span> contestants must use <span class="hljs-keyword">the</span> pool <span class="hljs-literal">one</span> <span class="hljs-keyword">at</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">time</span>. In other <span class="hljs-keyword">words</span>, <span class="hljs-keyword">first</span> <span class="hljs-literal">one</span><br>contestant swims <span class="hljs-keyword">the</span> <span class="hljs-number">20</span> laps, gets out, <span class="hljs-keyword">and</span> starts biking. As soon <span class="hljs-keyword">as</span> this<br><span class="hljs-keyword">first</span> person is out <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> pool, <span class="hljs-keyword">a</span> <span class="hljs-keyword">second</span> contestant <span class="hljs-keyword">begins</span> swimming <span class="hljs-keyword">the</span><br><span class="hljs-number">20</span> laps; <span class="hljs-keyword">as</span> soon <span class="hljs-keyword">as</span> he <span class="hljs-keyword">or</span> she is out <span class="hljs-keyword">and</span> starts biking, <span class="hljs-keyword">a</span> <span class="hljs-keyword">third</span> contestant<br><span class="hljs-keyword">begins</span> swimming . . . <span class="hljs-keyword">and</span> so on.)<br>Each contestant has <span class="hljs-keyword">a</span> projected swimming <span class="hljs-built_in">time</span> (<span class="hljs-keyword">the</span> expected <span class="hljs-built_in">time</span> <span class="hljs-keyword">it</span><br>will take him <span class="hljs-keyword">or</span> her <span class="hljs-built_in">to</span> complete <span class="hljs-keyword">the</span> <span class="hljs-number">20</span> laps), <span class="hljs-keyword">a</span> projected biking <span class="hljs-built_in">time</span> (<span class="hljs-keyword">the</span><br>expected <span class="hljs-built_in">time</span> <span class="hljs-keyword">it</span> will take him <span class="hljs-keyword">or</span> her <span class="hljs-built_in">to</span> complete <span class="hljs-keyword">the</span> <span class="hljs-number">10</span> miles <span class="hljs-keyword">of</span> bicycling),<br><span class="hljs-keyword">and</span> <span class="hljs-keyword">a</span> projected running <span class="hljs-built_in">time</span> (<span class="hljs-keyword">the</span> <span class="hljs-built_in">time</span> <span class="hljs-keyword">it</span> will take him <span class="hljs-keyword">or</span> her <span class="hljs-built_in">to</span> complete<br><span class="hljs-keyword">the</span> <span class="hljs-number">3</span> miles <span class="hljs-keyword">of</span> running). Your friend wants <span class="hljs-built_in">to</span> decide <span class="hljs-keyword">on</span> <span class="hljs-title">a</span> <span class="hljs-title">schedule</span> <span class="hljs-title">for</span> <span class="hljs-title">the</span><br>triathalon: <span class="hljs-keyword">an</span> order <span class="hljs-keyword">in</span> which <span class="hljs-built_in">to</span> sequence <span class="hljs-keyword">the</span> starts <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> contestants.<br>Let’s say that <span class="hljs-keyword">the</span> completion <span class="hljs-built_in">time</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">a</span> schedule is <span class="hljs-keyword">the</span> earliest <span class="hljs-built_in">time</span> <span class="hljs-keyword">at</span><br>which all contestants will be finished <span class="hljs-keyword">with</span> all <span class="hljs-literal">three</span> legs <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> triathalon,<br>assuming they <span class="hljs-keyword">each</span> spend exactly their projected swimming, biking, <span class="hljs-keyword">and</span><br>running times <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">three</span> <span class="hljs-title">parts</span>. (<span class="hljs-title">Again</span>, <span class="hljs-title">note</span> <span class="hljs-title">that</span> <span class="hljs-title">participants</span> <span class="hljs-title">can</span> <span class="hljs-title">bike</span><br><span class="hljs-keyword">and</span> run simultaneously, but <span class="hljs-keyword">at</span> most <span class="hljs-literal">one</span> person can be <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> pool <span class="hljs-keyword">at</span><br><span class="hljs-keyword">any</span> <span class="hljs-built_in">time</span>.) What’s <span class="hljs-keyword">the</span> best order <span class="hljs-keyword">for</span> sending people out, <span class="hljs-keyword">if</span> <span class="hljs-literal">one</span> wants <span class="hljs-keyword">the</span><br><span class="hljs-keyword">whole</span> competition <span class="hljs-built_in">to</span> be over <span class="hljs-keyword">as</span> early <span class="hljs-keyword">as</span> possible? More precisely, give<br><span class="hljs-keyword">an</span> efficient algorithm that produces <span class="hljs-keyword">a</span> schedule whose completion <span class="hljs-built_in">time</span><br>is <span class="hljs-keyword">as</span> small <span class="hljs-keyword">as</span> possible.<br></code></pre></td></tr></table></figure>
+<h4 id="chapter-4-page190-7"><a href="#chapter-4-page190-7" class="headerlink" title="chapter 4 page190 7"></a>chapter 4 page190 7</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The manager <span class="hljs-keyword">of</span> <span class="hljs-keyword">a</span> large student <span class="hljs-built_in">union</span> <span class="hljs-keyword">on</span> <span class="hljs-title">campus</span> <span class="hljs-title">comes</span> <span class="hljs-title">to</span> <span class="hljs-title">you</span> <span class="hljs-title">with</span> <span class="hljs-title">the</span><br>following problem. She’s <span class="hljs-keyword">in</span> charge <span class="hljs-keyword">of</span> <span class="hljs-keyword">a</span> group <span class="hljs-keyword">of</span> n students, <span class="hljs-keyword">each</span> <span class="hljs-keyword">of</span> whom<br>is scheduled <span class="hljs-built_in">to</span> work <span class="hljs-literal">one</span> shift during <span class="hljs-keyword">the</span> week. There are different jobs<br>associated <span class="hljs-keyword">with</span> these shifts (tending <span class="hljs-keyword">the</span> main desk, helping <span class="hljs-keyword">with</span> package<br>delivery, rebooting cranky information kiosks, etc.), but we can view <span class="hljs-keyword">each</span><br>shift <span class="hljs-keyword">as</span> <span class="hljs-keyword">a</span> single contiguous interval <span class="hljs-keyword">of</span> <span class="hljs-built_in">time</span>. There can be multiple shifts<br>going <span class="hljs-keyword">on</span> <span class="hljs-title">at</span> <span class="hljs-title">once</span>.<br>She’s trying <span class="hljs-built_in">to</span> choose <span class="hljs-keyword">a</span> subset <span class="hljs-keyword">of</span> these n students <span class="hljs-built_in">to</span> form <span class="hljs-keyword">a</span> supervising committee that she can meet <span class="hljs-keyword">with</span> once <span class="hljs-keyword">a</span> week. She considers such<br><span class="hljs-keyword">a</span> committee <span class="hljs-built_in">to</span> be complete <span class="hljs-keyword">if</span>, <span class="hljs-keyword">for</span> every student <span class="hljs-keyword">not</span> <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">committee</span>,<br>that student’s shift overlaps (<span class="hljs-keyword">at</span> least partially) <span class="hljs-keyword">the</span> shift <span class="hljs-keyword">of</span> some student<br>who is <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">committee</span>. <span class="hljs-title">In</span> <span class="hljs-title">this</span> <span class="hljs-title">way</span>, <span class="hljs-title">each</span> <span class="hljs-title">student</span>’<span class="hljs-title">s</span> <span class="hljs-title">performance</span> <span class="hljs-title">can</span> <span class="hljs-title">be</span><br>observed <span class="hljs-keyword">by</span> <span class="hljs-keyword">at</span> least <span class="hljs-literal">one</span> person who’s serving <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">committee</span>.<br>Give <span class="hljs-keyword">an</span> efficient algorithm that takes <span class="hljs-keyword">the</span> schedule <span class="hljs-keyword">of</span> n shifts <span class="hljs-keyword">and</span><br>produces <span class="hljs-keyword">a</span> complete supervising committee containing <span class="hljs-keyword">as</span> few students<br><span class="hljs-keyword">as</span> possible.<br>Example. Suppose n = <span class="hljs-number">3</span>, <span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span> shifts are<br>Monday <span class="hljs-number">4</span> P.M.–Monday <span class="hljs-number">8</span> P.M.,<br>Monday <span class="hljs-number">6</span> P.M.–Monday <span class="hljs-number">10</span> P.M.,<br>Monday <span class="hljs-number">9</span> P.M.–Monday <span class="hljs-number">11</span> P.M..<br>Then <span class="hljs-keyword">the</span> smallest complete supervising committee would consist <span class="hljs-keyword">of</span> just<br><span class="hljs-keyword">the</span> <span class="hljs-keyword">second</span> student, since <span class="hljs-keyword">the</span> <span class="hljs-keyword">second</span> shift overlaps both <span class="hljs-keyword">the</span> <span class="hljs-keyword">first</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span><br><span class="hljs-keyword">third</span>.<br></code></pre></td></tr></table></figure>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p>1.婚姻稳定匹配算法</p>
+<p>2.排序：</p>
+<p>插入排序，选择排序  复杂度O(n^2)</p>
+<p>循环不变量的阐述</p>
+<p>到分治法，合并排序复杂度nlogn</p>
+<p>贪心算法一定会考证明</p>
+<p>主方法一定会考，对伊普西隆要进行说明，怎么来的</p>
+<p>要论证，动态规划方程</p>
+<p>关键是记表法</p>
+<p>给一个问题能设                                                                                                                                                                                                                             计动态规划算法</p>
+<p>堆排序</p>
+<p>堆-一维数组</p>
+<p>网络流需要分析时间复杂度，考一个简单点的应用</p>
+<p>​                </p>
+<p><img src="C:/Users/chongyan/AppData/Roaming/Typora/typora-user-images/image-20241225112441178.png" srcset="/img/loading.gif" lazyload alt="image-20241225112441178">                                                                                                                                                                                                                                                                                         </p>
 
                 
               </div>
@@ -510,6 +640,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/post/Introduction-to-Security-Reduction.html" title="Introduction to Security Reduction">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Introduction to Security Reduction</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
