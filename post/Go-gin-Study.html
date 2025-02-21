@@ -16,22 +16,26 @@
   <meta name="author" content="c1ongyan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Bilinear Map Group参考资料：https:&#x2F;&#x2F;people.csail.mit.edu&#x2F;alinush&#x2F;6.857-spring-2015&#x2F;papers&#x2F;bilinear-maps.pdf 对双线性配对群的理解： 能够解决一次DH问题： 双线性映射简介双线性映射的定义设$G_{1}$、$G_{2}$和$G_{t}$是相同阶的循环群。 定义：从$G_{1}×G_{2}$到$G_{t}">
+    <meta name="description" content="Go_gin框架学习 1.Goland使用 官方文档：https:&#x2F;&#x2F;go.dev&#x2F;doc&#x2F;tutorial&#x2F; gin框架地址:https:&#x2F;&#x2F;github.com&#x2F;gin-gonic&#x2F;gin 框架：Go,Fiber,iris,Beego 框架其实可以理解为库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bilinear Map Group">
-<meta property="og:url" content="http://example.com/post/Bilinear-Map-Group.html">
+<meta property="og:title" content="Go_gin_Study">
+<meta property="og:url" content="http://example.com/post/Go-gin-Study.html">
 <meta property="og:site_name" content="c1ongyan">
-<meta property="og:description" content="Bilinear Map Group参考资料：https:&#x2F;&#x2F;people.csail.mit.edu&#x2F;alinush&#x2F;6.857-spring-2015&#x2F;papers&#x2F;bilinear-maps.pdf 对双线性配对群的理解： 能够解决一次DH问题： 双线性映射简介双线性映射的定义设$G_{1}$、$G_{2}$和$G_{t}$是相同阶的循环群。 定义：从$G_{1}×G_{2}$到$G_{t}">
+<meta property="og:description" content="Go_gin框架学习 1.Goland使用 官方文档：https:&#x2F;&#x2F;go.dev&#x2F;doc&#x2F;tutorial&#x2F; gin框架地址:https:&#x2F;&#x2F;github.com&#x2F;gin-gonic&#x2F;gin 框架：Go,Fiber,iris,Beego 框架其实可以理解为库">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-21T07:48:35.000Z">
-<meta property="article:modified_time" content="2024-12-22T12:35:55.449Z">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202501240001595.jpeg">
+<meta property="article:published_time" content="2025-01-23T15:58:26.000Z">
+<meta property="article:modified_time" content="2025-01-23T17:32:22.007Z">
 <meta property="article:author" content="c1ongyan">
-<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="gin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202501240001595.jpeg">
   
   
   
-  <title>Bilinear Map Group - c1ongyan</title>
+  <title>Go_gin_Study - c1ongyan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Bilinear Map Group"></span>
+            <span id="subtitle" data-typed-text="Go_gin_Study"></span>
           
         </div>
 
@@ -211,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-21 15:48" pubdate>
-          2024年12月21日 下午
+        <time datetime="2025-01-23 23:58" pubdate>
+          2025年1月23日 晚上
         </time>
       </span>
     
@@ -223,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.4k 字
+          125 字
         
       </span>
     
@@ -234,7 +238,7 @@
         
         
         
-          53 分钟
+          2 分钟
         
       </span>
     
@@ -272,70 +276,17 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Bilinear Map Group</h1>
+            <h1 style="display: none">Go_gin_Study</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Bilinear-Map-Group"><a href="#Bilinear-Map-Group" class="headerlink" title="Bilinear Map Group"></a>Bilinear Map Group</h1><p>参考资料：<a target="_blank" rel="noopener" href="https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/bilinear-maps.pdf">https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/bilinear-maps.pdf</a></p>
-<p>对双线性配对群的理解：</p>
-<p>能够解决一次DH问题：</p>
-<h2 id="双线性映射简介"><a href="#双线性映射简介" class="headerlink" title="双线性映射简介"></a>双线性映射简介</h2><h4 id="双线性映射的定义"><a href="#双线性映射的定义" class="headerlink" title="双线性映射的定义"></a>双线性映射的定义</h4><p>设$G_{1}$、$G_{2}$和$G_{t}$是相同阶的循环群。 定义：从$G_{1}×G_{2}$到$G_{t}$的双线性映射是一个函数$e: G_{1}×G_{2} \to G_{t}$，使得对于所有$u \in G_{1}$，$v \in G_{2}$，$a$，$b \in \mathbb{Z}$，都有$e\left(u^{a}, v^{b}\right)=e(u, v)^{a b}$。 </p>
-<p>双线性映射被称为配对，因为它们将$G_{1}$和$G_{2}$中的元素对与$G_{t}$中的元素相关联。需要注意的是，这个定义包含了退化映射，即把所有元素都映射到$G_{t}$的单位元。     </p>
-<h4 id="可允许双线性映射的定义"><a href="#可允许双线性映射的定义" class="headerlink" title="可允许双线性映射的定义"></a>可允许双线性映射的定义</h4><p>设$e: G_{1}×G_{2} \to G_{t}$是一个双线性映射。设$g_{1}$和$g_{2}$分别是$G_{1}$和$G_{2}$的生成元。 定义：如果$e(g_{1}, g_{2})$生成$G_{t}$且$e$是可高效计算的，那么映射$e$是一个可允许双线性映射。 </p>
-<p>这些是我们唯一关注的双线性映射。有时这样的映射会被记为$\hat{e}$，但我们这里继续使用$e$。从现在起，当我们说双线性映射时，默认指的是可允许双线性映射。    </p>
-<h4 id="G-1-、-G-2-和-G-t-之间的关系"><a href="#G-1-、-G-2-和-G-t-之间的关系" class="headerlink" title="$G_{1}$、$G_{2}$和$G_{t}$之间的关系"></a>$G_{1}$、$G_{2}$和$G_{t}$之间的关系</h4><p>$G_{1}$、$G_{2}$和$G_{t}$由于阶相同且是循环群，所以它们彼此同构。</p>
-<p>但在元素表示和运算计算方面它们是不同的群。通常情况下，$G_{1}=G_{2}$（除了同构之外）。</p>
-<p>从现在起，除非另有说明，我们都假设$G = G_{1}=G_{2}$。$G$和$G_{t}$可以是合数阶或素数阶，这会影响它们的工作/使用方式，其中素数阶更为常见。 </p>
-<p>如果$G = G_{t}$，则称为自双线性映射，它非常强大，但目前还没有已知的例子，构造一个自双线性映射是一个开放问题。     </p>
-<h4 id="其他符号表示"><a href="#其他符号表示" class="headerlink" title="其他符号表示"></a>其他符号表示</h4><p>有时$G$采用加法表示。在这种情况下，$P$、$Q$是$G$中元素的常用名称，双线性性质表示为$\forall P, Q \in G$，$\forall a$，$b \in \mathbb{Z}$，$e(a P, b Q)=e(P, Q)^{a b}$。</p>
-<p>但我更喜欢$G$和$G_{t}$都采用乘法表示，并且后续会继续使用这种表示。    </p>
-<h4 id="实际实例-使用哪些群？"><a href="#实际实例-使用哪些群？" class="headerlink" title="实际实例     使用哪些群？"></a>实际实例     使用哪些群？</h4><p>通常$G$是椭圆曲线（或其子群），例如有限域$F_{p}$上由$y^{2}=x^{3}+1$定义的椭圆曲线就是一个简单例子。 </p>
-<ul>
-<li><p>超奇异曲线 </p>
-</li>
-<li><p>MNT 曲线 </p>
-</li>
-<li><p>在超奇异曲线和 MNT 曲线之间进行选择会影响性能。</p>
-</li>
-</ul>
-<p>更一般地，$G$通常是某个域上的阿贝尔簇，椭圆曲线是维度为 1 的阿贝尔簇，其他阿贝尔簇也有一些研究。</p>
-<p>$G_{t}$通常是一个有限域。     </p>
-<h4 id="使用哪些双线性映射？"><a href="#使用哪些双线性映射？" class="headerlink" title="使用哪些双线性映射？"></a>使用哪些双线性映射？</h4><p>（修正的）Weil 配对和 Tate 配对几乎是已知的仅有的例子。 数学非常复杂，计算非平凡，但使用它们并不需要理解其数学原理。 - Weil 和 Tate 配对使用 Miller 算法计算，计算成本较高。在某些方案中，通常会明确说明操作需要多少个配对。 - Tate 配对通常比 Weil 配对快一些，如何使它们计算更快是当前的研究热点。    </p>
-<h3 id="问题与假设"><a href="#问题与假设" class="headerlink" title="问题与假设"></a>问题与假设</h3><p>基础      </p>
-<p>判定性 Diffie - Hellman（DDH） </p>
-<p>关于双线性映射首先要知道的是它们对判定性 Diffie - Hellman（DDH）问题的影响。回顾定义： 设$G$是一个阶为$q$且生成元为$g$的群。概率算法$A$在$G$中解决判定性 Diffie - Hellman 问题的优势为： </p>
-<script type="math/tex; mode=display">
-[Adv_{\mathcal{A}, G}^{DDH}=\left|P\left[\mathcal{A}\left(g, g^{a}, g^{b}, g^{a b}\right)=1\right]-P\left[\mathcal{A}\left(g, g^{a}, g^{b}, g^{z}\right)=1\right]\right|]</script><p> 其中$a$，$b$，$z$是从$\mathbb{Z}_{q}$上的均匀分布中选取的，概率是对$a$，$b$，$z$的选择和$A$的硬币翻转取的。      双线性映射使 DDH 问题变得容易！ 双线性映射的一个基本性质是使$G$中的 DDH 问题变得容易。 给定$g$，$g^{a}$，$g^{b}$，$g^{c}$，通过检查$e(g^{a}, g^{b})=e(g, g^{c})$就可以确定$c \equiv a b \bmod q$。 然而，如果映射是从不同的群$G_{1}$和$G_{2}$，那么$DDH$在$G_{1}$或$G_{2}$中可能仍然很难（XDH 假设）。据信某些 MNT 曲线（且仅有这些曲线）满足这种情况，这只有在$G_{1}$和$G_{2}$之间不存在可高效计算的同构时才可能。有一些方案使用了这个假设。      </p>
-<p>计算性 Diffie - Hellman（CDH） </p>
-<p>需要注意的是，计算性 Diffie - Hellman（CDH）在$G$中可能仍然很难。也就是说，双线性映射目前并不知道对解决 CDH 问题有帮助。 如果一个素数阶群$G$中 DDH 问题容易但 CDH 问题难，则称$G$为间隙 Diffie - Hellman（GDH）群。这个定义与双线性映射的存在无关，双线性映射可以被看作是构造 GDH 群的一种尝试。      </p>
-<p>离散对数 关于双线性映射下的离散对数有以下事实。 定理：如果存在双线性映射$e: G ×G \to G_{t}$，那么$G$中的离散对数问题不会比$G_{t}$中的离散对数问题更难。 证明过程也很直接。给定$g \in G$和$g^{a} \in G$，我们可以计算$e(g, g) \in G_{t}$和$e(g, g^{a})=e(g, g)^{a} \in G_{t}$。然后我们可以使用$G_{t}$的离散对数求解器来得到$a$，这被称为 MOV 归约。     </p>
-<p>新问题      </p>
-<p>最常见的新问题 </p>
-<p>在新的双线性背景下，已经定义了一些新问题并假设它们是困难的。 - </p>
-<p><strong>双线性 Diffie - Hellman 问题</strong>：给定$g$，$g^{a}$，$g^{b}$，$g^{c}$，计算$e(g, g)^{a b c}$（类似于一种“三方”CDH，但跨越两个群）。 - </p>
-<p><strong>判定性双线性 Diffie - Hellman 问题</strong>：区分$g$，$g^{a}$，$g^{b}$，$g^{c}$，$e(g, g)^{a b c}$和$g$，$g^{a}$，$g^{b}$，$g^{c}$，$e(g, g)^{z}$。 -</p>
-<p> <strong>$k$-双线性 Diffie - Hellman 求逆问题</strong>：给定$g$，$g^{y}$，$g^{y^{2}}$，…，$g^{y^{k}}$，计算$e(g, g)^{\frac{1}{y}}$。 -</p>
-<p> <strong>$k$-判定性双线性 Diffie - Hellman 求逆问题</strong>：区分$g$，$g^{y}$，$g^{y^{2}}$，…，$g^{y^{k}}$，$e(g, g)^{\frac{1}{y}}$和$g$，$g^{y}$，$g^{y^{2}}$，…，$g^{y^{k}}$，$e(g, g)^{z}$。      更多新问题 如果我们有一个从不同群$G_{1}$和$G_{2}$的映射，那么我们可以有“Co”假设。 -</p>
-<p> <strong>计算性 Co - Diffie - Hellman 问题</strong>：给定$g_{1}$，$g_{1}^{a} \in G_{1}$和$g_{2}$，$g_{2}^{b} \in G_{2}$，计算$g_{2}^{a b}$。 -</p>
-<p> <strong>判定性 Co - Diffie - Hellman 问题</strong>：区分$g_{1}$，$g_{1}^{a} \in G_{1}$和$g_{2}$，$g_{2}^{b}$，$g_{2}^{a b} \in G_{2}$与$g_{1}$，$g_{1}^{a} \in G_{1}$和$g_{2}$，$g_{2}^{b}$，$g_{2}^{z} \in G_{2}$。 - </p>
-<p><strong>Co - 双线性 Diffie - Hellman 问题</strong>：给定$g_{1}$，$g_{1}^{a}$，$g_{1}^{b} \in G_{1}$和$g_{2} \in G_{2}$，计算$e(g_{1}, g_{2})^{a b}$。 - </p>
-<p><strong>判定性 Co - 双线性 Diffie - Hellman 问题</strong>：区分$g_{1}$，$g_{1}^{a}$，$g_{1}^{b}$，$g_{2}$，$e(g_{1}, g_{2})^{a b}$与$g_{1}$，$g_{1}^{a}$，$g_{1}^{b}$，$g_{2}$，$e\left(g_{1}, g_{2}\right)^{z}$。    </p>
-<p>使用历史    </p>
-<p> 早期应用      密码学中配对的引入 - 1993 年：用于破解密码。Weil 和 Tate 配对首次在密码学背景下用于尝试破解椭圆曲线密码系统（ECC），其思路是将椭圆曲线中的离散对数问题（DLP）归约到有限域中的 DLP（MOV 归约）。 - 2000 年：首次“良好”应用。Joux 的一轮三方 Diffie - Hellman 协议，虽然之前存在多方 Diffie - Hellman 的多轮方案，但该协议展示了双线性映射的有用性。 - 2001 年：Boneh 和 Franklin 的基于身份的加密方案，这是第一个实用的基于身份的加密（IBE）方案，展示了双线性映射允许构建全新的方案，具有很大的影响力。     近期应用（2001 年至今 2006 年） - </p>
-<p>基于双线性映射的许多新原语方案和现有原语的改进方案。 -</p>
-<p> <strong>IBE 相关内容</strong>：    - 分层基于身份的加密（HIBE）    - 对偶 - HIBE    - 无随机预言机的 IBE、HIBE    - 具有阈值解密的 IBE - <strong>基于身份的签名（也包括基于身份的盲签名、环签名、分层基于身份的签名）</strong>：    - 基于身份的变色龙哈希    - 基于身份的“签密” - <strong>签名</strong>：    - 短签名（也有无随机预言机的）    - 盲签名、多重签名、聚合签名、可验证加密签名、环签名    - 阈值签名    - 无随机预言机的唯一签名    - 无随机预言机的基于认证树的签名 - <strong>其他内容</strong>：    - BGN 密码系统，具有某种双同态性质    - 阈值解密    - $k$方密钥协商    - 识别方案    - 还有很多    双线性映射的使用     直觉 非正式地说，为什么双线性映射如此有用？它允许你“作弊”并解决一次计算性 Diffie - Hellman 问题，但仅一次！之后，你就会被困在$G_{t}$群中。这似乎是一种恰到好处的能力，足以使构造工作变得可行，但又不足以使其不安全。现在来看几个基于配对的构造示例来说明这一点。     基于配对的构造示例      Joux 的三方 Diffie - Hellman 协议 这是一个简单的协议，你几乎可以当场想出。 设$G$是一个素数阶$q$的群，$e: G ×G \to G_{t}$是一个双线性映射，$g$是$G$的生成元。设$\hat{g}=e(g, g) \in G_{t}$。 协议步骤如下： 1. Alice 从$\mathbb{Z}_{q}$中随机选取$a$，Bob 从$\mathbb{Z}_{q}$中随机选取$b$，Carol 从$\mathbb{Z}_{q}$中随机选取$c$。 2. Alice、Bob 和 Carol 分别广播$g^{a}$、$g^{b}$和$g^{c}$。 3. Alice 计算$e(g^{b}, g^{c})^{a}=\hat{g}^{a b c}$，Bob 计算$e(g^{c}, g^{a})^{b}=\hat{g}^{a b c}$，Carol 计算$e(g^{a}, g^{b})^{c}=\hat{g}^{a b c}$。 从 Alice 的角度来看，映射允许她从$g^{b}$和$g^{c}$“作弊”得到$\hat{g}^{b c}$，然后通过常规指数运算得到$\hat{g}^{a b c}$。需要注意的是，不能使用$e$从$g^{a}$，$g^{b}$，$g^{c}$直接得到$\hat{g}^{a b c}$，因为$e(g^{a}, e(g^{b}, g^{c}))=e(g^{a}, \hat{g}^{b c}) \neq\hat{g}^{a b c}$（$\hat{g}^{b c}$不在$G$中），并且只允许一次“作弊”。      Boneh 和 Franklin 的 IBE 方案 设$G$是一个素数阶$q$的群，$e: G ×G \to G_{t}$是一个双线性映射，$g$是$G$的生成元。设$\hat{g}=e(g, g) \in G_{t}$。设$h_{1}:{0,1}^{<em>} \to G$和$h_{2}: G_{t} \to {0,1}^{</em>}$是哈希函数，这些都是公共参数。 - <strong>设置（Setup）</strong>：私钥生成</p>
-<p>- <strong>设置（Setup）</strong>：PKG（私钥生成中心）从 $\mathbb{Z}_{q} $中随机选取 $s $，则 $g^{s} $是 PKG 的公钥。 - <strong>加密（Encryption）</strong>：如果 Alice 想给 Bob 发送消息 $m $，她从 $\mathbb{Z}_{q} $中随机选取 $r $，然后计算：</p>
-<script type="math/tex; mode=display">
-Encrypt(g, g^{s}, "Bob", m)=(g^{r}, m \oplus h_{2}\left(e\left(h_{1}("Bob"), g^{s}\right)^{r}\right)=\left(g^{r}, m \oplus h_{2}\left(e\left(h_{1}("Bob"), g\right)^{r s}\right)\right)</script><p><strong>生成私钥（Making a Private Key）</strong>：PKG 可以按照如下方式计算 Bob 的私钥：</p>
-<script type="math/tex; mode=display">
-MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）</strong>：给定加密消息 $(u, v)=\left(g^{r}, m \oplus h_{2}(e(h_{1}(“Bob”), g)^{r s})\right) $和私钥 $w = h_{1}( “Bob”)^{s} $，Bob 可以按照如下方式解密：</p>
-<script type="math/tex; mode=display">
- \begin{align*} Decrypt(u, v, w)&=v \oplus h_{2}(e(w, u))\\ &=m \oplus h_{2}\left(e\left(h_{1}("Bob"), g\right)^{r s}\right)\\ &\oplus h_{2}\left(e\left(h_{1}("Bob")^{s}, g^{r}\right)\right)\\ &=m \oplus h_{2}\left(e\left(h_{1}("Bob"), g\right)^{r s}\right)\\ &\oplus h_{2}\left(e\left(h_{1}("Bob"), g\right)^{r s}\right)\\ &=m \end{align*}</script><p> 如何理解这个方案呢？设 $t $是 $h_{1}( “Bob”) $以 $g $为底的离散对数，我们虽然不知道它的值，但它是有明确定义的。现在的情况类似于三方 Diffie - Hellman 协议，Alice 有公开的 $g^{r} $和私有的 $r $，PKG 有公开的 $g^{s} $和私有的 $s $，Bob 有公开的 $g^{t} $（未知的 $t $）。 $e(h_{1}( “Bob”), g)^{r s}=e(g^{t}, g)^{r s}=\hat{g}^{r s t} $就像是加密的会话密钥。Alice 和 PKG 可以像在 Joux 的方案中那样计算 $\hat{g}^{r s t} $，但是 Bob 怎么办呢？PKG 通过之前经过认证的安全通道帮助他，PKG 计算 $(g^{t})^{s}=g^{s t} $并发送给 Bob，Bob 现在就可以计算 $e(g^{s t}, g^{r})=\hat{g}^{r s t} $。关键是 Bob 得到的是 $g^{s t} $而不是 $\hat{g}^{s t} $，因为如果是 $\hat{g}^{s t} $（任何人都可以计算），就不能再应用 $e $了。 </p>
-<blockquote>
-<p>只有PKG能构造$g^{st}$,因为只有PKG有$s$</p>
-<p>$g^t,g^s$都是公开的，所有人可以通过pairing计算$\hat{g}^{s t}$</p>
-</blockquote>
+                <h1 id="Go-gin框架学习"><a href="#Go-gin框架学习" class="headerlink" title="Go_gin框架学习"></a>Go_gin框架学习</h1><p><img src="https://testingcf.jsdelivr.net/gh/c1ongyan/picture@main/img/202501240001595.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>1.Goland使用</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://go.dev/doc/tutorial/">https://go.dev/doc/tutorial/</a></p>
+<p>gin框架地址:<a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin">https://github.com/gin-gonic/gin</a></p>
+<p>框架：Go,Fiber,iris,Beego</p>
+<p>框架其实可以理解为库</p>
 
                 
               </div>
@@ -348,7 +299,11 @@ MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）<
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Crypto/">#Crypto</a>
+        <a href="/tags/web/">#web</a>
+      
+        <a href="/tags/Go/">#Go</a>
+      
+        <a href="/tags/gin/">#gin</a>
       
     </div>
   
@@ -360,8 +315,8 @@ MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）<
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Bilinear Map Group</div>
-      <div>http://example.com/post/Bilinear-Map-Group.html</div>
+      <div>Go_gin_Study</div>
+      <div>http://example.com/post/Go-gin-Study.html</div>
     </div>
     <div class="license-meta">
       
@@ -373,7 +328,7 @@ MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）<
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月21日</div>
+          <div>2025年1月23日</div>
         </div>
       
       
@@ -405,9 +360,9 @@ MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）<
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/Go-gin-Study.html" title="Go_gin_Study">
+                      <a href="/post/LeetCode-Hot100-%E5%88%B7%E9%A2%98.html" title="LeetCode Hot100 刷题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Go_gin_Study</span>
+                        <span class="hidden-mobile">LeetCode Hot100 刷题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -415,8 +370,8 @@ MakeKey(s, "Bob") = h_{1}("Bob")^{s}</script><p> <strong>解密（Decryption）<
                   <article class="post-next col-6">
                     
                     
-                      <a href="/post/ABE-Basis.html" title="ABE Basis">
-                        <span class="hidden-mobile">ABE Basis</span>
+                      <a href="/post/Bilinear-Map-Group.html" title="Bilinear Map Group">
+                        <span class="hidden-mobile">Bilinear Map Group</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
